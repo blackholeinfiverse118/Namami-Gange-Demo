@@ -1,0 +1,123 @@
+{
+  "demo_id": "demo_case_1",
+  "title": "Inland Port Identification — Ganga Basin",
+  "use_case": "Identify optimal inland port locations along the Ganga based on navigability, infrastructure proximity, water quality, and logistics access.",
+  "model_type": "inland_port",
+  "scenario_id": "high_logistics",
+  "scenario_description": "Policy scenario: logistics infrastructure is the primary decision factor (0.50 weight). Tests which locations remain viable under supply-chain-first policy.",
+
+  "entities": [
+    {
+      "location_id": "varanasi_terminal",
+      "properties": {
+        "river_stability_score": 78,
+        "terminal_proximity_score": 85,
+        "logistics_access_score": 70,
+        "water_quality_index": 60,
+        "traffic_potential_score": 75,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "pollution_index": 45,
+        "depth_score": 65
+      }
+    },
+    {
+      "location_id": "allahabad_confluence",
+      "properties": {
+        "river_stability_score": 82,
+        "terminal_proximity_score": 72,
+        "logistics_access_score": 68,
+        "water_quality_index": 52,
+        "traffic_potential_score": 70,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "pollution_index": 50,
+        "depth_score": 70
+      }
+    },
+    {
+      "location_id": "patna_river_port",
+      "properties": {
+        "river_stability_score": 85,
+        "terminal_proximity_score": 80,
+        "logistics_access_score": 75,
+        "water_quality_index": 55,
+        "traffic_potential_score": 80,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "pollution_index": 40,
+        "depth_score": 72
+      }
+    },
+    {
+      "location_id": "kanpur_industrial_zone",
+      "properties": {
+        "river_stability_score": 60,
+        "terminal_proximity_score": 65,
+        "logistics_access_score": 80,
+        "water_quality_index": 18,
+        "traffic_potential_score": 75,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "pollution_index": 85,
+        "depth_score": 55
+      }
+    },
+    {
+      "location_id": "farakka_wetland",
+      "properties": {
+        "river_stability_score": 74,
+        "terminal_proximity_score": 60,
+        "logistics_access_score": 45,
+        "water_quality_index": 48,
+        "traffic_potential_score": 40,
+        "in_wetland": true,
+        "in_flood_zone": false,
+        "env_clearance": false,
+        "pollution_index": 35,
+        "depth_score": 60
+      }
+    }
+  ],
+
+  "expected_hard_rejects": ["kanpur_industrial_zone", "farakka_wetland"],
+  "expected_high_locations": ["patna_river_port", "varanasi_terminal"],
+
+  "scoring_model_reference": {
+    "baseline_weights": {
+      "river_stability": 0.25,
+      "terminal_proximity": 0.20,
+      "logistics_access": 0.20,
+      "water_quality": 0.20,
+      "traffic_potential": 0.15
+    },
+    "scenario_weights": {
+      "river_stability": 0.10,
+      "terminal_proximity": 0.10,
+      "logistics_access": 0.50,
+      "water_quality": 0.15,
+      "traffic_potential": 0.15
+    },
+    "thresholds": { "HIGH": 75, "MEDIUM": 50, "LOW": 0 },
+    "formula": "score = Σ(factor_score × weight) − soft_penalties; HARD → REJECT"
+  },
+
+  "demo_flow": {
+    "step_1": "POST /simulate/baseline with model_type=inland_port",
+    "step_2": "POST /simulate with scenario_id=high_logistics",
+    "step_3": "Compare delta layer — which locations gained/lost viability",
+    "step_4": "Show rejected locations (kanpur: extreme_pollution, farakka: wetland + no clearance)",
+    "step_5": "Render GeoJSON on map — color by level, tooltip from explanation"
+  },
+
+  "talking_points": [
+    "Kanpur is rejected regardless of scenario — extreme pollution is non-negotiable",
+    "Farakka is rejected on two hard constraints simultaneously (wetland + env clearance)",
+    "Patna scores highest under both baseline and logistics scenario",
+    "Logistics scenario benefits Varanasi most — it has strong logistics_access (70) relative to other factors"
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "demo_id": "demo_case_2",
+  "title": "Hub-Spoke Logistics Network Optimization — Ganga Basin",
+  "use_case": "Identify primary hub and spoke nodes for a multimodal logistics network. Balances terminal density, connectivity, logistics park quality, and market access.",
+  "model_type": "hub_spoke",
+  "scenario_id": "connectivity_focus",
+  "scenario_description": "Policy scenario: prioritize terminal proximity and logistics access for last-mile optimization.",
+
+  "entities": [
+    {
+      "location_id": "patna_hub_prime",
+      "properties": {
+        "river_stability_score": 82,
+        "terminal_proximity_score": 85,
+        "logistics_access_score": 78,
+        "water_quality_index": 55,
+        "traffic_potential_score": 80,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "depth_score": 72,
+        "multi_node_proximity": 78,
+        "logistics_park_quality": 80,
+        "terminal_density_score": 75,
+        "connectivity_score": 82,
+        "urban_market_access": 85
+      }
+    },
+    {
+      "location_id": "hajipur_spoke_node",
+      "properties": {
+        "river_stability_score": 72,
+        "terminal_proximity_score": 68,
+        "logistics_access_score": 62,
+        "water_quality_index": 58,
+        "traffic_potential_score": 65,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "depth_score": 62,
+        "multi_node_proximity": 70,
+        "logistics_park_quality": 65,
+        "terminal_density_score": 60,
+        "connectivity_score": 68,
+        "urban_market_access": 72
+      }
+    },
+    {
+      "location_id": "bhagalpur_eastern_hub",
+      "properties": {
+        "river_stability_score": 75,
+        "terminal_proximity_score": 70,
+        "logistics_access_score": 65,
+        "water_quality_index": 52,
+        "traffic_potential_score": 68,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "depth_score": 68,
+        "multi_node_proximity": 65,
+        "logistics_park_quality": 70,
+        "terminal_density_score": 65,
+        "connectivity_score": 60,
+        "urban_market_access": 68
+      }
+    },
+    {
+      "location_id": "ghazipur_mid_spoke",
+      "properties": {
+        "river_stability_score": 68,
+        "terminal_proximity_score": 62,
+        "logistics_access_score": 55,
+        "water_quality_index": 48,
+        "traffic_potential_score": 58,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "depth_score": 58,
+        "multi_node_proximity": 55,
+        "logistics_park_quality": 50,
+        "terminal_density_score": 52,
+        "connectivity_score": 45,
+        "urban_market_access": 55
+      }
+    },
+    {
+      "location_id": "sultanganj_peripheral",
+      "properties": {
+        "river_stability_score": 65,
+        "terminal_proximity_score": 50,
+        "logistics_access_score": 20,
+        "water_quality_index": 45,
+        "traffic_potential_score": 18,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "depth_score": 50,
+        "multi_node_proximity": 40,
+        "logistics_park_quality": 35,
+        "terminal_density_score": 30,
+        "connectivity_score": 22,
+        "urban_market_access": 38
+      }
+    }
+  ],
+
+  "expected_hard_rejects": [],
+  "expected_high_locations": ["patna_hub_prime"],
+  "expected_soft_constrained": ["sultanganj_peripheral"],
+
+  "scoring_model_reference": {
+    "baseline_weights": {
+      "node_proximity": 0.20,
+      "logistics_park": 0.25,
+      "terminal_density": 0.20,
+      "connectivity": 0.20,
+      "market_access": 0.15
+    },
+    "scenario_weights": {
+      "node_proximity": 0.20,
+      "logistics_park": 0.20,
+      "terminal_density": 0.20,
+      "connectivity": 0.25,
+      "market_access": 0.15
+    },
+    "thresholds": { "HIGH": 72, "MEDIUM": 48, "LOW": 0 }
+  },
+
+  "demo_flow": {
+    "step_1": "POST /simulate/baseline with model_type=hub_spoke",
+    "step_2": "POST /simulate with scenario_id=connectivity_focus",
+    "step_3": "Identify primary hub (patna) vs spoke candidates",
+    "step_4": "Show sultanganj soft-constrained (low logistics + low traffic)",
+    "step_5": "Render hub-spoke network on map using GeoJSON delta layer"
+  },
+
+  "talking_points": [
+    "Patna is the dominant hub — highest in all factors including market access",
+    "Hajipur and Bhagalpur are viable spokes under baseline",
+    "Sultanganj is penalised under soft constraints but NOT rejected — it can be developed with planned infrastructure",
+    "Connectivity scenario shifts weight to show which spokes become more attractive",
+    "No hard rejects in this demo — all locations are environmentally viable"
+  ]
+}

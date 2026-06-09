@@ -1,0 +1,133 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  background: var(--surface-2);
+  border-color: var(--border-bright);
+}
+
+.high {
+  border-left-color: var(--alert-red);
+  box-shadow: inset 2px 0 8px rgba(239, 68, 68, 0.05);
+}
+
+.medium {
+  border-left-color: var(--amber);
+  box-shadow: inset 2px 0 8px rgba(245, 158, 11, 0.05);
+}
+
+.low {
+  border-left-color: var(--river-blue);
+  box-shadow: inset 2px 0 8px rgba(59, 130, 246, 0.05);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.alertId {
+  font-family: var(--font-mono);
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.time {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+.statusActive {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--alert-red);
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-weight: bold;
+  animation: alertPulse 1.5s infinite alternate ease-in-out;
+}
+
+.statusResolved {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--eco-green);
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.text {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  padding-top: 6px;
+  margin-top: 2px;
+}
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.label {
+  font-size: 8px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.val {
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--river-light);
+}
+
+.actionBtn {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: bold;
+  background: var(--teal);
+  color: var(--deep-navy);
+  border: none;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.actionBtn:hover {
+  opacity: 0.9;
+  box-shadow: 0 0 6px var(--teal-glow);
+}
+
+@keyframes alertPulse {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}

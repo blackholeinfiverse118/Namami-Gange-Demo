@@ -1,0 +1,26 @@
+station_id,station_name,river,state,district,latitude,longitude,station_type,parameters_monitored,do_mg_l,bod_mg_l,ph,turbidity_ntu,conductivity_us_cm,ammonia_mg_l,year_data,pollution_class,source
+WQ001,Haridwar (Har ki Pauri),Ganga,Uttarakhand,Haridwar,29.9457,78.1642,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,8.2,1.1,7.8,12.0,210.0,0.05,2023,A,CPCB NGRBA RTWQM Station Network
+WQ002,Rishikesh (Triveni Ghat),Ganga,Uttarakhand,Dehradun,30.0869,78.2676,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,8.5,0.9,7.9,8.0,195.0,0.03,2023,A,CPCB NGRBA RTWQM Station Network
+WQ003,Garhmukteshwar,Ganga,Uttar Pradesh,Hapur,28.7833,78.1667,RTWQM Floating,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.8,2.2,7.6,35.0,280.0,0.12,2023,B,CPCB NGRBA RTWQM Station Network
+WQ004,Kannauj,Ganga,Uttar Pradesh,Kannauj,27.0640,79.9192,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,6.5,4.5,7.4,68.0,410.0,0.45,2023,C,CPCB NGRBA RTWQM Station Network
+WQ005,Kanpur Upstream,Ganga,Uttar Pradesh,Kanpur,26.5200,80.3100,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,6.1,5.8,7.3,82.0,520.0,0.68,2023,C,CPCB NGRBA RTWQM Station Network
+WQ006,Kanpur Downstream (Jajmau),Ganga,Uttar Pradesh,Kanpur,26.4500,80.4200,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,4.2,8.9,7.1,145.0,890.0,1.82,2023,D,CPCB NGRBA RTWQM Station Network
+WQ007,Allahabad/Prayagraj (Sangam),Ganga,Uttar Pradesh,Prayagraj,25.4289,81.8824,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,6.8,3.5,7.5,55.0,350.0,0.31,2023,B,CPCB NGRBA RTWQM Station Network
+WQ008,Mirzapur (Vindhyachal),Ganga,Uttar Pradesh,Mirzapur,25.1597,82.5693,RTWQM Floating,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.1,2.8,7.6,42.0,310.0,0.22,2023,B,CPCB NGRBA RTWQM Station Network
+WQ009,Varanasi (Rajghat),Ganga,Uttar Pradesh,Varanasi,25.3176,82.9739,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,6.9,3.2,7.5,48.0,330.0,0.28,2023,B,CPCB NGRBA RTWQM Station Network
+WQ010,Varanasi (Assi Ghat),Ganga,Uttar Pradesh,Varanasi,25.2844,83.0100,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,6.7,3.6,7.4,52.0,345.0,0.31,2023,B,CPCB NGRBA RTWQM Station Network
+WQ011,Ghazipur,Ganga,Uttar Pradesh,Ghazipur,25.5793,83.5791,RTWQM Floating,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.0,3.0,7.5,45.0,320.0,0.25,2023,B,CPCB NGRBA RTWQM Station Network
+WQ012,Buxar,Ganga,Bihar,Buxar,25.5628,83.9716,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.2,2.8,7.6,40.0,298.0,0.19,2023,B,CPCB NGRBA RTWQM Station Network
+WQ013,Patna (Gandhi Ghat),Ganga,Bihar,Patna,25.6093,85.1376,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,6.8,3.8,7.4,58.0,365.0,0.35,2023,B,CPCB NGRBA RTWQM Station Network
+WQ014,Patna (Digha Ghat),Ganga,Bihar,Patna,25.6341,85.0800,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,6.5,4.2,7.3,65.0,395.0,0.42,2023,C,CPCB NGRBA RTWQM Station Network
+WQ015,Munger,Ganga,Bihar,Munger,25.3763,86.4733,RTWQM Floating,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.3,2.5,7.6,38.0,285.0,0.17,2023,B,CPCB NGRBA RTWQM Station Network
+WQ016,Bhagalpur (Sultanganj),Ganga,Bihar,Bhagalpur,25.2425,86.9842,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.5,2.2,7.7,32.0,265.0,0.14,2023,B,CPCB NGRBA RTWQM Station Network
+WQ017,Sahibganj,Ganga,Jharkhand,Sahibganj,25.2425,87.6411,RTWQM Floating,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.8,1.9,7.8,28.0,245.0,0.10,2023,B,CPCB NGRBA RTWQM Station Network
+WQ018,Rajmahal,Ganga,Jharkhand,Sahebganj,25.0459,87.8391,RTWQM Floating,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.9,1.8,7.8,26.0,235.0,0.09,2023,A,CPCB NGRBA RTWQM Station Network
+WQ019,Farakka,Ganga,West Bengal,Murshidabad,24.8005,87.9140,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.6,2.1,7.7,30.0,255.0,0.12,2023,B,CPCB NGRBA RTWQM Station Network
+WQ020,Murshidabad (Jiaganj),Ganga,West Bengal,Murshidabad,24.2277,88.1274,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.4,2.4,7.6,35.0,275.0,0.15,2023,B,CPCB NGRBA RTWQM Station Network
+WQ021,Nabadwip,Ganga,West Bengal,Nadia,23.4041,88.3662,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,7.2,2.7,7.5,40.0,295.0,0.18,2023,B,CPCB NGRBA RTWQM Station Network
+WQ022,Tribeni,Hooghly,West Bengal,Hooghly,22.9848,88.4015,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,6.9,3.3,7.4,50.0,340.0,0.28,2023,B,CPCB NGRBA RTWQM Station Network
+WQ023,Diamond Harbour,Hooghly,West Bengal,South 24 Parganas,22.1919,88.1932,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,6.5,4.0,7.3,62.0,385.0,0.38,2023,C,CPCB NGRBA RTWQM Station Network
+WQ024,Kanpur (Bithoor),Ganga,Uttar Pradesh,Kanpur,26.5800,80.2800,RTWQM Cross-section,DO|BOD|pH|Turbidity|Conductivity|Ammonia,6.8,3.8,7.4,60.0,360.0,0.34,2023,B,CPCB NGRBA RTWQM Station Network
+WQ025,Yamuna confluence (Prayagraj),Yamuna,Uttar Pradesh,Prayagraj,25.4281,81.8875,RTWQM Fixed,DO|BOD|pH|Turbidity|Conductivity|Ammonia,3.1,12.5,7.0,180.0,1200.0,3.50,2023,E,CPCB NGRBA RTWQM Station Network

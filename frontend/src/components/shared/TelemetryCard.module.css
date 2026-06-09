@@ -1,0 +1,77 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  background: var(--surface-2);
+  border-color: var(--border-bright);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+
+.stationName {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.metricsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.metricLabel {
+  color: var(--text-secondary);
+}
+
+.metricVal {
+  font-family: var(--font-mono);
+  font-weight: bold;
+}
+
+.gaugeContainer {
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1.5px;
+  overflow: hidden;
+}
+
+.gaugeFill {
+  height: 100%;
+  border-radius: 1.5px;
+  transition: width 0.3s ease-in-out;
+}

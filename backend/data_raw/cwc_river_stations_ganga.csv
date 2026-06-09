@@ -1,0 +1,24 @@
+station_id,station_name,river,state,district,latitude,longitude,station_type,avg_discharge_cumec,monsoon_discharge_cumec,lean_discharge_cumec,water_level_variation_m,navigability_depth_m,flow_stability_index,flood_prone,environmental_sensitivity,source
+RS001,Devprayag,Ganga (origin),Uttarakhand,Tehri,30.1453,78.5983,CWC Gauge & Discharge,300,2800,55,24.5,0.5,Low,Yes,High - Dolphin habitat,CWC / India-WRIS
+RS002,Rishikesh,Ganga,Uttarakhand,Dehradun,30.0869,78.2676,CWC Gauge & Discharge,450,3500,80,22.0,1.2,Low,Yes,High - Protected zone,CWC / India-WRIS
+RS003,Haridwar (Bhimgoda Barrage),Ganga,Uttarakhand,Haridwar,29.9457,78.1642,CWC Gauge & Discharge,560,4200,90,18.5,1.8,Medium,Yes,High - Protected,CWC / India-WRIS
+RS004,Garhmukteshwar,Ganga,Uttar Pradesh,Hapur,28.7833,78.1667,CWC Gauge & Discharge,780,8500,120,20.0,2.0,Medium,Yes,Medium,CWC / India-WRIS
+RS005,Farrukhabad,Ganga,Uttar Pradesh,Farrukhabad,27.3975,79.5797,CWC Gauge & Discharge,1050,12000,180,18.5,2.2,Medium,Yes,Medium,CWC / India-WRIS
+RS006,Kannauj,Ganga,Uttar Pradesh,Kannauj,27.0640,79.9192,CWC Gauge & Discharge,1200,14500,200,17.0,2.2,Medium,Yes,Medium,CWC / India-WRIS
+RS007,Kanpur (Sharda Sahayak),Ganga,Uttar Pradesh,Kanpur,26.5200,80.3100,CWC Gauge & Discharge,1550,18000,250,16.5,2.5,Medium,Yes,Medium - Industrial,CWC / India-WRIS
+RS008,Prayagraj/Allahabad (Yamuna+Ganga),Ganga,Uttar Pradesh,Prayagraj,25.4358,81.8463,CWC Gauge & Discharge,2800,32000,450,16.0,2.5,Medium,Yes,Medium - Kumbh zone,CWC / India-WRIS
+RS009,Mirzapur,Ganga,Uttar Pradesh,Mirzapur,25.1597,82.5693,CWC Gauge & Discharge,3100,35000,500,15.0,2.8,Medium-High,No,Medium,CWC / India-WRIS
+RS010,Varanasi (Rajghat Bridge),Ganga,Uttar Pradesh,Varanasi,25.3176,83.0107,CWC Gauge & Discharge,3400,38000,560,14.5,3.0,High,No,Medium - Heritage zone,CWC / India-WRIS
+RS011,Ghazipur,Ganga,Uttar Pradesh,Ghazipur,25.5793,83.5791,CWC Gauge & Discharge,3600,40000,600,14.0,3.0,High,No,Low,CWC / India-WRIS
+RS012,Buxar,Ganga,Bihar,Buxar,25.5628,83.9716,CWC Gauge & Discharge,3800,42000,650,13.5,3.0,High,No,Low,CWC / India-WRIS
+RS013,Patna (Gandhi Ghat),Ganga,Bihar,Patna,25.6093,85.1376,CWC Gauge & Discharge,4200,48000,750,13.0,3.0,High,No,Low - Urban,CWC / India-WRIS
+RS014,Hajipur (Gandak confluence),Ganga,Bihar,Vaishali,25.6883,85.2156,CWC Gauge & Discharge,4500,52000,800,14.5,2.8,Medium-High,Yes,Medium,CWC / India-WRIS
+RS015,Munger,Ganga,Bihar,Munger,25.3763,86.4733,CWC Gauge & Discharge,5000,58000,900,13.0,3.0,High,No,Low,CWC / India-WRIS
+RS016,Bhagalpur (Sultanganj),Ganga,Bihar,Bhagalpur,25.2425,86.9842,CWC Gauge & Discharge,5200,60000,950,12.5,3.2,High,No,Low - Vikramshila,CWC / India-WRIS
+RS017,Sahibganj,Ganga,Jharkhand,Sahibganj,25.2425,87.6411,CWC Gauge & Discharge,5500,63000,1000,12.0,3.5,High,No,Low,CWC / India-WRIS
+RS018,Farakka Barrage (upstream),Ganga,West Bengal,Murshidabad,24.8101,87.9054,CWC Gauge & Discharge,5800,67000,1050,11.5,3.5,High,No,Medium - Barrage,CWC / India-WRIS
+RS019,Farakka Barrage (downstream / Bhagirathi),Bhagirathi,West Bengal,Murshidabad,24.8005,87.9140,CWC Gauge & Discharge,1200,8000,200,10.0,2.0,Medium,No,Medium,CWC / India-WRIS
+RS020,Jangipur (Bhagirathi-Hooghly),Bhagirathi,West Bengal,Murshidabad,24.4720,88.0740,CWC Gauge & Discharge,1100,7500,180,9.5,2.0,Medium,No,Low,CWC / India-WRIS
+RS021,Nabadwip,Hooghly,West Bengal,Nadia,23.4041,88.3662,CWC Gauge & Discharge,1000,7000,160,9.0,2.5,Medium-High,No,Low,CWC / India-WRIS
+RS022,Kolkata (Eden Gardens),Hooghly,West Bengal,Kolkata,22.5726,88.3639,Tidal Gauge,900,6000,150,5.5,5.0,High,No,Low - Urban,CWC / India-WRIS
+RS023,Haldia (estuary),Hooghly,West Bengal,Purba Medinipur,22.0667,88.0698,Tidal Gauge,800,5500,140,6.0,6.0,High,No,Medium - Tidal,CWC / India-WRIS

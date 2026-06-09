@@ -1,0 +1,429 @@
+{
+  "collection": "NICAI -- Namami Gange Intelligence API",
+  "base_url": "http://localhost:5000",
+  "date": "2026-05-26",
+  "description": "Ready-to-use API request examples for all endpoints. Run the server first: cd src && python api.py",
+
+  "requests": [
+
+    {
+      "id": "REQ_001",
+      "name": "Health Check",
+      "description": "Verify the engine is live and healthy",
+      "method": "GET",
+      "endpoint": "/health",
+      "expected_response": {
+        "status": "healthy",
+        "entities_loaded": 6,
+        "models_available": ["inland_port", "seaplane", "hub_spoke"],
+        "determinism": "guaranteed",
+        "ml_used": false
+      }
+    },
+
+    {
+      "id": "REQ_002",
+      "name": "List All Locations",
+      "description": "Get all 6 Ganga Basin location entities",
+      "method": "GET",
+      "endpoint": "/locations",
+      "expected_response_shape": {
+        "count": 6,
+        "locations": "array of location entity objects"
+      }
+    },
+
+    {
+      "id": "REQ_003",
+      "name": "Get All Results -- Inland Port Model",
+      "description": "Score all 6 locations for inland port suitability",
+      "method": "GET",
+      "endpoint": "/results?model=inland_port",
+      "expected_response_shape": {
+        "model_type": "inland_port",
+        "count": 6,
+        "results": "array of scored result objects"
+      }
+    },
+
+    {
+      "id": "REQ_004",
+      "name": "Get All Results -- Seaplane Model",
+      "description": "Score all locations for seaplane landing zone suitability",
+      "method": "GET",
+      "endpoint": "/results?model=seaplane"
+    },
+
+    {
+      "id": "REQ_005",
+      "name": "Get All Results -- Hub Spoke Model",
+      "description": "Score all locations for hub-spoke logistics suitability",
+      "method": "GET",
+      "endpoint": "/results?model=hub_spoke"
+    },
+
+    {
+      "id": "REQ_006",
+      "name": "Filter Results -- HIGH Level Only",
+      "description": "Get only HIGH suitability locations",
+      "method": "GET",
+      "endpoint": "/results?level=HIGH"
+    },
+
+    {
+      "id": "REQ_007",
+      "name": "Filter Results -- REJECTED Only",
+      "description": "Get all locations that failed hard constraints",
+      "method": "GET",
+      "endpoint": "/results?level=REJECTED"
+    },
+
+    {
+      "id": "REQ_008",
+      "name": "Filter Results -- Single Location",
+      "description": "Get results for Varanasi Terminal only",
+      "method": "GET",
+      "endpoint": "/results?location_id=varanasi_terminal"
+    },
+
+    {
+      "id": "REQ_009",
+      "name": "Analyze Location -- Patna (HIGH)",
+      "description": "Score Patna River Port for inland port suitability. Expected: HIGH, score ~75.25",
+      "method": "POST",
+      "endpoint": "/analyze-location",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "entity": {
+          "location_id": "patna_river_port",
+          "properties": {
+            "river_stability_score": 85,
+            "terminal_proximity_score": 80,
+            "logistics_access_score": 75,
+            "water_quality_index": 55,
+            "traffic_potential_score": 80,
+            "in_wetland": false,
+            "in_flood_zone": false,
+            "env_clearance": true,
+            "depth_score": 72
+          }
+        },
+        "model_type": "inland_port"
+      },
+      "expected_score": 75.25,
+      "expected_level": "HIGH"
+    },
+
+    {
+      "id": "REQ_010",
+      "name": "Analyze Location -- Varanasi (MEDIUM)",
+      "description": "Score Varanasi Terminal for inland port suitability. Expected: MEDIUM, score 73.75",
+      "method": "POST",
+      "endpoint": "/analyze-location",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "entity": {
+          "location_id": "varanasi_terminal",
+          "properties": {
+            "river_stability_score": 78,
+            "terminal_proximity_score": 85,
+            "logistics_access_score": 70,
+            "water_quality_index": 60,
+            "traffic_potential_score": 75,
+            "in_wetland": false,
+            "in_flood_zone": false,
+            "env_clearance": true,
+            "depth_score": 65
+          }
+        },
+        "model_type": "inland_port"
+      },
+      "expected_score": 73.75,
+      "expected_level": "MEDIUM"
+    },
+
+    {
+      "id": "REQ_011",
+      "name": "Analyze Location -- Kanpur (REJECTED -- extreme pollution)",
+      "description": "Kanpur water_quality_index=18 triggers extreme_pollution hard constraint. Expected: REJECTED, score=0.0",
+      "method": "POST",
+      "endpoint": "/analyze-location",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "entity": {
+          "location_id": "kanpur_industrial_zone",
+          "properties": {
+            "river_stability_score": 60,
+            "terminal_proximity_score": 65,
+            "logistics_access_score": 80,
+            "water_quality_index": 18,
+            "traffic_potential_score": 75,
+            "in_wetland": false,
+            "in_flood_zone": false,
+            "env_clearance": true,
+            "depth_score": 55
+          }
+        },
+        "model_type": "inland_port"
+      },
+      "expected_score": 0.0,
+      "expected_level": "REJECTED",
+      "expected_hard_constraints": ["extreme_pollution"]
+    },
+
+    {
+      "id": "REQ_012",
+      "name": "Analyze Location -- Farakka (REJECTED -- wetland + no clearance)",
+      "description": "Farakka triggers two hard constraints: wetland_zone and no_env_clearance",
+      "method": "POST",
+      "endpoint": "/analyze-location",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "entity": {
+          "location_id": "farakka_wetland",
+          "properties": {
+            "river_stability_score": 74,
+            "terminal_proximity_score": 60,
+            "logistics_access_score": 45,
+            "water_quality_index": 48,
+            "traffic_potential_score": 40,
+            "in_wetland": true,
+            "in_flood_zone": false,
+            "env_clearance": false,
+            "depth_score": 60
+          }
+        },
+        "model_type": "inland_port"
+      },
+      "expected_score": 0.0,
+      "expected_level": "REJECTED",
+      "expected_hard_constraints": ["wetland_zone", "no_env_clearance"]
+    },
+
+    {
+      "id": "REQ_013",
+      "name": "Analyze Location -- Allahabad (LOW -- soft constraint penalty)",
+      "description": "logistics_access_score=20 triggers logistics_absence soft constraint, -15 pts penalty",
+      "method": "POST",
+      "endpoint": "/analyze-location",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "entity": {
+          "location_id": "allahabad_confluence",
+          "properties": {
+            "river_stability_score": 82,
+            "terminal_proximity_score": 72,
+            "logistics_access_score": 20,
+            "water_quality_index": 65,
+            "traffic_potential_score": 70,
+            "in_wetland": false,
+            "in_flood_zone": false,
+            "env_clearance": true,
+            "depth_score": 70
+          }
+        },
+        "model_type": "inland_port"
+      },
+      "expected_score": 47.4,
+      "expected_level": "LOW",
+      "expected_soft_constraints": ["logistics_absence"]
+    },
+
+    {
+      "id": "REQ_014",
+      "name": "Analyze Location -- Seaplane Model",
+      "description": "Score a location for seaplane landing zone suitability",
+      "method": "POST",
+      "endpoint": "/analyze-location",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "entity": {
+          "location_id": "varanasi_seaplane",
+          "properties": {
+            "turbulence_index": 0.25,
+            "water_quality_index": 70,
+            "traffic_potential_score": 65,
+            "urban_proximity_score": 72,
+            "env_clearance": true,
+            "in_wetland": false,
+            "in_flood_zone": false
+          }
+        },
+        "model_type": "seaplane"
+      }
+    },
+
+    {
+      "id": "REQ_015",
+      "name": "Analyze Location -- Hub Spoke Model",
+      "description": "Score a location for hub-spoke logistics hub suitability",
+      "method": "POST",
+      "endpoint": "/analyze-location",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "entity": {
+          "location_id": "hajipur_hub",
+          "properties": {
+            "multi_node_proximity": 70,
+            "logistics_park_quality": 65,
+            "terminal_density_score": 60,
+            "connectivity_score": 68,
+            "urban_market_access": 72,
+            "in_wetland": false,
+            "in_flood_zone": false,
+            "env_clearance": true
+          }
+        },
+        "model_type": "hub_spoke"
+      }
+    },
+
+    {
+      "id": "REQ_016",
+      "name": "Bad Request -- Missing entity field",
+      "description": "Demonstrates error handling: missing entity field returns 400",
+      "method": "POST",
+      "endpoint": "/analyze-location",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "model_type": "inland_port"
+      },
+      "expected_status": 400,
+      "expected_error": "'entity' field is required"
+    },
+
+    {
+      "id": "REQ_017",
+      "name": "Bad Request -- Unknown model type",
+      "description": "Demonstrates error handling: unknown model_type returns 400",
+      "method": "POST",
+      "endpoint": "/analyze-location",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "entity": {
+          "location_id": "test",
+          "properties": {}
+        },
+        "model_type": "unknown_model"
+      },
+      "expected_status": 400
+    },
+
+    {
+      "id": "REQ_018",
+      "name": "Simulate -- High Logistics Scenario",
+      "description": "Run high_logistics predefined scenario: logistics weight boosted to 0.50",
+      "method": "POST",
+      "endpoint": "/simulate",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "scenario_id": "high_logistics",
+        "model_type": "inland_port"
+      }
+    },
+
+    {
+      "id": "REQ_019",
+      "name": "Simulate -- Custom Scenario",
+      "description": "Run a custom scenario with user-defined weights",
+      "method": "POST",
+      "endpoint": "/simulate",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "scenario": {
+          "scenario_id": "env_priority_custom",
+          "description": "Prioritise water quality and environmental factors",
+          "modifications": {
+            "priority_weights": {
+              "river_stability": 0.15,
+              "terminal_proximity": 0.10,
+              "logistics_access": 0.15,
+              "water_quality": 0.40,
+              "traffic_potential": 0.20
+            }
+          }
+        },
+        "model_type": "inland_port"
+      }
+    }
+  ],
+
+  "curl_quick_reference": {
+    "health_check": "curl http://localhost:5000/health",
+    "all_results": "curl http://localhost:5000/results?model=inland_port",
+    "high_only": "curl http://localhost:5000/results?level=HIGH",
+    "rejected_only": "curl http://localhost:5000/results?level=REJECTED",
+    "analyze_patna": "curl -X POST http://localhost:5000/analyze-location -H \"Content-Type: application/json\" -d @sample_api_requests_patna.json"
+  },
+
+  "constraint_reference": {
+    "hard_constraints": {
+      "wetland_zone": "in_wetland=true -- always REJECTED",
+      "extreme_pollution": "water_quality_index < 20 -- always REJECTED",
+      "flood_zone": "in_flood_zone=true -- always REJECTED",
+      "critical_depth": "depth_score < 20 -- always REJECTED",
+      "no_env_clearance": "env_clearance=false -- always REJECTED"
+    },
+    "soft_constraints": {
+      "logistics_absence": "logistics_access_score < 30 -- penalty -15 pts",
+      "low_traffic": "traffic_potential_score < 25 -- penalty -10 pts",
+      "poor_connectivity": "connectivity_score < 25 -- penalty -10 pts",
+      "high_turbulence": "turbulence_index > 0.7 -- penalty -12 pts"
+    }
+  },
+
+  "scoring_model_reference": {
+    "inland_port": {
+      "weights": {
+        "river_stability": 0.25,
+        "terminal_proximity": 0.20,
+        "logistics_access": 0.20,
+        "water_quality": 0.20,
+        "traffic_potential": 0.15
+      },
+      "thresholds": { "HIGH": 75, "MEDIUM": 50, "LOW": 0 }
+    },
+    "seaplane": {
+      "weights": {
+        "turbulence": 0.30,
+        "water_quality": 0.25,
+        "urban_proximity": 0.20,
+        "traffic_density": 0.15,
+        "env_clearance_adj": 0.10
+      },
+      "thresholds": { "HIGH": 70, "MEDIUM": 45, "LOW": 0 }
+    },
+    "hub_spoke": {
+      "weights": {
+        "logistics_park": 0.25,
+        "node_proximity": 0.20,
+        "terminal_density": 0.20,
+        "connectivity": 0.20,
+        "market_access": 0.15
+      },
+      "thresholds": { "HIGH": 72, "MEDIUM": 48, "LOW": 0 }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+﻿{
+  "base_data": [
+    {
+      "id": "varanasi_terminal",
+      "properties": {
+        "location_id": "varanasi_terminal",
+        "name": "Varanasi River Terminal",
+        "latitude": 25.3176,
+        "longitude": 82.9739,
+        "river_stability_score": 78,
+        "terminal_proximity_score": 85,
+        "logistics_access_score": 70,
+        "water_quality_index": 60,
+        "traffic_potential_score": 75,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "turbulence_index": 0.2
+      },
+      "geometry": {"type": "Point", "coordinates": [82.9739, 25.3176]}
+    },
+    {
+      "id": "patna_hub",
+      "properties": {
+        "location_id": "patna_hub",
+        "name": "Patna Logistics Hub",
+        "latitude": 25.5941,
+        "longitude": 85.1376,
+        "river_stability_score": 82,
+        "terminal_proximity_score": 90,
+        "logistics_access_score": 88,
+        "water_quality_index": 55,
+        "traffic_potential_score": 85,
+        "in_wetland": false,
+        "in_flood_zone": false,
+        "env_clearance": true,
+        "turbulence_index": 0.15
+      },
+      "geometry": {"type": "Point", "coordinates": [85.1376, 25.5941]}
+    }
+  ],
+  "scenario": {
+    "scenario_id": "high_logistics",
+    "description": "Boost logistics weight to 0.50",
+    "modifications": {
+      "priority_weights": {
+        "river_stability": 0.10,
+        "terminal_proximity": 0.10,
+        "logistics_access": 0.50,
+        "water_quality": 0.15,
+        "traffic_potential": 0.15
+      },
+      "exclude_zones": [],
+      "environmental_override": false
+    }
+  }
+}

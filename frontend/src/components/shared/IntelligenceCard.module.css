@@ -1,0 +1,61 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  border-color: var(--border-bright);
+  background: var(--surface-2);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.icon {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.value {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.blue { color: var(--river-light); }
+.teal { color: var(--teal); }
+.amber { color: var(--amber); }
+.red { color: var(--alert-red); }
+.green { color: var(--eco-green); }
+
+.delta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.up { color: var(--eco-green); }
+.down { color: var(--alert-red); }
+
+.deltaLabel {
+  font-weight: 400;
+  color: var(--text-dim);
+}

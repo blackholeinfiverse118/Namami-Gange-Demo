@@ -1,0 +1,21 @@
+city_id,city_name,state,district,latitude,longitude,population_2011_lakhs,population_est_2023_lakhs,city_class,has_airport,has_railway_jn,has_highway_access,economic_importance,source
+UC001,Haridwar,Uttarakhand,Haridwar,29.9457,78.1642,2.28,2.85,Class-I City,No,Yes,NH-58,Religious tourism + industrial estate,Census 2011 / Census 2011 towns
+UC002,Rishikesh,Uttarakhand,Dehradun,30.0869,78.2676,1.02,1.35,Class-I City,No,Yes,NH-58,Tourism hub,Census 2011
+UC003,Meerut,Uttar Pradesh,Meerut,28.9845,77.7064,13.05,16.40,Metro,No,Yes,NH-58 / NH-9,Industrial + trade,Census 2011
+UC004,Kanpur,Uttar Pradesh,Kanpur Nagar,26.4499,80.3319,29.20,35.80,Metro,Yes (Chakeri),Yes,NH-27 / NH-19,Industrial capital of UP,Census 2011
+UC005,Lucknow,Uttar Pradesh,Lucknow,26.8467,80.9462,28.17,34.50,Metro,Yes,Yes,NH-27,State capital UP,Census 2011
+UC006,Prayagraj (Allahabad),Uttar Pradesh,Prayagraj,25.4358,81.8463,11.17,14.20,Tier-1 City,Yes (Bamrauli),Yes,NH-19 / NH-30,Junction city + Kumbh,Census 2011
+UC007,Varanasi,Uttar Pradesh,Varanasi,25.3176,82.9739,12.01,15.30,Tier-1 City,Yes (Lal Bahadur Shastri),Yes,NH-7 / NH-19,Heritage + logistics hub,Census 2011
+UC008,Mirzapur,Uttar Pradesh,Mirzapur,25.1597,82.5693,2.33,2.90,Class-I City,No,Yes,NH-19,Carpet industry,Census 2011
+UC009,Ghazipur,Uttar Pradesh,Ghazipur,25.5793,83.5791,1.21,1.52,Class-I City,No,Yes,NH-19,Agricultural trade,Census 2011
+UC010,Patna,Bihar,Patna,25.5941,85.1376,16.84,22.50,Metro,Yes (Jay Prakash Narayan),Yes,NH-30 / NH-139,State capital Bihar,Census 2011
+UC011,Gaya,Bihar,Gaya,24.7955,84.9994,4.70,5.80,Tier-2 City,Yes,Yes,NH-82,Buddhist tourism,Census 2011
+UC012,Bhagalpur,Bihar,Bhagalpur,25.2425,86.9842,4.10,5.20,Tier-2 City,No,Yes,NH-80,Silk city - trade,Census 2011
+UC013,Munger,Bihar,Munger,25.3763,86.4733,1.86,2.30,Class-I City,No,Yes,NH-80,Industrial,Census 2011
+UC014,Sahibganj,Jharkhand,Sahibganj,25.2425,87.6411,0.75,0.95,Class-II City,No,Yes,NH-80,River trade hub,Census 2011
+UC015,Rajmahal,Jharkhand,Sahebganj,25.0459,87.8391,0.47,0.59,Class-III City,No,Yes,NH-80,River port (historical),Census 2011
+UC016,Murshidabad,West Bengal,Murshidabad,24.1872,88.2695,0.45,0.55,Class-III City,No,Yes,State highway,Historical + trade,Census 2011
+UC017,Kolkata,West Bengal,Kolkata,22.5726,88.3639,141.12,164.90,Mega City,Yes (Netaji SC Bose),Yes,Multiple NH,Largest city + port,Census 2011
+UC018,Haldia,West Bengal,Purba Medinipur,22.0667,88.0698,1.70,2.10,Industrial Town,No,Yes (near),NH-41,Port city,Census 2011
+UC019,Buxar,Bihar,Buxar,25.5628,83.9716,1.02,1.28,Class-I City,No,Yes,NH-30,Border trade + river,Census 2011
+UC020,Farakka,West Bengal,Murshidabad,24.8005,87.9140,0.35,0.43,Small Town,No,Yes,NH-12,Barrage town,Census 2011

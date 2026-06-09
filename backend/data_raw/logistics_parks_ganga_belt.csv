@@ -1,0 +1,16 @@
+park_id,park_name,park_type,state,district,latitude,longitude,area_acres,status,road_connectivity,rail_connectivity,waterway_connectivity,source
+LP001,MMLP Varanasi (Proposed - EDFC Node),MMLP,Uttar Pradesh,Varanasi,25.3176,82.9739,200,Proposed,NH-7 / NH-19,EDFC (Eastern DFC) - Jeonathpur,NW-1 (Ramnagar MMT),MoRTH Bharatmala Phase-I / EDFC Node
+LP002,MMLP Prayagraj (Proposed),MMLP,Uttar Pradesh,Prayagraj,25.4358,81.8463,150,DPR Stage,NH-19 / NH-30,Prayagraj Jn (yes),NW-1 (Sangam area),MoRTH Bharatmala Phase-I
+LP003,MMLP Kanpur (Proposed - EDFC),MMLP,Uttar Pradesh,Kanpur,26.4499,80.3319,300,DPR Stage,NH-27 / NH-19,EDFC Node - Kanpur,Not connected,Invest UP / EDFC corridor
+LP004,MMLP Patna (Proposed),MMLP,Bihar,Patna,25.5941,85.1376,200,Proposed,NH-30 / NH-139,Patna Junction,NW-1 (Gaighat),MoRTH Bharatmala Phase-I
+LP005,MMLP Kolkata (Dankuni),MMLP,West Bengal,Hooghly,22.7900,88.2800,400,Under Development,NH-19 / NH-12,Dankuni Jn,River Hooghly (NW-1),MoRTH Bharatmala Phase-I / Sagarmala
+LP006,Logistics Hub Sahibganj (JMVP-linked),Logistics Hub,Jharkhand,Sahibganj,25.2425,87.6411,100,Operational,NH-80,Sahibganj Railway Station,NW-1 (MMT Sahibganj),IWAI JMVP Arth Ganga
+LP007,Logistics Park Haldia (Port-linked),Logistics Hub,West Bengal,Purba Medinipur,22.0667,88.0698,250,Operational,NH-41,Haldia (near),NW-1 (Haldia MMT),Sagarmala / IWAI
+LP008,Logistics Park Bhagalpur (Proposed),Logistics Park,Bihar,Bhagalpur,25.2425,86.9842,120,Proposed,NH-80,Bhagalpur Railway Station,NW-1 (Bhagalpur Float. Terminal),Bihar Logistics Policy 2023
+LP009,Inland Container Depot (ICD) Agra,ICD,Uttar Pradesh,Agra,27.1767,78.0081,80,Operational,NH-19 / Yamuna Exp.,Agra Cantt,Not connected,CONCOR / Indian Railways
+LP010,ICD Kanpur (Panki),ICD,Uttar Pradesh,Kanpur,26.3990,80.2946,60,Operational,NH-27,Panki Jn,Not connected,CONCOR / Indian Railways
+LP011,ICD Patna (Fatuha),ICD,Bihar,Patna,25.5100,85.2700,50,Operational,NH-30,Fatuha Jn,Not connected,CONCOR / Indian Railways
+LP012,Logistics Park Mirzapur (Proposed),Logistics Park,Uttar Pradesh,Mirzapur,25.1597,82.5693,80,Proposed,NH-19,Mirzapur Railway Station,NW-1 proximity,UP Logistics Policy 2022
+LP013,MMLP Ghaziabad (Pilkhuwa),MMLP,Uttar Pradesh,Ghaziabad,28.5355,77.3910,350,Under Construction,NH-9 / NH-58,WDFC Node,Not connected,MoRTH Bharatmala Phase-I / WDFC
+LP014,Logistics Park Buxar (Proposed),Logistics Park,Bihar,Buxar,25.5628,83.9716,80,Proposed,NH-30,Buxar Railway Station,NW-1 proximity,Bihar Logistics Policy 2023
+LP015,Grain Silos & Cold Chain Hub Hajipur,Agri Logistics Hub,Bihar,Vaishali,25.6883,85.2156,60,Operational,NH-22,Hajipur Jn,Gandak River proximity,FCI / APEDA
