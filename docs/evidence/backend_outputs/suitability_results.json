@@ -1,0 +1,4070 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "total_results": 60,
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.1642,
+          29.9457
+        ]
+      },
+      "properties": {
+        "location_id": "LOC001",
+        "location_name": "Haridwar",
+        "latitude": 29.9457,
+        "longitude": 78.1642,
+        "model_type": "inland_port",
+        "suitability_level": "LOW",
+        "score": 24.7,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.123,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 4.3,
+            "max": 25,
+            "details": [
+              "flow_stability=1.33/4 \u2192 +3.3 pts",
+              "nav_depth=1.17m \u2192 +1 pts",
+              "flood_prone \u2192 +0 pts (penalty)"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "terminal_count=0 \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "logistics_park_count=0 \u2192 +0 pts",
+              "best_lp_status=0 \u2192 +0 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 15,
+            "max": 15,
+            "details": [
+              "avg_BOD=1.0mg/L \u2192 +8 pts",
+              "avg_DO=8.35mg/L \u2192 +7 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 5.4,
+            "max": 15,
+            "details": [
+              "max_city_class=2 \u2192 +2.4 pts",
+              "total_pop=4.2L \u2192 +1 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "CRITICAL: Nav depth < 1.5m \u2014 not navigable for commercial vessels",
+          "WARNING: Flood-prone + low stability \u2014 high operational risk",
+          "WARNING: High environmental sensitivity \u2014 NGT/clearance restrictions likely",
+          "NOTE: No existing terminals or logistics parks \u2014 greenfield investment required"
+        ],
+        "reasoning": "Haridwar scores 24.7/100 for inland port suitability (LOW). Strongest factor: water quality (15/15 pts). River nav depth: 1.17m, flow stability: 1.33/4, terminals in region: 0, avg BOD: 1.0 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.1642,
+          29.9457
+        ]
+      },
+      "properties": {
+        "location_id": "LOC001",
+        "location_name": "Haridwar",
+        "latitude": 29.9457,
+        "longitude": 78.1642,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 63.2,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.316,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 10.0,
+            "max": 25,
+            "details": [
+              "flow_stability=1.33/4 \u2192 +4.0 pts",
+              "flow_cv_proxy=47.11 (monsoon/lean ratio) \u2192 +5 pts",
+              "nav_depth=1.17m (seaplane runway depth) \u2192 +1 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 20.0,
+            "max": 20,
+            "details": [
+              "avg_turbidity=10.0 NTU \u2192 +12 pts",
+              "avg_wq_class=5.0/5 \u2192 +8.0 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 20,
+            "max": 20,
+            "details": [
+              "no_commercial_terminals \u2192 +20 pts (clear water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 9.2,
+            "max": 20,
+            "details": [
+              "max_city_class=2 \u2192 +3.2 pts",
+              "total_pop=4.2L \u2192 +4 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 4.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=1.0/3 (HIGH (likely restricted)) \u2192 +4.0 pts",
+              "flood_prone \u2192 +0 pts (seasonal closure risk)"
+            ]
+          }
+        },
+        "constraints": [
+          "CRITICAL: Very unstable flow \u2014 unsafe water surface for aircraft",
+          "CRITICAL: High environmental sensitivity zone \u2014 NGT/wildlife clearance required",
+          "WARNING: Shallow water may restrict seaplane hull draft"
+        ],
+        "reasoning": "Haridwar scores 63.2/100 for seaplane landing suitability (MEDIUM). Strongest factor: water surface (20.0/20 pts). Flow stability: 1.33/4, turbidity: 10.0 NTU, env sensitivity: 1.0/3, commercial capacity in zone: 0.0 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.1642,
+          29.9457
+        ]
+      },
+      "properties": {
+        "location_id": "LOC001",
+        "location_name": "Haridwar",
+        "latitude": 29.9457,
+        "longitude": 78.1642,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "LOW",
+        "score": 10.0,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.05,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 0,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=0 \u2192 +0 pts",
+              "no_infra_nodes \u2192 +0 pts"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "total_lp_area=0.0 acres \u2192 +0 pts",
+              "best_lp_status=0 \u2192 +0 pts",
+              "logistics_park_count=0 \u2192 +0 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=0.0MTPA \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 6,
+            "max": 15,
+            "details": [
+              "modal_count=2 (rail+road) \u2192 +6 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 4,
+            "max": 10,
+            "details": [
+              "total_pop=4.2L \u2192 +4 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "CRITICAL: No existing infra \u2014 full greenfield hub investment required"
+        ],
+        "reasoning": "Haridwar scores 10/100 for hub-spoke logistics suitability (LOW). Strongest factor: centrality connectivity (6/15 pts). Infra nodes: 0 terminals + 0 logistics parks, total lp area: 0.0 acres, modal count includes waterway: 0."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2676,
+          30.0869
+        ]
+      },
+      "properties": {
+        "location_id": "LOC002",
+        "location_name": "Rishikesh",
+        "latitude": 30.0869,
+        "longitude": 78.2676,
+        "model_type": "inland_port",
+        "suitability_level": "LOW",
+        "score": 24.7,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.123,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 4.3,
+            "max": 25,
+            "details": [
+              "flow_stability=1.33/4 \u2192 +3.3 pts",
+              "nav_depth=1.17m \u2192 +1 pts",
+              "flood_prone \u2192 +0 pts (penalty)"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "terminal_count=0 \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "logistics_park_count=0 \u2192 +0 pts",
+              "best_lp_status=0 \u2192 +0 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 15,
+            "max": 15,
+            "details": [
+              "avg_BOD=1.0mg/L \u2192 +8 pts",
+              "avg_DO=8.35mg/L \u2192 +7 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 5.4,
+            "max": 15,
+            "details": [
+              "max_city_class=2 \u2192 +2.4 pts",
+              "total_pop=4.2L \u2192 +1 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "CRITICAL: Nav depth < 1.5m \u2014 not navigable for commercial vessels",
+          "WARNING: Flood-prone + low stability \u2014 high operational risk",
+          "WARNING: High environmental sensitivity \u2014 NGT/clearance restrictions likely",
+          "NOTE: No existing terminals or logistics parks \u2014 greenfield investment required"
+        ],
+        "reasoning": "Rishikesh scores 24.7/100 for inland port suitability (LOW). Strongest factor: water quality (15/15 pts). River nav depth: 1.17m, flow stability: 1.33/4, terminals in region: 0, avg BOD: 1.0 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2676,
+          30.0869
+        ]
+      },
+      "properties": {
+        "location_id": "LOC002",
+        "location_name": "Rishikesh",
+        "latitude": 30.0869,
+        "longitude": 78.2676,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 63.2,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.316,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 10.0,
+            "max": 25,
+            "details": [
+              "flow_stability=1.33/4 \u2192 +4.0 pts",
+              "flow_cv_proxy=47.11 (monsoon/lean ratio) \u2192 +5 pts",
+              "nav_depth=1.17m (seaplane runway depth) \u2192 +1 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 20.0,
+            "max": 20,
+            "details": [
+              "avg_turbidity=10.0 NTU \u2192 +12 pts",
+              "avg_wq_class=5.0/5 \u2192 +8.0 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 20,
+            "max": 20,
+            "details": [
+              "no_commercial_terminals \u2192 +20 pts (clear water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 9.2,
+            "max": 20,
+            "details": [
+              "max_city_class=2 \u2192 +3.2 pts",
+              "total_pop=4.2L \u2192 +4 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 4.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=1.0/3 (HIGH (likely restricted)) \u2192 +4.0 pts",
+              "flood_prone \u2192 +0 pts (seasonal closure risk)"
+            ]
+          }
+        },
+        "constraints": [
+          "CRITICAL: Very unstable flow \u2014 unsafe water surface for aircraft",
+          "CRITICAL: High environmental sensitivity zone \u2014 NGT/wildlife clearance required",
+          "WARNING: Shallow water may restrict seaplane hull draft"
+        ],
+        "reasoning": "Rishikesh scores 63.2/100 for seaplane landing suitability (MEDIUM). Strongest factor: water surface (20.0/20 pts). Flow stability: 1.33/4, turbidity: 10.0 NTU, env sensitivity: 1.0/3, commercial capacity in zone: 0.0 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2676,
+          30.0869
+        ]
+      },
+      "properties": {
+        "location_id": "LOC002",
+        "location_name": "Rishikesh",
+        "latitude": 30.0869,
+        "longitude": 78.2676,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "LOW",
+        "score": 10.0,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.05,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 0,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=0 \u2192 +0 pts",
+              "no_infra_nodes \u2192 +0 pts"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "total_lp_area=0.0 acres \u2192 +0 pts",
+              "best_lp_status=0 \u2192 +0 pts",
+              "logistics_park_count=0 \u2192 +0 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=0.0MTPA \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 6,
+            "max": 15,
+            "details": [
+              "modal_count=2 (rail+road) \u2192 +6 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 4,
+            "max": 10,
+            "details": [
+              "total_pop=4.2L \u2192 +4 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "CRITICAL: No existing infra \u2014 full greenfield hub investment required"
+        ],
+        "reasoning": "Rishikesh scores 10/100 for hub-spoke logistics suitability (LOW). Strongest factor: centrality connectivity (6/15 pts). Infra nodes: 0 terminals + 0 logistics parks, total lp area: 0.0 acres, modal count includes waterway: 0."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.7064,
+          28.9845
+        ]
+      },
+      "properties": {
+        "location_id": "LOC003",
+        "location_name": "Meerut",
+        "latitude": 28.9845,
+        "longitude": 77.7064,
+        "model_type": "inland_port",
+        "suitability_level": "MEDIUM",
+        "score": 41.8,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.209,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 9.0,
+            "max": 25,
+            "details": [
+              "flow_stability=2.0/4 \u2192 +5.0 pts",
+              "nav_depth=2.0m \u2192 +4 pts",
+              "flood_prone \u2192 +0 pts (penalty)"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "terminal_count=0 \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 8,
+            "max": 20,
+            "details": [
+              "logistics_park_count=1 \u2192 +3 pts",
+              "best_lp_status=2 \u2192 +5 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 15,
+            "max": 15,
+            "details": [
+              "avg_BOD=2.2mg/L \u2192 +8 pts",
+              "avg_DO=7.8mg/L \u2192 +7 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 9.8,
+            "max": 15,
+            "details": [
+              "max_city_class=4 \u2192 +4.8 pts",
+              "total_pop=16.4L \u2192 +3 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Meerut scores 41.8/100 for inland port suitability (MEDIUM). Strongest factor: water quality (15/15 pts). River nav depth: 2.0m, flow stability: 2.0/4, terminals in region: 0, avg BOD: 2.2 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.7064,
+          28.9845
+        ]
+      },
+      "properties": {
+        "location_id": "LOC003",
+        "location_name": "Meerut",
+        "latitude": 28.9845,
+        "longitude": 77.7064,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 69.8,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.349,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 13.0,
+            "max": 25,
+            "details": [
+              "flow_stability=2.0/4 \u2192 +6.0 pts",
+              "flow_cv_proxy=70.83 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=2.0m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 14.4,
+            "max": 20,
+            "details": [
+              "avg_turbidity=35.0 NTU \u2192 +8 pts",
+              "avg_wq_class=4.0/5 \u2192 +6.4 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 20,
+            "max": 20,
+            "details": [
+              "no_commercial_terminals \u2192 +20 pts (clear water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 14.4,
+            "max": 20,
+            "details": [
+              "max_city_class=4 \u2192 +6.4 pts",
+              "total_pop=16.4L \u2192 +6 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 8.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.0/3 (MEDIUM (check NGT)) \u2192 +8.0 pts",
+              "flood_prone \u2192 +0 pts (seasonal closure risk)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Meerut scores 69.8/100 for seaplane landing suitability (MEDIUM). Strongest factor: traffic density (20/20 pts). Flow stability: 2.0/4, turbidity: 35.0 NTU, env sensitivity: 2.0/3, commercial capacity in zone: 0.0 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.7064,
+          28.9845
+        ]
+      },
+      "properties": {
+        "location_id": "LOC003",
+        "location_name": "Meerut",
+        "latitude": 28.9845,
+        "longitude": 77.7064,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "LOW",
+        "score": 33.0,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.165,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 6,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=1 \u2192 +3 pts",
+              "only_one_infra_type \u2192 +3 pts"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 14,
+            "max": 25,
+            "details": [
+              "total_lp_area=350.0 acres \u2192 +7 pts",
+              "best_lp_status=2 \u2192 +5 pts",
+              "logistics_park_count=1 \u2192 +2 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=0.0MTPA \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 6,
+            "max": 15,
+            "details": [
+              "modal_count=2 (rail+road) \u2192 +6 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 7,
+            "max": 10,
+            "details": [
+              "total_pop=16.4L \u2192 +7 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Meerut scores 33/100 for hub-spoke logistics suitability (LOW). Strongest factor: logistics park quality (14/25 pts). Infra nodes: 0 terminals + 1 logistics parks, total lp area: 350.0 acres, modal count includes waterway: 0."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.3319,
+          26.4499
+        ]
+      },
+      "properties": {
+        "location_id": "LOC004",
+        "location_name": "Kanpur",
+        "latitude": 26.4499,
+        "longitude": 80.3319,
+        "model_type": "inland_port",
+        "suitability_level": "MEDIUM",
+        "score": 41.8,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.209,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 12.0,
+            "max": 25,
+            "details": [
+              "flow_stability=2.0/4 \u2192 +5.0 pts",
+              "nav_depth=2.5m \u2192 +7 pts",
+              "flood_prone \u2192 +0 pts (penalty)"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "terminal_count=0 \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 14,
+            "max": 20,
+            "details": [
+              "logistics_park_count=2 \u2192 +6 pts",
+              "best_lp_status=3 \u2192 +8 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 4,
+            "max": 15,
+            "details": [
+              "avg_BOD=6.17mg/L \u2192 +2 pts",
+              "avg_DO=5.7mg/L \u2192 +2 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 11.8,
+            "max": 15,
+            "details": [
+              "max_city_class=4 \u2192 +4.8 pts",
+              "total_pop=35.8L \u2192 +5 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Kanpur scores 41.8/100 for inland port suitability (MEDIUM). Strongest factor: logistics access (14/20 pts). River nav depth: 2.5m, flow stability: 2.0/4, terminals in region: 0, avg BOD: 6.17 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.3319,
+          26.4499
+        ]
+      },
+      "properties": {
+        "location_id": "LOC004",
+        "location_name": "Kanpur",
+        "latitude": 26.4499,
+        "longitude": 80.3319,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 64.2,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.321,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 13.0,
+            "max": 25,
+            "details": [
+              "flow_stability=2.0/4 \u2192 +6.0 pts",
+              "flow_cv_proxy=72.0 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=2.5m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 8.8,
+            "max": 20,
+            "details": [
+              "avg_turbidity=95.67 NTU \u2192 +4 pts",
+              "avg_wq_class=3.0/5 \u2192 +4.8 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 20,
+            "max": 20,
+            "details": [
+              "no_commercial_terminals \u2192 +20 pts (clear water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 14.4,
+            "max": 20,
+            "details": [
+              "max_city_class=4 \u2192 +6.4 pts",
+              "total_pop=35.8L \u2192 +6 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 8.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.0/3 (MEDIUM (check NGT)) \u2192 +8.0 pts",
+              "flood_prone \u2192 +0 pts (seasonal closure risk)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Kanpur scores 64.2/100 for seaplane landing suitability (MEDIUM). Strongest factor: traffic density (20/20 pts). Flow stability: 2.0/4, turbidity: 95.67 NTU, env sensitivity: 2.0/3, commercial capacity in zone: 0.0 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.3319,
+          26.4499
+        ]
+      },
+      "properties": {
+        "location_id": "LOC004",
+        "location_name": "Kanpur",
+        "latitude": 26.4499,
+        "longitude": 80.3319,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "MEDIUM",
+        "score": 45.0,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.225,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 10,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=2 \u2192 +7 pts",
+              "only_one_infra_type \u2192 +3 pts"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 19,
+            "max": 25,
+            "details": [
+              "total_lp_area=360.0 acres \u2192 +7 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "logistics_park_count=2 \u2192 +4 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=0.0MTPA \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 6,
+            "max": 15,
+            "details": [
+              "modal_count=2 (rail+road) \u2192 +6 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 10,
+            "max": 10,
+            "details": [
+              "total_pop=35.8L \u2192 +10 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Kanpur scores 45/100 for hub-spoke logistics suitability (MEDIUM). Strongest factor: logistics park quality (19/25 pts). Infra nodes: 0 terminals + 2 logistics parks, total lp area: 360.0 acres, modal count includes waterway: 0."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.9462,
+          26.8467
+        ]
+      },
+      "properties": {
+        "location_id": "LOC005",
+        "location_name": "Lucknow",
+        "latitude": 26.8467,
+        "longitude": 80.9462,
+        "model_type": "inland_port",
+        "suitability_level": "LOW",
+        "score": 29.8,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.149,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 12.0,
+            "max": 25,
+            "details": [
+              "flow_stability=2.0/4 \u2192 +5.0 pts",
+              "nav_depth=2.5m \u2192 +7 pts",
+              "flood_prone \u2192 +0 pts (penalty)"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "terminal_count=0 \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "logistics_park_count=0 \u2192 +0 pts",
+              "best_lp_status=0 \u2192 +0 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 4,
+            "max": 15,
+            "details": [
+              "avg_BOD=6.17mg/L \u2192 +2 pts",
+              "avg_DO=5.7mg/L \u2192 +2 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 13.8,
+            "max": 15,
+            "details": [
+              "max_city_class=4 \u2192 +4.8 pts",
+              "total_pop=34.5L \u2192 +5 pts",
+              "has_airport \u2192 +2 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "NOTE: No existing terminals or logistics parks \u2014 greenfield investment required"
+        ],
+        "reasoning": "Lucknow scores 29.8/100 for inland port suitability (LOW). Strongest factor: traffic potential (13.8/15 pts). River nav depth: 2.5m, flow stability: 2.0/4, terminals in region: 0, avg BOD: 6.17 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.9462,
+          26.8467
+        ]
+      },
+      "properties": {
+        "location_id": "LOC005",
+        "location_name": "Lucknow",
+        "latitude": 26.8467,
+        "longitude": 80.9462,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 68.2,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.341,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 13.0,
+            "max": 25,
+            "details": [
+              "flow_stability=2.0/4 \u2192 +6.0 pts",
+              "flow_cv_proxy=72.0 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=2.5m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 8.8,
+            "max": 20,
+            "details": [
+              "avg_turbidity=95.67 NTU \u2192 +4 pts",
+              "avg_wq_class=3.0/5 \u2192 +4.8 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 20,
+            "max": 20,
+            "details": [
+              "no_commercial_terminals \u2192 +20 pts (clear water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 18.4,
+            "max": 20,
+            "details": [
+              "max_city_class=4 \u2192 +6.4 pts",
+              "total_pop=34.5L \u2192 +6 pts",
+              "existing_airport \u2192 +4 pts (air travel demand)",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 8.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.0/3 (MEDIUM (check NGT)) \u2192 +8.0 pts",
+              "flood_prone \u2192 +0 pts (seasonal closure risk)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Lucknow scores 68.2/100 for seaplane landing suitability (MEDIUM). Strongest factor: traffic density (20/20 pts). Flow stability: 2.0/4, turbidity: 95.67 NTU, env sensitivity: 2.0/3, commercial capacity in zone: 0.0 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.9462,
+          26.8467
+        ]
+      },
+      "properties": {
+        "location_id": "LOC005",
+        "location_name": "Lucknow",
+        "latitude": 26.8467,
+        "longitude": 80.9462,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "LOW",
+        "score": 20.0,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.1,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 0,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=0 \u2192 +0 pts",
+              "no_infra_nodes \u2192 +0 pts"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "total_lp_area=0.0 acres \u2192 +0 pts",
+              "best_lp_status=0 \u2192 +0 pts",
+              "logistics_park_count=0 \u2192 +0 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=0.0MTPA \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+air+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 10,
+            "max": 10,
+            "details": [
+              "total_pop=34.5L \u2192 +10 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "CRITICAL: No existing infra \u2014 full greenfield hub investment required"
+        ],
+        "reasoning": "Lucknow scores 20/100 for hub-spoke logistics suitability (LOW). Strongest factor: centrality connectivity (10/15 pts). Infra nodes: 0 terminals + 0 logistics parks, total lp area: 0.0 acres, modal count includes waterway: 0."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.8463,
+          25.4358
+        ]
+      },
+      "properties": {
+        "location_id": "LOC006",
+        "location_name": "Prayagraj (Allahabad)",
+        "latitude": 25.4358,
+        "longitude": 81.8463,
+        "model_type": "inland_port",
+        "suitability_level": "LOW",
+        "score": 39.6,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.198,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 12.0,
+            "max": 25,
+            "details": [
+              "flow_stability=2.0/4 \u2192 +5.0 pts",
+              "nav_depth=2.5m \u2192 +7 pts",
+              "flood_prone \u2192 +0 pts (penalty)"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 8,
+            "max": 25,
+            "details": [
+              "terminal_count=1 \u2192 +4 pts",
+              "best_terminal_type=1 \u2192 +4 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 9,
+            "max": 20,
+            "details": [
+              "logistics_park_count=1 \u2192 +3 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 2,
+            "max": 15,
+            "details": [
+              "avg_BOD=8.0mg/L \u2192 +0 pts",
+              "avg_DO=4.95mg/L \u2192 +2 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 8.6,
+            "max": 15,
+            "details": [
+              "max_city_class=3 \u2192 +3.6 pts",
+              "total_pop=14.2L \u2192 +3 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Prayagraj (Allahabad) scores 39.6/100 for inland port suitability (LOW). Strongest factor: river stability (12.0/25 pts). River nav depth: 2.5m, flow stability: 2.0/4, terminals in region: 1, avg BOD: 8.0 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.8463,
+          25.4358
+        ]
+      },
+      "properties": {
+        "location_id": "LOC006",
+        "location_name": "Prayagraj (Allahabad)",
+        "latitude": 25.4358,
+        "longitude": 81.8463,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 52.8,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.264,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 13.0,
+            "max": 25,
+            "details": [
+              "flow_stability=2.0/4 \u2192 +6.0 pts",
+              "flow_cv_proxy=71.11 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=2.5m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 4.0,
+            "max": 20,
+            "details": [
+              "avg_turbidity=117.5 NTU \u2192 +0 pts",
+              "avg_wq_class=2.5/5 \u2192 +4.0 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 15,
+            "max": 20,
+            "details": [
+              "low_terminal_capacity=0.1MTPA \u2192 +15 pts"
+            ]
+          },
+          "urban_proximity": {
+            "score": 12.8,
+            "max": 20,
+            "details": [
+              "max_city_class=3 \u2192 +4.8 pts",
+              "total_pop=14.2L \u2192 +6 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 8.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.0/3 (MEDIUM (check NGT)) \u2192 +8.0 pts",
+              "flood_prone \u2192 +0 pts (seasonal closure risk)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Prayagraj (Allahabad) scores 52.8/100 for seaplane landing suitability (MEDIUM). Strongest factor: traffic density (15/20 pts). Flow stability: 2.0/4, turbidity: 117.5 NTU, env sensitivity: 2.0/3, commercial capacity in zone: 0.1 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.8463,
+          25.4358
+        ]
+      },
+      "properties": {
+        "location_id": "LOC006",
+        "location_name": "Prayagraj (Allahabad)",
+        "latitude": 25.4358,
+        "longitude": 81.8463,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "MEDIUM",
+        "score": 48.0,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.24,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 19,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=2 \u2192 +7 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 8,
+            "max": 25,
+            "details": [
+              "total_lp_area=150.0 acres \u2192 +4 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "logistics_park_count=1 \u2192 +2 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 4,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=0.1MTPA \u2192 +2 pts",
+              "best_terminal_type=1 \u2192 +2 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 7,
+            "max": 10,
+            "details": [
+              "total_pop=14.2L \u2192 +7 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "WARNING: Only proposed/floating infra \u2014 long lead time before hub viability"
+        ],
+        "reasoning": "Prayagraj (Allahabad) scores 48/100 for hub-spoke logistics suitability (MEDIUM). Strongest factor: multi node proximity (19/30 pts). Infra nodes: 1 terminals + 1 logistics parks, total lp area: 150.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.9739,
+          25.3176
+        ]
+      },
+      "properties": {
+        "location_id": "LOC007",
+        "location_name": "Varanasi",
+        "latitude": 25.3176,
+        "longitude": 82.9739,
+        "model_type": "inland_port",
+        "suitability_level": "HIGH",
+        "score": 76.8,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.384,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 21.2,
+            "max": 25,
+            "details": [
+              "flow_stability=3.67/4 \u2192 +9.2 pts",
+              "nav_depth=2.93m \u2192 +7 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 25,
+            "max": 25,
+            "details": [
+              "terminal_count=3 \u2192 +10 pts",
+              "best_terminal_type=3 \u2192 +10 pts",
+              "rail_connected_terminal \u2192 +5 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 12,
+            "max": 20,
+            "details": [
+              "logistics_park_count=2 \u2192 +6 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "avg_BOD=3.15mg/L \u2192 +5 pts",
+              "avg_DO=6.92mg/L \u2192 +5 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 8.6,
+            "max": 15,
+            "details": [
+              "max_city_class=3 \u2192 +3.6 pts",
+              "total_pop=19.72L \u2192 +3 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Varanasi scores 76.8/100 for inland port suitability (HIGH). Strongest factor: terminal proximity (25/25 pts). River nav depth: 2.93m, flow stability: 3.67/4, terminals in region: 3, avg BOD: 3.15 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.9739,
+          25.3176
+        ]
+      },
+      "properties": {
+        "location_id": "LOC007",
+        "location_name": "Varanasi",
+        "latitude": 25.3176,
+        "longitude": 82.9739,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 67.5,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.337,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 18.0,
+            "max": 25,
+            "details": [
+              "flow_stability=3.67/4 \u2192 +11.0 pts",
+              "flow_cv_proxy=68.18 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=2.93m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 14.4,
+            "max": 20,
+            "details": [
+              "avg_turbidity=46.75 NTU \u2192 +8 pts",
+              "avg_wq_class=4.0/5 \u2192 +6.4 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 10,
+            "max": 20,
+            "details": [
+              "medium_terminal_capacity=1.46MTPA \u2192 +10 pts"
+            ]
+          },
+          "urban_proximity": {
+            "score": 12.8,
+            "max": 20,
+            "details": [
+              "max_city_class=3 \u2192 +4.8 pts",
+              "total_pop=19.72L \u2192 +6 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 12.3,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.33/3 (MEDIUM (check NGT)) \u2192 +9.3 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Varanasi scores 67.5/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (18.0/25 pts). Flow stability: 3.67/4, turbidity: 46.75 NTU, env sensitivity: 2.33/3, commercial capacity in zone: 1.46 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.9739,
+          25.3176
+        ]
+      },
+      "properties": {
+        "location_id": "LOC007",
+        "location_name": "Varanasi",
+        "latitude": 25.3176,
+        "longitude": 82.9739,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "HIGH",
+        "score": 74.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.37,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 30,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=5 \u2192 +18 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 13,
+            "max": 25,
+            "details": [
+              "total_lp_area=280.0 acres \u2192 +7 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "logistics_park_count=2 \u2192 +4 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 14,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=1.46MTPA \u2192 +4 pts",
+              "best_terminal_type=3 \u2192 +7 pts",
+              "rail_at_terminal \u2192 +3 pts (DFC connectivity)"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 7,
+            "max": 10,
+            "details": [
+              "total_pop=19.72L \u2192 +7 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Varanasi scores 74/100 for hub-spoke logistics suitability (HIGH). Strongest factor: multi node proximity (30/30 pts). Infra nodes: 3 terminals + 2 logistics parks, total lp area: 280.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.5693,
+          25.1597
+        ]
+      },
+      "properties": {
+        "location_id": "LOC008",
+        "location_name": "Mirzapur",
+        "latitude": 25.1597,
+        "longitude": 82.5693,
+        "model_type": "inland_port",
+        "suitability_level": "MEDIUM",
+        "score": 67.4,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.337,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 20.8,
+            "max": 25,
+            "details": [
+              "flow_stability=3.5/4 \u2192 +8.8 pts",
+              "nav_depth=2.9m \u2192 +7 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 22,
+            "max": 25,
+            "details": [
+              "terminal_count=2 \u2192 +7 pts",
+              "best_terminal_type=3 \u2192 +10 pts",
+              "rail_connected_terminal \u2192 +5 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 12,
+            "max": 20,
+            "details": [
+              "logistics_park_count=2 \u2192 +6 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 4,
+            "max": 15,
+            "details": [
+              "avg_BOD=5.53mg/L \u2192 +2 pts",
+              "avg_DO=5.95mg/L \u2192 +2 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 8.6,
+            "max": 15,
+            "details": [
+              "max_city_class=3 \u2192 +3.6 pts",
+              "total_pop=18.2L \u2192 +3 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Mirzapur scores 67.4/100 for inland port suitability (MEDIUM). Strongest factor: terminal proximity (22/25 pts). River nav depth: 2.9m, flow stability: 3.5/4, terminals in region: 2, avg BOD: 5.53 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.5693,
+          25.1597
+        ]
+      },
+      "properties": {
+        "location_id": "LOC008",
+        "location_name": "Mirzapur",
+        "latitude": 25.1597,
+        "longitude": 82.5693,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 60.5,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.303,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 17.5,
+            "max": 25,
+            "details": [
+              "flow_stability=3.5/4 \u2192 +10.5 pts",
+              "flow_cv_proxy=68.93 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=2.9m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 9.2,
+            "max": 20,
+            "details": [
+              "avg_turbidity=80.5 NTU \u2192 +4 pts",
+              "avg_wq_class=3.25/5 \u2192 +5.2 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 10,
+            "max": 20,
+            "details": [
+              "medium_terminal_capacity=1.36MTPA \u2192 +10 pts"
+            ]
+          },
+          "urban_proximity": {
+            "score": 12.8,
+            "max": 20,
+            "details": [
+              "max_city_class=3 \u2192 +4.8 pts",
+              "total_pop=18.2L \u2192 +6 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 11.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.0/3 (MEDIUM (check NGT)) \u2192 +8.0 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Mirzapur scores 60.5/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (17.5/25 pts). Flow stability: 3.5/4, turbidity: 80.5 NTU, env sensitivity: 2.0/3, commercial capacity in zone: 1.36 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.5693,
+          25.1597
+        ]
+      },
+      "properties": {
+        "location_id": "LOC008",
+        "location_name": "Mirzapur",
+        "latitude": 25.1597,
+        "longitude": 82.5693,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "MEDIUM",
+        "score": 68.0,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.34,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 24,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=4 \u2192 +12 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 13,
+            "max": 25,
+            "details": [
+              "total_lp_area=280.0 acres \u2192 +7 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "logistics_park_count=2 \u2192 +4 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 14,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=1.36MTPA \u2192 +4 pts",
+              "best_terminal_type=3 \u2192 +7 pts",
+              "rail_at_terminal \u2192 +3 pts (DFC connectivity)"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 7,
+            "max": 10,
+            "details": [
+              "total_pop=18.2L \u2192 +7 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Mirzapur scores 68/100 for hub-spoke logistics suitability (MEDIUM). Strongest factor: multi node proximity (24/30 pts). Infra nodes: 2 terminals + 2 logistics parks, total lp area: 280.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.5791,
+          25.5793
+        ]
+      },
+      "properties": {
+        "location_id": "LOC009",
+        "location_name": "Ghazipur",
+        "latitude": 25.5793,
+        "longitude": 83.5791,
+        "model_type": "inland_port",
+        "suitability_level": "HIGH",
+        "score": 80.6,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.403,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 25.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +10.0 pts",
+              "nav_depth=3.0m \u2192 +10 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 25,
+            "max": 25,
+            "details": [
+              "terminal_count=5 \u2192 +10 pts",
+              "best_terminal_type=3 \u2192 +10 pts",
+              "rail_connected_terminal \u2192 +5 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 12,
+            "max": 20,
+            "details": [
+              "logistics_park_count=2 \u2192 +6 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "avg_BOD=3.15mg/L \u2192 +5 pts",
+              "avg_DO=6.95mg/L \u2192 +5 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 8.6,
+            "max": 15,
+            "details": [
+              "max_city_class=3 \u2192 +3.6 pts",
+              "total_pop=18.1L \u2192 +3 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Ghazipur scores 80.6/100 for inland port suitability (HIGH). Strongest factor: river stability (25.0/25 pts). River nav depth: 3.0m, flow stability: 4.0/4, terminals in region: 5, avg BOD: 3.15 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.5791,
+          25.5793
+        ]
+      },
+      "properties": {
+        "location_id": "LOC009",
+        "location_name": "Ghazipur",
+        "latitude": 25.5793,
+        "longitude": 83.5791,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 69.9,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.349,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 19.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +12.0 pts",
+              "flow_cv_proxy=66.38 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=3.0m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 14.4,
+            "max": 20,
+            "details": [
+              "avg_turbidity=46.25 NTU \u2192 +8 pts",
+              "avg_wq_class=4.0/5 \u2192 +6.4 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 10,
+            "max": 20,
+            "details": [
+              "medium_terminal_capacity=1.66MTPA \u2192 +10 pts"
+            ]
+          },
+          "urban_proximity": {
+            "score": 12.8,
+            "max": 20,
+            "details": [
+              "max_city_class=3 \u2192 +4.8 pts",
+              "total_pop=18.1L \u2192 +6 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 13.7,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.67/3 (LOW (clear)) \u2192 +10.7 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Ghazipur scores 69.9/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (19.0/25 pts). Flow stability: 4.0/4, turbidity: 46.25 NTU, env sensitivity: 2.67/3, commercial capacity in zone: 1.66 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.5791,
+          25.5793
+        ]
+      },
+      "properties": {
+        "location_id": "LOC009",
+        "location_name": "Ghazipur",
+        "latitude": 25.5793,
+        "longitude": 83.5791,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "HIGH",
+        "score": 74.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.37,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 30,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=7 \u2192 +18 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 13,
+            "max": 25,
+            "details": [
+              "total_lp_area=280.0 acres \u2192 +7 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "logistics_park_count=2 \u2192 +4 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 14,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=1.66MTPA \u2192 +4 pts",
+              "best_terminal_type=3 \u2192 +7 pts",
+              "rail_at_terminal \u2192 +3 pts (DFC connectivity)"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 7,
+            "max": 10,
+            "details": [
+              "total_pop=18.1L \u2192 +7 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Ghazipur scores 74/100 for hub-spoke logistics suitability (HIGH). Strongest factor: multi node proximity (30/30 pts). Infra nodes: 5 terminals + 2 logistics parks, total lp area: 280.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.1376,
+          25.5941
+        ]
+      },
+      "properties": {
+        "location_id": "LOC010",
+        "location_name": "Patna",
+        "latitude": 25.5941,
+        "longitude": 85.1376,
+        "model_type": "inland_port",
+        "suitability_level": "HIGH",
+        "score": 79.6,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.398,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 15.8,
+            "max": 25,
+            "details": [
+              "flow_stability=3.5/4 \u2192 +8.8 pts",
+              "nav_depth=2.9m \u2192 +7 pts",
+              "flood_prone \u2192 +0 pts (penalty)"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 22,
+            "max": 25,
+            "details": [
+              "terminal_count=3 \u2192 +10 pts",
+              "best_terminal_type=2 \u2192 +7 pts",
+              "rail_connected_terminal \u2192 +5 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 20,
+            "max": 20,
+            "details": [
+              "logistics_park_count=3 \u2192 +8 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "avg_BOD=4.0mg/L \u2192 +5 pts",
+              "avg_DO=6.65mg/L \u2192 +5 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 11.8,
+            "max": 15,
+            "details": [
+              "max_city_class=4 \u2192 +4.8 pts",
+              "total_pop=22.5L \u2192 +5 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Patna scores 79.6/100 for inland port suitability (HIGH). Strongest factor: terminal proximity (22/25 pts). River nav depth: 2.9m, flow stability: 3.5/4, terminals in region: 3, avg BOD: 4.0 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.1376,
+          25.5941
+        ]
+      },
+      "properties": {
+        "location_id": "LOC010",
+        "location_name": "Patna",
+        "latitude": 25.5941,
+        "longitude": 85.1376,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 61.5,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.308,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 17.5,
+            "max": 25,
+            "details": [
+              "flow_stability=3.5/4 \u2192 +10.5 pts",
+              "flow_cv_proxy=64.5 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=2.9m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 9.6,
+            "max": 20,
+            "details": [
+              "avg_turbidity=61.5 NTU \u2192 +4 pts",
+              "avg_wq_class=3.5/5 \u2192 +5.6 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 10,
+            "max": 20,
+            "details": [
+              "medium_terminal_capacity=1.37MTPA \u2192 +10 pts"
+            ]
+          },
+          "urban_proximity": {
+            "score": 14.4,
+            "max": 20,
+            "details": [
+              "max_city_class=4 \u2192 +6.4 pts",
+              "total_pop=22.5L \u2192 +6 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 10.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.5/3 (MEDIUM (check NGT)) \u2192 +10.0 pts",
+              "flood_prone \u2192 +0 pts (seasonal closure risk)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Patna scores 61.5/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (17.5/25 pts). Flow stability: 3.5/4, turbidity: 61.5 NTU, env sensitivity: 2.5/3, commercial capacity in zone: 1.37 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.1376,
+          25.5941
+        ]
+      },
+      "properties": {
+        "location_id": "LOC010",
+        "location_name": "Patna",
+        "latitude": 25.5941,
+        "longitude": 85.1376,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "HIGH",
+        "score": 80.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.4,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 30,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=6 \u2192 +18 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 21,
+            "max": 25,
+            "details": [
+              "total_lp_area=310.0 acres \u2192 +7 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "logistics_park_count=3 \u2192 +6 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 12,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=1.37MTPA \u2192 +4 pts",
+              "best_terminal_type=2 \u2192 +5 pts",
+              "rail_at_terminal \u2192 +3 pts (DFC connectivity)"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 7,
+            "max": 10,
+            "details": [
+              "total_pop=22.5L \u2192 +7 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Patna scores 80/100 for hub-spoke logistics suitability (HIGH). Strongest factor: multi node proximity (30/30 pts). Infra nodes: 3 terminals + 3 logistics parks, total lp area: 310.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.9994,
+          24.7955
+        ]
+      },
+      "properties": {
+        "location_id": "LOC011",
+        "location_name": "Gaya",
+        "latitude": 24.7955,
+        "longitude": 84.9994,
+        "model_type": "inland_port",
+        "suitability_level": "LOW",
+        "score": 16.9,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.085,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 3.5,
+            "max": 25,
+            "details": [
+              "flow_stability=1.0/4 \u2192 +2.5 pts",
+              "nav_depth=1.0m \u2192 +1 pts",
+              "flood_prone \u2192 +0 pts (penalty)"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "terminal_count=0 \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "logistics_park_count=0 \u2192 +0 pts",
+              "best_lp_status=0 \u2192 +0 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 4,
+            "max": 15,
+            "details": [
+              "avg_BOD=5.0mg/L \u2192 +2 pts",
+              "avg_DO=5.0mg/L \u2192 +2 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 9.4,
+            "max": 15,
+            "details": [
+              "max_city_class=2 \u2192 +2.4 pts",
+              "total_pop=5.8L \u2192 +3 pts",
+              "has_airport \u2192 +2 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "CRITICAL: Nav depth < 1.5m \u2014 not navigable for commercial vessels",
+          "WARNING: Flood-prone + low stability \u2014 high operational risk",
+          "WARNING: High environmental sensitivity \u2014 NGT/clearance restrictions likely",
+          "NOTE: No existing terminals or logistics parks \u2014 greenfield investment required"
+        ],
+        "reasoning": "Gaya scores 16.9/100 for inland port suitability (LOW). Strongest factor: traffic potential (9.4/15 pts). River nav depth: 1.0m, flow stability: 1.0/4, terminals in region: 0, avg BOD: 5.0 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.9994,
+          24.7955
+        ]
+      },
+      "properties": {
+        "location_id": "LOC011",
+        "location_name": "Gaya",
+        "latitude": 24.7955,
+        "longitude": 84.9994,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 50.4,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.252,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 6.0,
+            "max": 25,
+            "details": [
+              "flow_stability=1.0/4 \u2192 +3.0 pts",
+              "flow_cv_proxy=99.0 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=1.0m (seaplane runway depth) \u2192 +1 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 7.2,
+            "max": 20,
+            "details": [
+              "avg_turbidity=80.0 NTU \u2192 +4 pts",
+              "avg_wq_class=2.0/5 \u2192 +3.2 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 20,
+            "max": 20,
+            "details": [
+              "no_commercial_terminals \u2192 +20 pts (clear water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 13.2,
+            "max": 20,
+            "details": [
+              "max_city_class=2 \u2192 +3.2 pts",
+              "total_pop=5.8L \u2192 +4 pts",
+              "existing_airport \u2192 +4 pts (air travel demand)",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 4.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=1.0/3 (HIGH (likely restricted)) \u2192 +4.0 pts",
+              "flood_prone \u2192 +0 pts (seasonal closure risk)"
+            ]
+          }
+        },
+        "constraints": [
+          "CRITICAL: Very unstable flow \u2014 unsafe water surface for aircraft",
+          "CRITICAL: High environmental sensitivity zone \u2014 NGT/wildlife clearance required",
+          "WARNING: Shallow water may restrict seaplane hull draft"
+        ],
+        "reasoning": "Gaya scores 50.4/100 for seaplane landing suitability (MEDIUM). Strongest factor: traffic density (20/20 pts). Flow stability: 1.0/4, turbidity: 80.0 NTU, env sensitivity: 1.0/3, commercial capacity in zone: 0.0 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.9994,
+          24.7955
+        ]
+      },
+      "properties": {
+        "location_id": "LOC011",
+        "location_name": "Gaya",
+        "latitude": 24.7955,
+        "longitude": 84.9994,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "LOW",
+        "score": 14.0,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.07,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 0,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=0 \u2192 +0 pts",
+              "no_infra_nodes \u2192 +0 pts"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "total_lp_area=0.0 acres \u2192 +0 pts",
+              "best_lp_status=0 \u2192 +0 pts",
+              "logistics_park_count=0 \u2192 +0 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=0.0MTPA \u2192 +0 pts",
+              "best_terminal_type=0 \u2192 +0 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+air+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 4,
+            "max": 10,
+            "details": [
+              "total_pop=5.8L \u2192 +4 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "CRITICAL: No existing infra \u2014 full greenfield hub investment required"
+        ],
+        "reasoning": "Gaya scores 14/100 for hub-spoke logistics suitability (LOW). Strongest factor: centrality connectivity (10/15 pts). Infra nodes: 0 terminals + 0 logistics parks, total lp area: 0.0 acres, modal count includes waterway: 0."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.9842,
+          25.2425
+        ]
+      },
+      "properties": {
+        "location_id": "LOC012",
+        "location_name": "Bhagalpur",
+        "latitude": 25.2425,
+        "longitude": 86.9842,
+        "model_type": "inland_port",
+        "suitability_level": "HIGH",
+        "score": 85.4,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.427,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 25.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +10.0 pts",
+              "nav_depth=3.23m \u2192 +10 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 20,
+            "max": 25,
+            "details": [
+              "terminal_count=3 \u2192 +10 pts",
+              "best_terminal_type=3 \u2192 +10 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 18,
+            "max": 20,
+            "details": [
+              "logistics_park_count=2 \u2192 +6 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 15,
+            "max": 15,
+            "details": [
+              "avg_BOD=2.2mg/L \u2192 +8 pts",
+              "avg_DO=7.53mg/L \u2192 +7 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 7.4,
+            "max": 15,
+            "details": [
+              "max_city_class=2 \u2192 +2.4 pts",
+              "total_pop=8.45L \u2192 +3 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Bhagalpur scores 85.4/100 for inland port suitability (HIGH). Strongest factor: river stability (25.0/25 pts). River nav depth: 3.23m, flow stability: 4.0/4, terminals in region: 3, avg BOD: 2.2 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.9842,
+          25.2425
+        ]
+      },
+      "properties": {
+        "location_id": "LOC012",
+        "location_name": "Bhagalpur",
+        "latitude": 25.2425,
+        "longitude": 86.9842,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 62.6,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.313,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 19.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +12.0 pts",
+              "flow_cv_proxy=63.53 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=3.23m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 14.4,
+            "max": 20,
+            "details": [
+              "avg_turbidity=32.67 NTU \u2192 +8 pts",
+              "avg_wq_class=4.0/5 \u2192 +6.4 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 5,
+            "max": 20,
+            "details": [
+              "high_terminal_capacity=3.23MTPA \u2192 +5 pts (busy water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 9.2,
+            "max": 20,
+            "details": [
+              "max_city_class=2 \u2192 +3.2 pts",
+              "total_pop=8.45L \u2192 +4 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 15.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=3.0/3 (LOW (clear)) \u2192 +12.0 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Bhagalpur scores 62.6/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (19.0/25 pts). Flow stability: 4.0/4, turbidity: 32.67 NTU, env sensitivity: 3.0/3, commercial capacity in zone: 3.23 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.9842,
+          25.2425
+        ]
+      },
+      "properties": {
+        "location_id": "LOC012",
+        "location_name": "Bhagalpur",
+        "latitude": 25.2425,
+        "longitude": 86.9842,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "HIGH",
+        "score": 77.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.385,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 30,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=5 \u2192 +18 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 19,
+            "max": 25,
+            "details": [
+              "total_lp_area=220.0 acres \u2192 +7 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "logistics_park_count=2 \u2192 +4 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 14,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=3.23MTPA \u2192 +7 pts",
+              "best_terminal_type=3 \u2192 +7 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 4,
+            "max": 10,
+            "details": [
+              "total_pop=8.45L \u2192 +4 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Bhagalpur scores 77/100 for hub-spoke logistics suitability (HIGH). Strongest factor: multi node proximity (30/30 pts). Infra nodes: 3 terminals + 2 logistics parks, total lp area: 220.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.4733,
+          25.3763
+        ]
+      },
+      "properties": {
+        "location_id": "LOC013",
+        "location_name": "Munger",
+        "latitude": 25.3763,
+        "longitude": 86.4733,
+        "model_type": "inland_port",
+        "suitability_level": "MEDIUM",
+        "score": 67.4,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.337,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 25.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +10.0 pts",
+              "nav_depth=3.1m \u2192 +10 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 11,
+            "max": 25,
+            "details": [
+              "terminal_count=2 \u2192 +7 pts",
+              "best_terminal_type=1 \u2192 +4 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 9,
+            "max": 20,
+            "details": [
+              "logistics_park_count=1 \u2192 +3 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 15,
+            "max": 15,
+            "details": [
+              "avg_BOD=2.35mg/L \u2192 +8 pts",
+              "avg_DO=7.4mg/L \u2192 +7 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 7.4,
+            "max": 15,
+            "details": [
+              "max_city_class=2 \u2192 +2.4 pts",
+              "total_pop=7.5L \u2192 +3 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Munger scores 67.4/100 for inland port suitability (MEDIUM). Strongest factor: river stability (25.0/25 pts). River nav depth: 3.1m, flow stability: 4.0/4, terminals in region: 2, avg BOD: 2.35 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.4733,
+          25.3763
+        ]
+      },
+      "properties": {
+        "location_id": "LOC013",
+        "location_name": "Munger",
+        "latitude": 25.3763,
+        "longitude": 86.4733,
+        "model_type": "seaplane_landing",
+        "suitability_level": "HIGH",
+        "score": 72.6,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.363,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 19.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +12.0 pts",
+              "flow_cv_proxy=63.8 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=3.1m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 14.4,
+            "max": 20,
+            "details": [
+              "avg_turbidity=35.0 NTU \u2192 +8 pts",
+              "avg_wq_class=4.0/5 \u2192 +6.4 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 15,
+            "max": 20,
+            "details": [
+              "low_terminal_capacity=0.2MTPA \u2192 +15 pts"
+            ]
+          },
+          "urban_proximity": {
+            "score": 9.2,
+            "max": 20,
+            "details": [
+              "max_city_class=2 \u2192 +3.2 pts",
+              "total_pop=7.5L \u2192 +4 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 15.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=3.0/3 (LOW (clear)) \u2192 +12.0 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Munger scores 72.6/100 for seaplane landing suitability (HIGH). Strongest factor: flow turbulence (19.0/25 pts). Flow stability: 4.0/4, turbidity: 35.0 NTU, env sensitivity: 3.0/3, commercial capacity in zone: 0.2 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.4733,
+          25.3763
+        ]
+      },
+      "properties": {
+        "location_id": "LOC013",
+        "location_name": "Munger",
+        "latitude": 25.3763,
+        "longitude": 86.4733,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "MEDIUM",
+        "score": 50.0,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.25,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 24,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=3 \u2192 +12 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 8,
+            "max": 25,
+            "details": [
+              "total_lp_area=120.0 acres \u2192 +4 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "logistics_park_count=1 \u2192 +2 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 4,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=0.2MTPA \u2192 +2 pts",
+              "best_terminal_type=1 \u2192 +2 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 4,
+            "max": 10,
+            "details": [
+              "total_pop=7.5L \u2192 +4 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "WARNING: Only proposed/floating infra \u2014 long lead time before hub viability"
+        ],
+        "reasoning": "Munger scores 50/100 for hub-spoke logistics suitability (MEDIUM). Strongest factor: multi node proximity (24/30 pts). Infra nodes: 2 terminals + 1 logistics parks, total lp area: 120.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.6411,
+          25.2425
+        ]
+      },
+      "properties": {
+        "location_id": "LOC014",
+        "location_name": "Sahibganj",
+        "latitude": 25.2425,
+        "longitude": 87.6411,
+        "model_type": "inland_port",
+        "suitability_level": "HIGH",
+        "score": 84.2,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.421,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 23.8,
+            "max": 25,
+            "details": [
+              "flow_stability=3.5/4 \u2192 +8.8 pts",
+              "nav_depth=3.05m \u2192 +10 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 20,
+            "max": 25,
+            "details": [
+              "terminal_count=7 \u2192 +10 pts",
+              "best_terminal_type=3 \u2192 +10 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 18,
+            "max": 20,
+            "details": [
+              "logistics_park_count=2 \u2192 +6 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 15,
+            "max": 15,
+            "details": [
+              "avg_BOD=2.0mg/L \u2192 +8 pts",
+              "avg_DO=7.7mg/L \u2192 +7 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 7.4,
+            "max": 15,
+            "details": [
+              "max_city_class=2 \u2192 +2.4 pts",
+              "total_pop=7.17L \u2192 +3 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Sahibganj scores 84.2/100 for inland port suitability (HIGH). Strongest factor: river stability (23.8/25 pts). River nav depth: 3.05m, flow stability: 3.5/4, terminals in region: 7, avg BOD: 2.0 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.6411,
+          25.2425
+        ]
+      },
+      "properties": {
+        "location_id": "LOC014",
+        "location_name": "Sahibganj",
+        "latitude": 25.2425,
+        "longitude": 87.6411,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 59.5,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.297,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 17.5,
+            "max": 25,
+            "details": [
+              "flow_stability=3.5/4 \u2192 +10.5 pts",
+              "flow_cv_proxy=57.49 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=3.05m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 14.8,
+            "max": 20,
+            "details": [
+              "avg_turbidity=29.0 NTU \u2192 +8 pts",
+              "avg_wq_class=4.25/5 \u2192 +6.8 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 5,
+            "max": 20,
+            "details": [
+              "high_terminal_capacity=3.83MTPA \u2192 +5 pts (busy water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 9.2,
+            "max": 20,
+            "details": [
+              "max_city_class=2 \u2192 +3.2 pts",
+              "total_pop=7.17L \u2192 +4 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 13.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.5/3 (MEDIUM (check NGT)) \u2192 +10.0 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Sahibganj scores 59.5/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (17.5/25 pts). Flow stability: 3.5/4, turbidity: 29.0 NTU, env sensitivity: 2.5/3, commercial capacity in zone: 3.83 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.6411,
+          25.2425
+        ]
+      },
+      "properties": {
+        "location_id": "LOC014",
+        "location_name": "Sahibganj",
+        "latitude": 25.2425,
+        "longitude": 87.6411,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "HIGH",
+        "score": 77.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.385,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 30,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=9 \u2192 +18 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 19,
+            "max": 25,
+            "details": [
+              "total_lp_area=220.0 acres \u2192 +7 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "logistics_park_count=2 \u2192 +4 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 14,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=3.83MTPA \u2192 +7 pts",
+              "best_terminal_type=3 \u2192 +7 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 4,
+            "max": 10,
+            "details": [
+              "total_pop=7.17L \u2192 +4 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Sahibganj scores 77/100 for hub-spoke logistics suitability (HIGH). Strongest factor: multi node proximity (30/30 pts). Infra nodes: 7 terminals + 2 logistics parks, total lp area: 220.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.8391,
+          25.0459
+        ]
+      },
+      "properties": {
+        "location_id": "LOC015",
+        "location_name": "Rajmahal",
+        "latitude": 25.0459,
+        "longitude": 87.8391,
+        "model_type": "inland_port",
+        "suitability_level": "HIGH",
+        "score": 73.7,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.369,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 19.5,
+            "max": 25,
+            "details": [
+              "flow_stability=3.0/4 \u2192 +7.5 pts",
+              "nav_depth=2.75m \u2192 +7 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 20,
+            "max": 25,
+            "details": [
+              "terminal_count=6 \u2192 +10 pts",
+              "best_terminal_type=3 \u2192 +10 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 15,
+            "max": 20,
+            "details": [
+              "logistics_park_count=1 \u2192 +3 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 15,
+            "max": 15,
+            "details": [
+              "avg_BOD=1.93mg/L \u2192 +8 pts",
+              "avg_DO=7.77mg/L \u2192 +7 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 4.2,
+            "max": 15,
+            "details": [
+              "max_city_class=1 \u2192 +1.2 pts",
+              "total_pop=1.97L \u2192 +1 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Rajmahal scores 73.7/100 for inland port suitability (HIGH). Strongest factor: terminal proximity (20/25 pts). River nav depth: 2.75m, flow stability: 3.0/4, terminals in region: 6, avg BOD: 1.93 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.8391,
+          25.0459
+        ]
+      },
+      "properties": {
+        "location_id": "LOC015",
+        "location_name": "Rajmahal",
+        "latitude": 25.0459,
+        "longitude": 87.8391,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 54.5,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.272,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 16.0,
+            "max": 25,
+            "details": [
+              "flow_stability=3.0/4 \u2192 +9.0 pts",
+              "flow_cv_proxy=52.12 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=2.75m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 14.9,
+            "max": 20,
+            "details": [
+              "avg_turbidity=28.0 NTU \u2192 +8 pts",
+              "avg_wq_class=4.33/5 \u2192 +6.9 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 5,
+            "max": 20,
+            "details": [
+              "high_terminal_capacity=3.73MTPA \u2192 +5 pts (busy water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 5.6,
+            "max": 20,
+            "details": [
+              "max_city_class=1 \u2192 +1.6 pts",
+              "total_pop=1.97L \u2192 +2 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 13.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.5/3 (MEDIUM (check NGT)) \u2192 +10.0 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Rajmahal scores 54.5/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (16.0/25 pts). Flow stability: 3.0/4, turbidity: 28.0 NTU, env sensitivity: 2.5/3, commercial capacity in zone: 3.73 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.8391,
+          25.0459
+        ]
+      },
+      "properties": {
+        "location_id": "LOC015",
+        "location_name": "Rajmahal",
+        "latitude": 25.0459,
+        "longitude": 87.8391,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "HIGH",
+        "score": 70.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.35,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 30,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=7 \u2192 +18 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 14,
+            "max": 25,
+            "details": [
+              "total_lp_area=100.0 acres \u2192 +4 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "logistics_park_count=1 \u2192 +2 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 14,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=3.73MTPA \u2192 +7 pts",
+              "best_terminal_type=3 \u2192 +7 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 2,
+            "max": 10,
+            "details": [
+              "total_pop=1.97L \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Rajmahal scores 70/100 for hub-spoke logistics suitability (HIGH). Strongest factor: multi node proximity (30/30 pts). Infra nodes: 6 terminals + 1 logistics parks, total lp area: 100.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.2695,
+          24.1872
+        ]
+      },
+      "properties": {
+        "location_id": "LOC016",
+        "location_name": "Murshidabad",
+        "latitude": 24.1872,
+        "longitude": 88.2695,
+        "model_type": "inland_port",
+        "suitability_level": "MEDIUM",
+        "score": 49.2,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.246,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 14.0,
+            "max": 25,
+            "details": [
+              "flow_stability=2.0/4 \u2192 +5.0 pts",
+              "nav_depth=2.0m \u2192 +4 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 17,
+            "max": 25,
+            "details": [
+              "terminal_count=3 \u2192 +10 pts",
+              "best_terminal_type=2 \u2192 +7 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 0,
+            "max": 20,
+            "details": [
+              "logistics_park_count=0 \u2192 +0 pts",
+              "best_lp_status=0 \u2192 +0 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 15,
+            "max": 15,
+            "details": [
+              "avg_BOD=2.4mg/L \u2192 +8 pts",
+              "avg_DO=7.4mg/L \u2192 +7 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 3.2,
+            "max": 15,
+            "details": [
+              "max_city_class=1 \u2192 +1.2 pts",
+              "total_pop=0.55L \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Murshidabad scores 49.2/100 for inland port suitability (MEDIUM). Strongest factor: terminal proximity (17/25 pts). River nav depth: 2.0m, flow stability: 2.0/4, terminals in region: 3, avg BOD: 2.4 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.2695,
+          24.1872
+        ]
+      },
+      "properties": {
+        "location_id": "LOC016",
+        "location_name": "Murshidabad",
+        "latitude": 24.1872,
+        "longitude": 88.2695,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 64.0,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.32,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 16.0,
+            "max": 25,
+            "details": [
+              "flow_stability=2.0/4 \u2192 +6.0 pts",
+              "flow_cv_proxy=41.67 (monsoon/lean ratio) \u2192 +5 pts",
+              "nav_depth=2.0m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 14.4,
+            "max": 20,
+            "details": [
+              "avg_turbidity=35.0 NTU \u2192 +8 pts",
+              "avg_wq_class=4.0/5 \u2192 +6.4 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 15,
+            "max": 20,
+            "details": [
+              "low_terminal_capacity=0.4MTPA \u2192 +15 pts"
+            ]
+          },
+          "urban_proximity": {
+            "score": 3.6,
+            "max": 20,
+            "details": [
+              "max_city_class=1 \u2192 +1.6 pts",
+              "total_pop=0.55L \u2192 +0 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 15.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=3.0/3 (LOW (clear)) \u2192 +12.0 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Murshidabad scores 64.0/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (16.0/25 pts). Flow stability: 2.0/4, turbidity: 35.0 NTU, env sensitivity: 3.0/3, commercial capacity in zone: 0.4 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.2695,
+          24.1872
+        ]
+      },
+      "properties": {
+        "location_id": "LOC016",
+        "location_name": "Murshidabad",
+        "latitude": 24.1872,
+        "longitude": 88.2695,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "LOW",
+        "score": 33.0,
+        "suitability_color": "#e74c3c",
+        "cluster_weight": 1.165,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 15,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=3 \u2192 +12 pts",
+              "only_one_infra_type \u2192 +3 pts"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 0,
+            "max": 25,
+            "details": [
+              "total_lp_area=0.0 acres \u2192 +0 pts",
+              "best_lp_status=0 \u2192 +0 pts",
+              "logistics_park_count=0 \u2192 +0 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 7,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=0.4MTPA \u2192 +2 pts",
+              "best_terminal_type=2 \u2192 +5 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 1,
+            "max": 10,
+            "details": [
+              "total_pop=0.55L \u2192 +1 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Murshidabad scores 33/100 for hub-spoke logistics suitability (LOW). Strongest factor: multi node proximity (15/30 pts). Infra nodes: 3 terminals + 0 logistics parks, total lp area: 0.0 acres, modal count includes waterway: 0."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.3639,
+          22.5726
+        ]
+      },
+      "properties": {
+        "location_id": "LOC017",
+        "location_name": "Kolkata",
+        "latitude": 22.5726,
+        "longitude": 88.3639,
+        "model_type": "inland_port",
+        "suitability_level": "HIGH",
+        "score": 91.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.455,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 25.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +10.0 pts",
+              "nav_depth=5.5m \u2192 +10 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 25,
+            "max": 25,
+            "details": [
+              "terminal_count=4 \u2192 +10 pts",
+              "best_terminal_type=3 \u2192 +10 pts",
+              "rail_connected_terminal \u2192 +5 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 18,
+            "max": 20,
+            "details": [
+              "logistics_park_count=2 \u2192 +6 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "avg_BOD=3.65mg/L \u2192 +5 pts",
+              "avg_DO=6.7mg/L \u2192 +5 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 13.0,
+            "max": 15,
+            "details": [
+              "max_city_class=5 \u2192 +6.0 pts",
+              "total_pop=167.0L \u2192 +5 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Kolkata scores 91.0/100 for inland port suitability (HIGH). Strongest factor: river stability (25.0/25 pts). River nav depth: 5.5m, flow stability: 4.0/4, terminals in region: 4, avg BOD: 3.65 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.3639,
+          22.5726
+        ]
+      },
+      "properties": {
+        "location_id": "LOC017",
+        "location_name": "Kolkata",
+        "latitude": 22.5726,
+        "longitude": 88.3639,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 63.6,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.318,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 20.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +12.0 pts",
+              "flow_cv_proxy=39.64 (monsoon/lean ratio) \u2192 +5 pts",
+              "nav_depth=5.5m (seaplane runway depth) \u2192 +3 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 9.6,
+            "max": 20,
+            "details": [
+              "avg_turbidity=56.0 NTU \u2192 +4 pts",
+              "avg_wq_class=3.5/5 \u2192 +5.6 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 5,
+            "max": 20,
+            "details": [
+              "high_terminal_capacity=3.78MTPA \u2192 +5 pts (busy water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 16.0,
+            "max": 20,
+            "details": [
+              "max_city_class=5 \u2192 +8.0 pts",
+              "total_pop=167.0L \u2192 +6 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 13.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.5/3 (MEDIUM (check NGT)) \u2192 +10.0 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Kolkata scores 63.6/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (20.0/25 pts). Flow stability: 4.0/4, turbidity: 56.0 NTU, env sensitivity: 2.5/3, commercial capacity in zone: 3.78 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.3639,
+          22.5726
+        ]
+      },
+      "properties": {
+        "location_id": "LOC017",
+        "location_name": "Kolkata",
+        "latitude": 22.5726,
+        "longitude": 88.3639,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "HIGH",
+        "score": 89.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.445,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 30,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=6 \u2192 +18 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 22,
+            "max": 25,
+            "details": [
+              "total_lp_area=650.0 acres \u2192 +10 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "logistics_park_count=2 \u2192 +4 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 17,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=3.78MTPA \u2192 +7 pts",
+              "best_terminal_type=3 \u2192 +7 pts",
+              "rail_at_terminal \u2192 +3 pts (DFC connectivity)"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 10,
+            "max": 10,
+            "details": [
+              "total_pop=167.0L \u2192 +10 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Kolkata scores 89/100 for hub-spoke logistics suitability (HIGH). Strongest factor: multi node proximity (30/30 pts). Infra nodes: 4 terminals + 2 logistics parks, total lp area: 650.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.0698,
+          22.0667
+        ]
+      },
+      "properties": {
+        "location_id": "LOC018",
+        "location_name": "Haldia",
+        "latitude": 22.0667,
+        "longitude": 88.0698,
+        "model_type": "inland_port",
+        "suitability_level": "HIGH",
+        "score": 88.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.44,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 25.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +10.0 pts",
+              "nav_depth=5.5m \u2192 +10 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 25,
+            "max": 25,
+            "details": [
+              "terminal_count=4 \u2192 +10 pts",
+              "best_terminal_type=3 \u2192 +10 pts",
+              "rail_connected_terminal \u2192 +5 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 15,
+            "max": 20,
+            "details": [
+              "logistics_park_count=1 \u2192 +3 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "avg_BOD=4.0mg/L \u2192 +5 pts",
+              "avg_DO=6.5mg/L \u2192 +5 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 13.0,
+            "max": 15,
+            "details": [
+              "max_city_class=5 \u2192 +6.0 pts",
+              "total_pop=167.0L \u2192 +5 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Haldia scores 88.0/100 for inland port suitability (HIGH). Strongest factor: river stability (25.0/25 pts). River nav depth: 5.5m, flow stability: 4.0/4, terminals in region: 4, avg BOD: 4.0 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.0698,
+          22.0667
+        ]
+      },
+      "properties": {
+        "location_id": "LOC018",
+        "location_name": "Haldia",
+        "latitude": 22.0667,
+        "longitude": 88.0698,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 62.8,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.314,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 20.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +12.0 pts",
+              "flow_cv_proxy=39.64 (monsoon/lean ratio) \u2192 +5 pts",
+              "nav_depth=5.5m (seaplane runway depth) \u2192 +3 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 8.8,
+            "max": 20,
+            "details": [
+              "avg_turbidity=62.0 NTU \u2192 +4 pts",
+              "avg_wq_class=3.0/5 \u2192 +4.8 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 5,
+            "max": 20,
+            "details": [
+              "high_terminal_capacity=3.78MTPA \u2192 +5 pts (busy water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 16.0,
+            "max": 20,
+            "details": [
+              "max_city_class=5 \u2192 +8.0 pts",
+              "total_pop=167.0L \u2192 +6 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 13.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.5/3 (MEDIUM (check NGT)) \u2192 +10.0 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Haldia scores 62.8/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (20.0/25 pts). Flow stability: 4.0/4, turbidity: 62.0 NTU, env sensitivity: 2.5/3, commercial capacity in zone: 3.78 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.0698,
+          22.0667
+        ]
+      },
+      "properties": {
+        "location_id": "LOC018",
+        "location_name": "Haldia",
+        "latitude": 22.0667,
+        "longitude": 88.0698,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "HIGH",
+        "score": 84.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.42,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 30,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=5 \u2192 +18 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 17,
+            "max": 25,
+            "details": [
+              "total_lp_area=250.0 acres \u2192 +7 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "logistics_park_count=1 \u2192 +2 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 17,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=3.78MTPA \u2192 +7 pts",
+              "best_terminal_type=3 \u2192 +7 pts",
+              "rail_at_terminal \u2192 +3 pts (DFC connectivity)"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 10,
+            "max": 10,
+            "details": [
+              "total_pop=167.0L \u2192 +10 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Haldia scores 84/100 for hub-spoke logistics suitability (HIGH). Strongest factor: multi node proximity (30/30 pts). Infra nodes: 4 terminals + 1 logistics parks, total lp area: 250.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.9716,
+          25.5628
+        ]
+      },
+      "properties": {
+        "location_id": "LOC019",
+        "location_name": "Buxar",
+        "latitude": 25.5628,
+        "longitude": 83.9716,
+        "model_type": "inland_port",
+        "suitability_level": "MEDIUM",
+        "score": 68.4,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.342,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 25.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +10.0 pts",
+              "nav_depth=3.0m \u2192 +10 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 14,
+            "max": 25,
+            "details": [
+              "terminal_count=4 \u2192 +10 pts",
+              "best_terminal_type=1 \u2192 +4 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 9,
+            "max": 20,
+            "details": [
+              "logistics_park_count=1 \u2192 +3 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 15,
+            "max": 15,
+            "details": [
+              "avg_BOD=2.9mg/L \u2192 +8 pts",
+              "avg_DO=7.1mg/L \u2192 +7 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 5.4,
+            "max": 15,
+            "details": [
+              "max_city_class=2 \u2192 +2.4 pts",
+              "total_pop=2.8L \u2192 +1 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Buxar scores 68.4/100 for inland port suitability (MEDIUM). Strongest factor: river stability (25.0/25 pts). River nav depth: 3.0m, flow stability: 4.0/4, terminals in region: 4, avg BOD: 2.9 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.9716,
+          25.5628
+        ]
+      },
+      "properties": {
+        "location_id": "LOC019",
+        "location_name": "Buxar",
+        "latitude": 25.5628,
+        "longitude": 83.9716,
+        "model_type": "seaplane_landing",
+        "suitability_level": "HIGH",
+        "score": 70.6,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.353,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 19.0,
+            "max": 25,
+            "details": [
+              "flow_stability=4.0/4 \u2192 +12.0 pts",
+              "flow_cv_proxy=65.65 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=3.0m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 14.4,
+            "max": 20,
+            "details": [
+              "avg_turbidity=42.5 NTU \u2192 +8 pts",
+              "avg_wq_class=4.0/5 \u2192 +6.4 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 15,
+            "max": 20,
+            "details": [
+              "low_terminal_capacity=0.4MTPA \u2192 +15 pts"
+            ]
+          },
+          "urban_proximity": {
+            "score": 7.2,
+            "max": 20,
+            "details": [
+              "max_city_class=2 \u2192 +3.2 pts",
+              "total_pop=2.8L \u2192 +2 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 15.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=3.0/3 (LOW (clear)) \u2192 +12.0 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Buxar scores 70.6/100 for seaplane landing suitability (HIGH). Strongest factor: flow turbulence (19.0/25 pts). Flow stability: 4.0/4, turbidity: 42.5 NTU, env sensitivity: 3.0/3, commercial capacity in zone: 0.4 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.9716,
+          25.5628
+        ]
+      },
+      "properties": {
+        "location_id": "LOC019",
+        "location_name": "Buxar",
+        "latitude": 25.5628,
+        "longitude": 83.9716,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "MEDIUM",
+        "score": 52.0,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.26,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 30,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=5 \u2192 +18 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 6,
+            "max": 25,
+            "details": [
+              "total_lp_area=80.0 acres \u2192 +2 pts",
+              "best_lp_status=1 \u2192 +2 pts",
+              "logistics_park_count=1 \u2192 +2 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 4,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=0.4MTPA \u2192 +2 pts",
+              "best_terminal_type=1 \u2192 +2 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 2,
+            "max": 10,
+            "details": [
+              "total_pop=2.8L \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [
+          "WARNING: Only proposed/floating infra \u2014 long lead time before hub viability",
+          "NOTE: Small logistics park area \u2014 may need land acquisition for hub scale"
+        ],
+        "reasoning": "Buxar scores 52/100 for hub-spoke logistics suitability (MEDIUM). Strongest factor: multi node proximity (30/30 pts). Infra nodes: 4 terminals + 1 logistics parks, total lp area: 80.0 acres, modal count includes waterway: 1."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.914,
+          24.8005
+        ]
+      },
+      "properties": {
+        "location_id": "LOC020",
+        "location_name": "Farakka",
+        "latitude": 24.8005,
+        "longitude": 87.914,
+        "model_type": "inland_port",
+        "suitability_level": "HIGH",
+        "score": 73.7,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.369,
+        "contributing_factors": {
+          "river_stability": {
+            "score": 19.5,
+            "max": 25,
+            "details": [
+              "flow_stability=3.0/4 \u2192 +7.5 pts",
+              "nav_depth=2.75m \u2192 +7 pts",
+              "not_flood_prone \u2192 +5 pts"
+            ]
+          },
+          "terminal_proximity": {
+            "score": 20,
+            "max": 25,
+            "details": [
+              "terminal_count=6 \u2192 +10 pts",
+              "best_terminal_type=3 \u2192 +10 pts",
+              "no_rail_at_terminal \u2192 +0 pts"
+            ]
+          },
+          "logistics_access": {
+            "score": 15,
+            "max": 20,
+            "details": [
+              "logistics_park_count=1 \u2192 +3 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "waterway_linked_logistics_park \u2192 +4 pts"
+            ]
+          },
+          "water_quality": {
+            "score": 15,
+            "max": 15,
+            "details": [
+              "avg_BOD=2.05mg/L \u2192 +8 pts",
+              "avg_DO=7.67mg/L \u2192 +7 pts"
+            ]
+          },
+          "traffic_potential": {
+            "score": 4.2,
+            "max": 15,
+            "details": [
+              "max_city_class=1 \u2192 +1.2 pts",
+              "total_pop=1.97L \u2192 +1 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Farakka scores 73.7/100 for inland port suitability (HIGH). Strongest factor: terminal proximity (20/25 pts). River nav depth: 2.75m, flow stability: 3.0/4, terminals in region: 6, avg BOD: 2.05 mg/L."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.914,
+          24.8005
+        ]
+      },
+      "properties": {
+        "location_id": "LOC020",
+        "location_name": "Farakka",
+        "latitude": 24.8005,
+        "longitude": 87.914,
+        "model_type": "seaplane_landing",
+        "suitability_level": "MEDIUM",
+        "score": 54.4,
+        "suitability_color": "#f39c12",
+        "cluster_weight": 2.272,
+        "contributing_factors": {
+          "flow_turbulence": {
+            "score": 16.0,
+            "max": 25,
+            "details": [
+              "flow_stability=3.0/4 \u2192 +9.0 pts",
+              "flow_cv_proxy=52.12 (monsoon/lean ratio) \u2192 +2 pts",
+              "nav_depth=2.75m (seaplane runway depth) \u2192 +5 pts"
+            ]
+          },
+          "water_surface": {
+            "score": 14.8,
+            "max": 20,
+            "details": [
+              "avg_turbidity=29.75 NTU \u2192 +8 pts",
+              "avg_wq_class=4.25/5 \u2192 +6.8 pts"
+            ]
+          },
+          "traffic_density": {
+            "score": 5,
+            "max": 20,
+            "details": [
+              "high_terminal_capacity=3.73MTPA \u2192 +5 pts (busy water)"
+            ]
+          },
+          "urban_proximity": {
+            "score": 5.6,
+            "max": 20,
+            "details": [
+              "max_city_class=1 \u2192 +1.6 pts",
+              "total_pop=1.97L \u2192 +2 pts",
+              "no_airport \u2192 +0 pts",
+              "has_rail_jn \u2192 +2 pts"
+            ]
+          },
+          "env_clearance": {
+            "score": 13.0,
+            "max": 15,
+            "details": [
+              "env_sensitivity=2.5/3 (MEDIUM (check NGT)) \u2192 +10.0 pts",
+              "not_flood_prone \u2192 +3 pts (safe operations)"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Farakka scores 54.4/100 for seaplane landing suitability (MEDIUM). Strongest factor: flow turbulence (16.0/25 pts). Flow stability: 3.0/4, turbidity: 29.75 NTU, env sensitivity: 2.5/3, commercial capacity in zone: 3.73 MTPA."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.914,
+          24.8005
+        ]
+      },
+      "properties": {
+        "location_id": "LOC020",
+        "location_name": "Farakka",
+        "latitude": 24.8005,
+        "longitude": 87.914,
+        "model_type": "hub_spoke_logistics",
+        "suitability_level": "HIGH",
+        "score": 70.0,
+        "suitability_color": "#2ecc71",
+        "cluster_weight": 3.35,
+        "contributing_factors": {
+          "multi_node_proximity": {
+            "score": 30,
+            "max": 30,
+            "details": [
+              "total_infra_nodes=7 \u2192 +18 pts",
+              "both_terminals_and_parks \u2192 +8 pts (hub diversity)",
+              "waterway_connected_park \u2192 +4 pts (trimodal hub)"
+            ]
+          },
+          "logistics_park_quality": {
+            "score": 14,
+            "max": 25,
+            "details": [
+              "total_lp_area=100.0 acres \u2192 +4 pts",
+              "best_lp_status=3 \u2192 +8 pts",
+              "logistics_park_count=1 \u2192 +2 pts"
+            ]
+          },
+          "terminal_density": {
+            "score": 14,
+            "max": 20,
+            "details": [
+              "total_terminal_capacity=3.73MTPA \u2192 +7 pts",
+              "best_terminal_type=3 \u2192 +7 pts"
+            ]
+          },
+          "centrality_connectivity": {
+            "score": 10,
+            "max": 15,
+            "details": [
+              "modal_count=3 (rail+waterway+road) \u2192 +10 pts"
+            ]
+          },
+          "urban_market_access": {
+            "score": 2,
+            "max": 10,
+            "details": [
+              "total_pop=1.97L \u2192 +2 pts"
+            ]
+          }
+        },
+        "constraints": [],
+        "reasoning": "Farakka scores 70/100 for hub-spoke logistics suitability (HIGH). Strongest factor: multi node proximity (30/30 pts). Infra nodes: 6 terminals + 1 logistics parks, total lp area: 100.0 acres, modal count includes waterway: 1."
+      }
+    }
+  ]
+}

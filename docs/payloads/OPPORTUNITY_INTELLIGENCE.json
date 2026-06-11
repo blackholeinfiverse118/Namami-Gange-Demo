@@ -1,0 +1,53 @@
+{
+  "generated_by": "Namami Gange Opportunity Intelligence",
+  "opportunities": [
+    {
+      "location": "Kolkata",
+      "location_id": "LOC017",
+      "opportunity_type": "Inland Port Infrastructure",
+      "priority": "HIGH"
+    },
+    {
+      "location": "Haldia",
+      "location_id": "LOC018",
+      "opportunity_type": "Inland Port Infrastructure",
+      "priority": "HIGH"
+    },
+    {
+      "location": "Bhagalpur",
+      "location_id": "LOC012",
+      "opportunity_type": "Inland Port Infrastructure",
+      "priority": "HIGH"
+    },
+    {
+      "location": "Sahibganj",
+      "location_id": "LOC014",
+      "opportunity_type": "Inland Port Infrastructure",
+      "priority": "HIGH"
+    },
+    {
+      "location": "Patna",
+      "location_id": "LOC010",
+      "opportunity_type": "Hub-Spoke Logistics Hub",
+      "priority": "HIGH"
+    },
+    {
+      "location": "Varanasi",
+      "location_id": "LOC007",
+      "opportunity_type": "Multimodal Logistics and Inland Port",
+      "priority": "HIGH"
+    },
+    {
+      "location": "Kanpur",
+      "location_id": "LOC004",
+      "opportunity_type": "Hub-Spoke Logistics Distribution",
+      "priority": "MODERATE"
+    },
+    {
+      "location": "Prayagraj",
+      "location_id": "LOC006",
+      "opportunity_type": "Regional Logistics Hub",
+      "priority": "MODERATE"
+    }
+  ]
+}

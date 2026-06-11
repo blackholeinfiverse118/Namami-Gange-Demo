@@ -1,0 +1,142 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "layer_type": "baseline",
+    "model_type": "inland_port",
+    "feature_count": 6,
+    "generated_by": "NICAI -- Namami Gange Intelligence Convergence Sprint",
+    "date": "2026-05-26",
+    "legend": [
+      { "label": "HIGH",     "color": "#2ecc71", "description": "Score >= threshold -- suitable" },
+      { "label": "MEDIUM",   "color": "#f39c12", "description": "Score in mid-range -- conditionally suitable" },
+      { "label": "LOW",      "color": "#e74c3c", "description": "Score below threshold -- not recommended" },
+      { "label": "REJECTED", "color": "#7f8c8d", "description": "Hard constraint triggered -- infrastructure prohibited" }
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [82.9739, 25.3176] },
+      "properties": {
+        "location_id": "varanasi_terminal",
+        "model_type": "inland_port",
+        "score": 73.75,
+        "level": "MEDIUM",
+        "color": "#f39c12",
+        "delta": null,
+        "reasoning": "Level: MEDIUM | Score: 73.75 | river_stability=78, terminal_proximity=85, logistics_access=70, water_quality=60, traffic_potential=75",
+        "constraints": { "hard": [], "soft": [], "overridden": [] },
+        "trace_summary": {
+          "contributing_signals": [
+            "CPCB_WQI_v1", "CWC_RIV_STAB_v1", "ENV_CLEAR_v1",
+            "ENV_FLOOD_v1", "ENV_WETLAND_v1", "IWAI_LOG_v1",
+            "IWAI_TERM_v1", "IWAI_TRAF_v1", "CPCB_POLL_v1"
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [81.8463, 25.4358] },
+      "properties": {
+        "location_id": "allahabad_confluence",
+        "model_type": "inland_port",
+        "score": 47.4,
+        "level": "LOW",
+        "color": "#e74c3c",
+        "delta": null,
+        "reasoning": "Level: LOW | Score: 47.4 | Soft constraint applied: logistics_absence (penalty -15 pts)",
+        "constraints": { "hard": [], "soft": ["logistics_absence"], "overridden": [] },
+        "trace_summary": {
+          "contributing_signals": [
+            "CPCB_WQI_v1", "CWC_RIV_STAB_v1", "ENV_CLEAR_v1",
+            "ENV_FLOOD_v1", "ENV_WETLAND_v1", "IWAI_LOG_v1",
+            "IWAI_TERM_v1", "IWAI_TRAF_v1"
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [85.1376, 25.5941] },
+      "properties": {
+        "location_id": "patna_river_port",
+        "model_type": "inland_port",
+        "score": 75.25,
+        "level": "HIGH",
+        "color": "#2ecc71",
+        "delta": null,
+        "reasoning": "Level: HIGH | Score: 75.25 | river_stability=85, terminal_proximity=80, logistics_access=75, water_quality=55, traffic_potential=80",
+        "constraints": { "hard": [], "soft": [], "overridden": [] },
+        "trace_summary": {
+          "contributing_signals": [
+            "CPCB_WQI_v1", "CWC_RIV_STAB_v1", "ENV_CLEAR_v1",
+            "ENV_FLOOD_v1", "ENV_WETLAND_v1", "IWAI_LOG_v1",
+            "IWAI_TERM_v1", "IWAI_TRAF_v1"
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.3319, 26.4499] },
+      "properties": {
+        "location_id": "kanpur_industrial_zone",
+        "model_type": "inland_port",
+        "score": 0.0,
+        "level": "REJECTED",
+        "color": "#7f8c8d",
+        "delta": null,
+        "reasoning": "Level: REJECTED | Score: 0.0 | Hard constraint triggered: extreme_pollution (WQI=18, threshold < 20)",
+        "constraints": { "hard": ["extreme_pollution"], "soft": [], "overridden": [] },
+        "trace_summary": {
+          "contributing_signals": [
+            "CPCB_WQI_v1", "CWC_RIV_STAB_v1", "ENV_CLEAR_v1",
+            "IWAI_LOG_v1", "IWAI_TERM_v1", "IWAI_TRAF_v1"
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [87.9186, 24.8119] },
+      "properties": {
+        "location_id": "farakka_wetland",
+        "model_type": "inland_port",
+        "score": 0.0,
+        "level": "REJECTED",
+        "color": "#7f8c8d",
+        "delta": null,
+        "reasoning": "Level: REJECTED | Score: 0.0 | Hard constraints: wetland_zone, no_env_clearance",
+        "constraints": { "hard": ["wetland_zone", "no_env_clearance"], "soft": [], "overridden": [] },
+        "trace_summary": {
+          "contributing_signals": [
+            "CPCB_WQI_v1", "CWC_RIV_STAB_v1", "ENV_CLEAR_v1",
+            "ENV_FLOOD_v1", "ENV_WETLAND_v1", "IWAI_LOG_v1"
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [85.2119, 25.6891] },
+      "properties": {
+        "location_id": "hajipur_hub",
+        "model_type": "inland_port",
+        "score": 63.75,
+        "level": "MEDIUM",
+        "color": "#f39c12",
+        "delta": null,
+        "reasoning": "Level: MEDIUM | Score: 63.75 | river_stability=72, terminal_proximity=68, logistics_access=62, water_quality=58, traffic_potential=65",
+        "constraints": { "hard": [], "soft": [], "overridden": [] },
+        "trace_summary": {
+          "contributing_signals": [
+            "CPCB_WQI_v1", "CWC_RIV_STAB_v1", "ENV_CLEAR_v1",
+            "ENV_FLOOD_v1", "ENV_WETLAND_v1", "IWAI_LOG_v1",
+            "IWAI_TERM_v1", "IWAI_TRAF_v1"
+          ]
+        }
+      }
+    }
+  ]
+}

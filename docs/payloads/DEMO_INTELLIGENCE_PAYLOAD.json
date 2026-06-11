@@ -1,0 +1,79 @@
+{
+  "payload_name": "Namami Gange Demonstration Payload",
+  "generated_by": "Suitability Intelligence Engine",
+  "schema_version": "2.0",
+  "demo_locations": [
+    {
+      "location": "Kolkata",
+      "location_id": "LOC017",
+      "coordinates": { "lat": 22.5726, "lon": 88.3639 },
+      "score": 91,
+      "level": "HIGH",
+      "opportunities": [
+        "Inland port infrastructure expansion",
+        "Multimodal logistics hub development",
+        "Cargo operations and freight movement"
+      ],
+      "constraints": [
+        "Navigation depth management required",
+        "High environmental sensitivity and clearance requirements"
+      ],
+      "explanation": "Kolkata scores highest due to existing port infrastructure, navigable channel access, rail and road connectivity, and logistics park proximity. Both inland port and hub-spoke models return HIGH assessments.",
+      "confidence": 92,
+      "datasets_used": [
+        "IWAI NW1 Terminal Registry",
+        "CWC River Gauge Stations",
+        "Logistics Parks Ganga Belt",
+        "CPCB Water Quality Records"
+      ]
+    },
+    {
+      "location": "Patna",
+      "location_id": "LOC010",
+      "coordinates": { "lat": 25.5941, "lon": 85.1376 },
+      "score": 80,
+      "level": "HIGH",
+      "opportunities": [
+        "Regional logistics aggregation hub",
+        "Distribution network anchoring",
+        "Multi-state freight coordination"
+      ],
+      "constraints": [
+        "High urban density limits terminal expansion",
+        "Flood seasonality affects operational windows"
+      ],
+      "explanation": "Patna scores highest for hub-spoke logistics due to regional centrality, rail junction access, and multi-modal connectivity. Urban density limits greenfield terminal options for inland port use.",
+      "confidence": 85,
+      "datasets_used": [
+        "CWC River Gauge Stations",
+        "Urban Centers Ganga Basin",
+        "IWAI NW1 Terminal Registry",
+        "Logistics Parks Ganga Belt"
+      ]
+    },
+    {
+      "location": "Varanasi",
+      "location_id": "LOC007",
+      "coordinates": { "lat": 25.3176, "lon": 82.9739 },
+      "score": 77,
+      "level": "HIGH",
+      "opportunities": [
+        "Multimodal logistics integration",
+        "Inland port and cargo operations",
+        "Tourism and passenger terminal potential"
+      ],
+      "constraints": [
+        "High ecological sensitivity in Ganga corridor",
+        "Urban heritage zone restrictions"
+      ],
+      "explanation": "Varanasi has an existing multi-modal terminal providing immediate operational capability. Consistently strong across all three use case models. Ecological sensitivity is manageable with clearance compliance.",
+      "confidence": 83,
+      "datasets_used": [
+        "IWAI NW1 Terminal Registry",
+        "CWC River Gauge Stations",
+        "CPCB Water Quality Records",
+        "Urban Centers Ganga Basin"
+      ]
+    }
+  ]
+}

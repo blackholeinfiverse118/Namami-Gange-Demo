@@ -1,0 +1,342 @@
+﻿{
+    "baseline_results":  {
+                             "patna_hub":  {
+                                               "constraint_result":  {
+                                                                         "hard_reject":  false,
+                                                                         "mode":  "strict",
+                                                                         "overridden_constraints":  [
+
+                                                                                                    ],
+                                                                         "reject_reasons":  [
+
+                                                                                            ],
+                                                                         "scenario_flag":  false,
+                                                                         "warnings":  [
+
+                                                                                      ]
+                                                                     },
+                                               "factor_scores":  {
+                                                                     "logistics_access":  88.0,
+                                                                     "river_stability":  82.0,
+                                                                     "terminal_proximity":  90.0,
+                                                                     "traffic_potential":  85.0,
+                                                                     "water_quality":  55.0
+                                                                 },
+                                               "level":  "HIGH",
+                                               "location_id":  "patna_hub",
+                                               "mode":  "strict",
+                                               "scenario_flag":  false,
+                                               "score":  80.0,
+                                               "weights_used":  {
+                                                                    "logistics_access":  0.2,
+                                                                    "river_stability":  0.2,
+                                                                    "terminal_proximity":  0.2,
+                                                                    "traffic_potential":  0.2,
+                                                                    "water_quality":  0.2
+                                                                }
+                                           },
+                             "varanasi_terminal":  {
+                                                       "constraint_result":  {
+                                                                                 "hard_reject":  false,
+                                                                                 "mode":  "strict",
+                                                                                 "overridden_constraints":  [
+
+                                                                                                            ],
+                                                                                 "reject_reasons":  [
+
+                                                                                                    ],
+                                                                                 "scenario_flag":  false,
+                                                                                 "warnings":  [
+
+                                                                                              ]
+                                                                             },
+                                                       "factor_scores":  {
+                                                                             "logistics_access":  70.0,
+                                                                             "river_stability":  78.0,
+                                                                             "terminal_proximity":  85.0,
+                                                                             "traffic_potential":  75.0,
+                                                                             "water_quality":  60.0
+                                                                         },
+                                                       "level":  "HIGH",
+                                                       "location_id":  "varanasi_terminal",
+                                                       "mode":  "strict",
+                                                       "scenario_flag":  false,
+                                                       "score":  73.6,
+                                                       "weights_used":  {
+                                                                            "logistics_access":  0.2,
+                                                                            "river_stability":  0.2,
+                                                                            "terminal_proximity":  0.2,
+                                                                            "traffic_potential":  0.2,
+                                                                            "water_quality":  0.2
+                                                                        }
+                                                   }
+                         },
+    "delta_analysis":  [
+                           {
+                               "baseline_score":  73.6,
+                               "constraint_changes":  [
+                                                          "Constraint evaluation unchanged between baseline and scenario."
+                                                      ],
+                               "delta":  -2.05,
+                               "explanation":  "Score decreased by 2.05 points. Weight changes: Weight for \u0027logistics_access\u0027 increased from 0.20 to 0.50 (delta: +0.3000); Weight for \u0027river_stability\u0027 decreased from 0.20 to 0.10 (delta: -0.1000); Weight for \u0027terminal_proximity\u0027 decreased from 0.20 to 0.10 (delta: -0.1000); Weight for \u0027traffic_potential\u0027 decreased from 0.20 to 0.15 (delta: -0.0500); Weight for \u0027water_quality\u0027 decreased from 0.20 to 0.15 (delta: -0.0500) Constraint changes: Constraint evaluation unchanged between baseline and scenario.",
+                               "factor_changes":  [
+                                                      "Weight for \u0027logistics_access\u0027 increased from 0.20 to 0.50 (delta: +0.3000)",
+                                                      "Weight for \u0027river_stability\u0027 decreased from 0.20 to 0.10 (delta: -0.1000)",
+                                                      "Weight for \u0027terminal_proximity\u0027 decreased from 0.20 to 0.10 (delta: -0.1000)",
+                                                      "Weight for \u0027traffic_potential\u0027 decreased from 0.20 to 0.15 (delta: -0.0500)",
+                                                      "Weight for \u0027water_quality\u0027 decreased from 0.20 to 0.15 (delta: -0.0500)"
+                                                  ],
+                               "impact":  "DECREASE",
+                               "location_id":  "varanasi_terminal",
+                               "scenario_id":  "high_logistics",
+                               "scenario_score":  71.55
+                           },
+                           {
+                               "baseline_score":  80.0,
+                               "constraint_changes":  [
+                                                          "Constraint evaluation unchanged between baseline and scenario."
+                                                      ],
+                               "delta":  2.2,
+                               "explanation":  "Score increased by 2.20 points. Weight changes: Weight for \u0027logistics_access\u0027 increased from 0.20 to 0.50 (delta: +0.3000); Weight for \u0027river_stability\u0027 decreased from 0.20 to 0.10 (delta: -0.1000); Weight for \u0027terminal_proximity\u0027 decreased from 0.20 to 0.10 (delta: -0.1000); Weight for \u0027traffic_potential\u0027 decreased from 0.20 to 0.15 (delta: -0.0500); Weight for \u0027water_quality\u0027 decreased from 0.20 to 0.15 (delta: -0.0500) Constraint changes: Constraint evaluation unchanged between baseline and scenario.",
+                               "factor_changes":  [
+                                                      "Weight for \u0027logistics_access\u0027 increased from 0.20 to 0.50 (delta: +0.3000)",
+                                                      "Weight for \u0027river_stability\u0027 decreased from 0.20 to 0.10 (delta: -0.1000)",
+                                                      "Weight for \u0027terminal_proximity\u0027 decreased from 0.20 to 0.10 (delta: -0.1000)",
+                                                      "Weight for \u0027traffic_potential\u0027 decreased from 0.20 to 0.15 (delta: -0.0500)",
+                                                      "Weight for \u0027water_quality\u0027 decreased from 0.20 to 0.15 (delta: -0.0500)"
+                                                  ],
+                               "impact":  "INCREASE",
+                               "location_id":  "patna_hub",
+                               "scenario_id":  "high_logistics",
+                               "scenario_score":  82.2
+                           }
+                       ],
+    "description":  "Boost logistics weight to 0.50",
+    "geo_output":  {
+                       "baseline_layer":  {
+                                              "features":  [
+                                                               {
+                                                                   "geometry":  {
+                                                                                    "coordinates":  [
+                                                                                                        82.9739,
+                                                                                                        25.3176
+                                                                                                    ],
+                                                                                    "type":  "Point"
+                                                                                },
+                                                                   "properties":  {
+                                                                                      "layer_type":  "baseline",
+                                                                                      "level":  "HIGH",
+                                                                                      "location_id":  "varanasi_terminal",
+                                                                                      "mode":  "strict",
+                                                                                      "rejected":  false,
+                                                                                      "scenario_flag":  false,
+                                                                                      "score":  73.6
+                                                                                  },
+                                                                   "type":  "Feature"
+                                                               },
+                                                               {
+                                                                   "geometry":  {
+                                                                                    "coordinates":  [
+                                                                                                        85.1376,
+                                                                                                        25.5941
+                                                                                                    ],
+                                                                                    "type":  "Point"
+                                                                                },
+                                                                   "properties":  {
+                                                                                      "layer_type":  "baseline",
+                                                                                      "level":  "HIGH",
+                                                                                      "location_id":  "patna_hub",
+                                                                                      "mode":  "strict",
+                                                                                      "rejected":  false,
+                                                                                      "scenario_flag":  false,
+                                                                                      "score":  80.0
+                                                                                  },
+                                                                   "type":  "Feature"
+                                                               }
+                                                           ],
+                                              "layer_type":  "baseline",
+                                              "type":  "FeatureCollection"
+                                          },
+                       "delta_layer":  {
+                                           "features":  [
+                                                            {
+                                                                "geometry":  {
+                                                                                 "coordinates":  [
+                                                                                                     82.9739,
+                                                                                                     25.3176
+                                                                                                 ],
+                                                                                 "type":  "Point"
+                                                                             },
+                                                                "properties":  {
+                                                                                   "baseline_score":  73.6,
+                                                                                   "color_hex":  "#ffb3b3",
+                                                                                   "color_value":  0.4898,
+                                                                                   "delta":  -2.05,
+                                                                                   "explanation":  "Score decreased by 2.05 points. Weight changes: Weight for \u0027logistics_access\u0027 increased from 0.20 to 0.50 (delta: +0.3000); Weight for \u0027river_stability\u0027 decreased from 0.20 to 0.10 (delta: -0.1000); Weight for \u0027terminal_proximity\u0027 decreased from 0.20 to 0.10 (delta: -0.1000); Weight for \u0027traffic_potential\u0027 decreased from 0.20 to 0.15 (delta: -0.0500); Weight for \u0027water_quality\u0027 decreased from 0.20 to 0.15 (delta: -0.0500) Constraint changes: Constraint evaluation unchanged between baseline and scenario.",
+                                                                                   "impact":  "DECREASE",
+                                                                                   "layer_type":  "delta",
+                                                                                   "location_id":  "varanasi_terminal",
+                                                                                   "scenario_score":  71.55
+                                                                               },
+                                                                "type":  "Feature"
+                                                            },
+                                                            {
+                                                                "geometry":  {
+                                                                                 "coordinates":  [
+                                                                                                     85.1376,
+                                                                                                     25.5941
+                                                                                                 ],
+                                                                                 "type":  "Point"
+                                                                             },
+                                                                "properties":  {
+                                                                                   "baseline_score":  80.0,
+                                                                                   "color_hex":  "#a8e6cf",
+                                                                                   "color_value":  0.511,
+                                                                                   "delta":  2.2,
+                                                                                   "explanation":  "Score increased by 2.20 points. Weight changes: Weight for \u0027logistics_access\u0027 increased from 0.20 to 0.50 (delta: +0.3000); Weight for \u0027river_stability\u0027 decreased from 0.20 to 0.10 (delta: -0.1000); Weight for \u0027terminal_proximity\u0027 decreased from 0.20 to 0.10 (delta: -0.1000); Weight for \u0027traffic_potential\u0027 decreased from 0.20 to 0.15 (delta: -0.0500); Weight for \u0027water_quality\u0027 decreased from 0.20 to 0.15 (delta: -0.0500) Constraint changes: Constraint evaluation unchanged between baseline and scenario.",
+                                                                                   "impact":  "INCREASE",
+                                                                                   "layer_type":  "delta",
+                                                                                   "location_id":  "patna_hub",
+                                                                                   "scenario_score":  82.2
+                                                                               },
+                                                                "type":  "Feature"
+                                                            }
+                                                        ],
+                                           "layer_type":  "delta",
+                                           "legend":  {
+                                                          "DECREASE":  {
+                                                                           "color":  "#e74c3c",
+                                                                           "description":  "Score declined in scenario"
+                                                                       },
+                                                          "INCREASE":  {
+                                                                           "color":  "#2ecc71",
+                                                                           "description":  "Score improved in scenario"
+                                                                       },
+                                                          "NO CHANGE":  {
+                                                                            "color":  "#95a5a6",
+                                                                            "description":  "Score stable across scenarios"
+                                                                        }
+                                                      },
+                                           "type":  "FeatureCollection"
+                                       },
+                       "scenario_layer":  {
+                                              "features":  [
+                                                               {
+                                                                   "geometry":  {
+                                                                                    "coordinates":  [
+                                                                                                        82.9739,
+                                                                                                        25.3176
+                                                                                                    ],
+                                                                                    "type":  "Point"
+                                                                                },
+                                                                   "properties":  {
+                                                                                      "layer_type":  "scenario",
+                                                                                      "level":  "HIGH",
+                                                                                      "location_id":  "varanasi_terminal",
+                                                                                      "mode":  "scenario",
+                                                                                      "rejected":  false,
+                                                                                      "scenario_flag":  true,
+                                                                                      "score":  71.55
+                                                                                  },
+                                                                   "type":  "Feature"
+                                                               },
+                                                               {
+                                                                   "geometry":  {
+                                                                                    "coordinates":  [
+                                                                                                        85.1376,
+                                                                                                        25.5941
+                                                                                                    ],
+                                                                                    "type":  "Point"
+                                                                                },
+                                                                   "properties":  {
+                                                                                      "layer_type":  "scenario",
+                                                                                      "level":  "HIGH",
+                                                                                      "location_id":  "patna_hub",
+                                                                                      "mode":  "scenario",
+                                                                                      "rejected":  false,
+                                                                                      "scenario_flag":  true,
+                                                                                      "score":  82.2
+                                                                                  },
+                                                                   "type":  "Feature"
+                                                               }
+                                                           ],
+                                              "layer_type":  "scenario",
+                                              "type":  "FeatureCollection"
+                                          }
+                   },
+    "scenario_id":  "high_logistics",
+    "scenario_mode":  true,
+    "scenario_results":  {
+                             "patna_hub":  {
+                                               "constraint_result":  {
+                                                                         "hard_reject":  false,
+                                                                         "mode":  "scenario",
+                                                                         "overridden_constraints":  [
+
+                                                                                                    ],
+                                                                         "reject_reasons":  [
+
+                                                                                            ],
+                                                                         "scenario_flag":  true,
+                                                                         "warnings":  [
+
+                                                                                      ]
+                                                                     },
+                                               "factor_scores":  {
+                                                                     "logistics_access":  88.0,
+                                                                     "river_stability":  82.0,
+                                                                     "terminal_proximity":  90.0,
+                                                                     "traffic_potential":  85.0,
+                                                                     "water_quality":  55.0
+                                                                 },
+                                               "level":  "HIGH",
+                                               "location_id":  "patna_hub",
+                                               "mode":  "scenario",
+                                               "scenario_flag":  true,
+                                               "score":  82.2,
+                                               "weights_used":  {
+                                                                    "logistics_access":  0.5,
+                                                                    "river_stability":  0.1,
+                                                                    "terminal_proximity":  0.1,
+                                                                    "traffic_potential":  0.15,
+                                                                    "water_quality":  0.15
+                                                                }
+                                           },
+                             "varanasi_terminal":  {
+                                                       "constraint_result":  {
+                                                                                 "hard_reject":  false,
+                                                                                 "mode":  "scenario",
+                                                                                 "overridden_constraints":  [
+
+                                                                                                            ],
+                                                                                 "reject_reasons":  [
+
+                                                                                                    ],
+                                                                                 "scenario_flag":  true,
+                                                                                 "warnings":  [
+
+                                                                                              ]
+                                                                             },
+                                                       "factor_scores":  {
+                                                                             "logistics_access":  70.0,
+                                                                             "river_stability":  78.0,
+                                                                             "terminal_proximity":  85.0,
+                                                                             "traffic_potential":  75.0,
+                                                                             "water_quality":  60.0
+                                                                         },
+                                                       "level":  "HIGH",
+                                                       "location_id":  "varanasi_terminal",
+                                                       "mode":  "scenario",
+                                                       "scenario_flag":  true,
+                                                       "score":  71.55,
+                                                       "weights_used":  {
+                                                                            "logistics_access":  0.5,
+                                                                            "river_stability":  0.1,
+                                                                            "terminal_proximity":  0.1,
+                                                                            "traffic_potential":  0.15,
+                                                                            "water_quality":  0.15
+                                                                        }
+                                                   }
+                         },
+    "status":  "success"
+}

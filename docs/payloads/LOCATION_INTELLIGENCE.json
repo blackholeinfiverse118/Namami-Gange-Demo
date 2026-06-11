@@ -1,0 +1,227 @@
+{
+  "generated_by": "Namami Gange Suitability Intelligence Engine",
+  "total_locations": 8,
+  "locations": [
+    {
+      "location_id": "LOC017",
+      "location_name": "Kolkata",
+      "coordinates": { "lat": 22.5726, "lon": 88.3639 },
+      "best_use_case": "Inland Port Suitability",
+      "suitability_level": "HIGH",
+      "overall_assessment": "PRIORITY SITE",
+      "inland_port_score": 91.0,
+      "hub_spoke_logistics_score": 89.0,
+      "seaplane_landing_score": 63.6,
+      "confidence_score": 92,
+      "key_opportunities": [
+        "Inland port infrastructure expansion",
+        "Multimodal logistics hub development",
+        "Cargo operations and freight movement"
+      ],
+      "key_constraints": [
+        "Navigation depth management required",
+        "High environmental sensitivity and clearance requirements"
+      ],
+      "infrastructure_present": [
+        "Existing port terminals",
+        "Rail connectivity",
+        "Logistics park proximity"
+      ],
+      "operational_notes": "Highest scoring location across inland port and logistics categories. Strong existing infrastructure base supports near-term operationalization.",
+      "explanation_summary": "Kolkata scores highest due to existing port infrastructure, deep navigable channel access, strong rail and road connectivity, and proximity to multiple logistics parks. Both inland port and hub-spoke models return HIGH scores."
+    },
+    {
+      "location_id": "LOC018",
+      "location_name": "Haldia",
+      "coordinates": { "lat": 22.0667, "lon": 88.0697 },
+      "best_use_case": "Inland Port Suitability",
+      "suitability_level": "HIGH",
+      "overall_assessment": "PRIORITY SITE",
+      "inland_port_score": 88.0,
+      "hub_spoke_logistics_score": 84.0,
+      "seaplane_landing_score": 62.8,
+      "confidence_score": 88,
+      "key_opportunities": [
+        "Port expansion and cargo handling",
+        "Industrial logistics integration",
+        "Multimodal freight operations"
+      ],
+      "key_constraints": [
+        "Seaplane suitability lower than logistics use cases",
+        "Flood-prone seasonal zones"
+      ],
+      "infrastructure_present": [
+        "Haldia Dock Complex",
+        "Petrochemical industry connectivity",
+        "Road and rail links"
+      ],
+      "operational_notes": "Second highest scoring location. Established port ecosystem supports immediate logistics and cargo operations.",
+      "explanation_summary": "Haldia benefits from established port infrastructure and industrial connectivity. Scores are consistently high across inland port and logistics models due to existing operational frameworks."
+    },
+    {
+      "location_id": "LOC012",
+      "location_name": "Bhagalpur",
+      "coordinates": { "lat": 25.2425, "lon": 86.9842 },
+      "best_use_case": "Inland Port Suitability",
+      "suitability_level": "HIGH",
+      "overall_assessment": "PRIORITY SITE",
+      "inland_port_score": 85.4,
+      "hub_spoke_logistics_score": 77.0,
+      "seaplane_landing_score": 62.6,
+      "confidence_score": 82,
+      "key_opportunities": [
+        "Inland waterway logistics node",
+        "River freight aggregation point",
+        "Regional cargo distribution"
+      ],
+      "key_constraints": [
+        "Limited existing terminal infrastructure",
+        "Greenfield investment required",
+        "Seasonal navigability fluctuation"
+      ],
+      "infrastructure_present": [
+        "River ghat access",
+        "Road connectivity to hinterland"
+      ],
+      "operational_notes": "Strong inland port score driven by river access and regional position. Requires greenfield investment for terminal development.",
+      "explanation_summary": "Bhagalpur scores highly for inland port use due to strong navigability and river access. Hub-spoke score is moderate as existing logistics infrastructure is limited."
+    },
+    {
+      "location_id": "LOC014",
+      "location_name": "Sahibganj",
+      "coordinates": { "lat": 25.2400, "lon": 87.6300 },
+      "best_use_case": "Inland Port Suitability",
+      "suitability_level": "HIGH",
+      "overall_assessment": "PRIORITY SITE",
+      "inland_port_score": 84.2,
+      "hub_spoke_logistics_score": 77.0,
+      "seaplane_landing_score": 59.5,
+      "confidence_score": 80,
+      "key_opportunities": [
+        "Inland waterway cargo handling",
+        "Strategic river-based freight movement",
+        "Multi-state logistics connectivity"
+      ],
+      "key_constraints": [
+        "Moderate seaplane suitability",
+        "Greenfield terminal investment needed"
+      ],
+      "infrastructure_present": [
+        "IWAI terminal presence",
+        "Road access to Jharkhand hinterland"
+      ],
+      "operational_notes": "Sahibganj benefits from IWAI terminal presence and strategic location near the Bengal-Jharkhand corridor.",
+      "explanation_summary": "Strong inland port score driven by navigability and IWAI infrastructure. Seaplane suitability is lower due to channel width and ecological constraints."
+    },
+    {
+      "location_id": "LOC010",
+      "location_name": "Patna",
+      "coordinates": { "lat": 25.5941, "lon": 85.1376 },
+      "best_use_case": "Hub-Spoke Logistics Hub Suitability",
+      "suitability_level": "HIGH",
+      "overall_assessment": "PRIORITY SITE",
+      "inland_port_score": 79.6,
+      "hub_spoke_logistics_score": 80.0,
+      "seaplane_landing_score": 61.5,
+      "confidence_score": 85,
+      "key_opportunities": [
+        "Regional logistics aggregation hub",
+        "Distribution network anchoring",
+        "Multi-state freight coordination"
+      ],
+      "key_constraints": [
+        "High urban density limits terminal expansion",
+        "Flood seasonality affects operational windows"
+      ],
+      "infrastructure_present": [
+        "Patna Sahib ghat",
+        "Rail junction connectivity",
+        "National Highway access"
+      ],
+      "operational_notes": "Patna scores highest for hub-spoke logistics, driven by regional centrality and multi-modal connectivity.",
+      "explanation_summary": "Patna's hub-spoke score exceeds its inland port score due to superior road and rail connectivity and regional distribution potential. Urban density limits greenfield terminal options."
+    },
+    {
+      "location_id": "LOC007",
+      "location_name": "Varanasi",
+      "coordinates": { "lat": 25.3176, "lon": 82.9739 },
+      "best_use_case": "Inland Port Suitability",
+      "suitability_level": "HIGH",
+      "overall_assessment": "PRIORITY SITE",
+      "inland_port_score": 76.8,
+      "hub_spoke_logistics_score": 74.0,
+      "seaplane_landing_score": 67.5,
+      "confidence_score": 83,
+      "key_opportunities": [
+        "Multimodal logistics integration",
+        "Inland port and cargo operations",
+        "Tourism and passenger terminal potential"
+      ],
+      "key_constraints": [
+        "High ecological sensitivity in Ganga corridor",
+        "Urban heritage zone restrictions"
+      ],
+      "infrastructure_present": [
+        "Varanasi Multi-Modal Terminal",
+        "Rail and road connectivity",
+        "Existing ghat infrastructure"
+      ],
+      "operational_notes": "Varanasi has the highest seaplane score among priority sites, driven by river width and stable water conditions. Multi-modal terminal already operational.",
+      "explanation_summary": "Consistently strong across all three use cases. Existing multi-modal terminal provides immediate operational capability. Ecological sensitivity constraints are manageable with clearance compliance."
+    },
+    {
+      "location_id": "LOC004",
+      "location_name": "Kanpur",
+      "coordinates": { "lat": 26.4499, "lon": 80.3319 },
+      "best_use_case": "Hub-Spoke Logistics Hub Suitability",
+      "suitability_level": "MODERATE",
+      "overall_assessment": "MODERATE SITE",
+      "inland_port_score": 41.8,
+      "hub_spoke_logistics_score": 64.2,
+      "seaplane_landing_score": 45.0,
+      "confidence_score": 65,
+      "key_opportunities": [
+        "Industrial logistics connectivity",
+        "Regional distribution for UP hinterland"
+      ],
+      "key_constraints": [
+        "Low navigability depth at inland port sites",
+        "Significant siltation in river channel",
+        "Industrial pollution affecting ecological clearance"
+      ],
+      "infrastructure_present": [
+        "Road and rail network access",
+        "Industrial estate proximity"
+      ],
+      "operational_notes": "Hub-spoke logistics is the viable use case. Inland port and seaplane suitability are constrained by navigability and ecological factors.",
+      "explanation_summary": "Kanpur's inland port score is low due to navigability constraints and siltation. Hub-spoke logistics score is moderate, driven by road and industrial connectivity. Not recommended for port infrastructure without significant dredging."
+    },
+    {
+      "location_id": "LOC006",
+      "location_name": "Prayagraj",
+      "coordinates": { "lat": 25.4358, "lon": 81.8463 },
+      "best_use_case": "Hub-Spoke Logistics Hub Suitability",
+      "suitability_level": "MODERATE",
+      "overall_assessment": "MODERATE SITE",
+      "inland_port_score": 39.6,
+      "hub_spoke_logistics_score": 52.8,
+      "seaplane_landing_score": 48.0,
+      "confidence_score": 60,
+      "key_opportunities": [
+        "Pilgrimage and tourism traffic management",
+        "Regional logistics for Uttar Pradesh central corridor"
+      ],
+      "key_constraints": [
+        "Extreme seasonal water level variation at Sangam confluence",
+        "Low navigability depth for cargo operations",
+        "Ecological and heritage zone clearance requirements"
+      ],
+      "infrastructure_present": [
+        "Road connectivity",
+        "Proximity to Naini industrial area"
+      ],
+      "operational_notes": "Prayagraj is a MODERATE site. Confluence geography creates navigability challenges. Logistics potential exists for hub-spoke distribution to central UP.",
+      "explanation_summary": "Prayagraj scores are constrained by confluence geography, seasonal depth variability, and heritage zone restrictions. Not recommended for heavy port infrastructure. Viable for selective logistics hub investment."
+    }
+  ]
+}

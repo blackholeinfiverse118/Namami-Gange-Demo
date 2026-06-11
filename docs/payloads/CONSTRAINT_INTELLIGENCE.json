@@ -1,0 +1,67 @@
+{
+  "generated_by": "Namami Gange Constraint Intelligence",
+  "global_constraints": [
+    {
+      "severity": "CRITICAL",
+      "constraint": "Navigation depth below 1.5 meters"
+    },
+    {
+      "severity": "WARNING",
+      "constraint": "Flood-prone operational zones"
+    },
+    {
+      "severity": "WARNING",
+      "constraint": "Low river stability"
+    },
+    {
+      "severity": "WARNING",
+      "constraint": "High environmental sensitivity and clearance requirements"
+    },
+    {
+      "severity": "NOTE",
+      "constraint": "Absence of existing terminals at several sites"
+    },
+    {
+      "severity": "NOTE",
+      "constraint": "Absence of logistics park infrastructure at several sites"
+    },
+    {
+      "severity": "NOTE",
+      "constraint": "Greenfield investment requirements at new sites"
+    }
+  ],
+  "location_constraints": [
+    {
+      "location": "Kanpur",
+      "location_id": "LOC004",
+      "constraints": [
+        { "severity": "CRITICAL", "constraint": "Significant siltation in river channel reduces navigability" },
+        { "severity": "WARNING", "constraint": "Industrial pollution affects ecological clearance" }
+      ]
+    },
+    {
+      "location": "Prayagraj",
+      "location_id": "LOC006",
+      "constraints": [
+        { "severity": "CRITICAL", "constraint": "Extreme seasonal water level variation at Sangam confluence" },
+        { "severity": "WARNING", "constraint": "Heritage zone clearance requirements restrict infrastructure development" }
+      ]
+    },
+    {
+      "location": "Varanasi",
+      "location_id": "LOC007",
+      "constraints": [
+        { "severity": "WARNING", "constraint": "Ecological sensitivity in Ganga corridor" },
+        { "severity": "WARNING", "constraint": "Urban heritage zone restrictions limit expansion" }
+      ]
+    },
+    {
+      "location": "Patna",
+      "location_id": "LOC010",
+      "constraints": [
+        { "severity": "WARNING", "constraint": "Flood seasonality affects operational windows" },
+        { "severity": "NOTE", "constraint": "Urban density limits greenfield terminal options" }
+      ]
+    }
+  ]
+}
