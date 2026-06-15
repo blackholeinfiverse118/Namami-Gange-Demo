@@ -9,16 +9,51 @@ interface GovernanceViewProps {
   validationBreach?: boolean;
   currentBlock?: number;
   onLocationSelect?: (id: string) => void;
+  levelCounts?: { HIGH: number; MEDIUM: number; LOW: number; REJECTED: number };
+  suitabilityLocations?: Record<string, any>;
 }
 
 export default function GovernanceView({
   selectedLocationId = 'varanasi',
   validationBreach = false,
   currentBlock = 1240,
-  onLocationSelect
+  onLocationSelect,
+  levelCounts,
+  suitabilityLocations
 }: GovernanceViewProps) {
   
-  const totalAlerts = validationBreach ? 24 : 23;
+  const opportunityCount = levelCounts?.HIGH ?? 12;
+  const highRiskCount = levelCounts ? (levelCounts.LOW + levelCounts.REJECTED) : 18;
+  const totalAlerts = validationBreach ? 24 : (levelCounts ? (levelCounts.LOW + levelCounts.REJECTED + 21) : 23);
+
+  const getWaterQualityVal = (key: string) => {
+    const locData = suitabilityLocations?.[key];
+    if (locData && locData.factors) {
+      const wq = locData.factors.find((f: any) => f.label.includes('Water Quality') || f.label.includes('Quality'));
+      if (wq) return wq.fill;
+    }
+    return key === 'kanpur' ? '25%' : key === 'prayagraj' ? '75%' : key === 'patna' ? '68%' : '80%';
+  };
+
+  const getWaterQualityStatus = (valStr: string) => {
+    const val = parseFloat(valStr.replace('%', ''));
+    if (val < 30) return { label: 'Critical', color: 'var(--alert-red)' };
+    if (val < 50) return { label: 'High', color: 'var(--alert-orange)' };
+    if (val < 75) return { label: 'Moderate', color: 'var(--amber)' };
+    return { label: 'Low', color: 'var(--eco-green)' };
+  };
+
+  const kanpurWQ = getWaterQualityVal('kanpur');
+  const kanpurStatus = getWaterQualityStatus(kanpurWQ);
+
+  const prayagrajWQ = getWaterQualityVal('prayagraj');
+  const prayagrajStatus = getWaterQualityStatus(prayagrajWQ);
+
+  const patnaWQ = getWaterQualityVal('patna');
+  const patnaStatus = getWaterQualityStatus(patnaWQ);
+
+  const kolkataWQ = getWaterQualityVal('kolkata');
+  const kolkataStatus = getWaterQualityStatus(kolkataWQ);
 
   return (
     <div className={styles.container}>
@@ -35,7 +70,7 @@ export default function GovernanceView({
       <div className={styles.statsRow} style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
         <ExecutiveMetricCard 
           title="Opportunity Zones" 
-          value="12" 
+          value={opportunityCount.toString()} 
           description="Varanasi & Patna corridors" 
           borderAccent="green"
           insights={[
@@ -45,7 +80,7 @@ export default function GovernanceView({
         />
         <ExecutiveMetricCard 
           title="High-Risk Regions" 
-          value="18" 
+          value={highRiskCount.toString()} 
           description="Flood + pollution zones" 
           borderAccent="amber"
           insights={[
@@ -160,10 +195,10 @@ export default function GovernanceView({
           <div className={styles.cardTitle}>Environmental Risk Regions</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
-              { name: 'Kanpur–Allahabad', status: 'Critical', val: '88%', color: 'var(--alert-red)' },
-              { name: 'Delhi NCR Stretch', status: 'High', val: '72%', color: 'var(--alert-orange)' },
-              { name: 'Brahmaputra Delta', status: 'Moderate', val: '52%', color: 'var(--amber)' },
-              { name: 'Godavari Basin', status: 'Low', val: '22%', color: 'var(--eco-green)' },
+              { name: 'Kanpur Reach', status: kanpurStatus.label, val: kanpurWQ, color: kanpurStatus.color },
+              { name: 'Patna Corridor', status: patnaStatus.label, val: patnaWQ, color: patnaStatus.color },
+              { name: 'Prayagraj Confluence', status: prayagrajStatus.label, val: prayagrajWQ, color: prayagrajStatus.color },
+              { name: 'Kolkata Delta Stretch', status: kolkataStatus.label, val: kolkataWQ, color: kolkataStatus.color },
             ].map((r, i) => (
               <div key={i}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>

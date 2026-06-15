@@ -15,7 +15,7 @@ interface SignalListProps {
   logs?: ReplayLog[];
 }
 
-export default function SignalList({ logs = [] }: SignalListProps) {
+export default function SignalList({ logs }: SignalListProps) {
   const getSeverity = (status: string) => {
     switch (status) {
       case 'BREACH': return 'high';
@@ -38,11 +38,19 @@ export default function SignalList({ logs = [] }: SignalListProps) {
     }
   };
 
-  // If no logs, show some initial historical logs
-  const displayLogs = logs.length > 0 ? logs : [
+  // If logs is undefined, fall back to default historical logs
+  const displayLogs = logs === undefined ? [
     { timestamp: '15:14:02', corrId: 'CORR-2026-0528-9941X', block: 1240, status: 'VERIFIED', message: 'Ingestion schema contract match on Varanasi-seaplane' },
     { timestamp: '15:13:48', corrId: 'CORR-2026-0528-9940Y', block: 1239, status: 'COMPATIBLE', message: 'Backward compatibility validated for Patna terminal payload' }
-  ] as ReplayLog[];
+  ] as ReplayLog[] : logs;
+
+  if (displayLogs.length === 0) {
+    return (
+      <div style={{ padding: '24px', textAlign: 'center', color: 'var(--text-dim)', fontSize: '13px', border: '1px dashed var(--border)', borderRadius: '8px' }}>
+        No telemetry events match the active filter criteria.
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>

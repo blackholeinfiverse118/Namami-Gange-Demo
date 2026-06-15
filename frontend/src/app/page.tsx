@@ -18,7 +18,41 @@ import MapCard from '@/components/shared/MapCard';
 import TelemetryCard from '@/components/shared/TelemetryCard';
 import AlertCard from '@/components/shared/AlertCard';
 import styles from './page.module.css';
-import { fetchResults, mapBackendToFrontend } from '@/services/api';
+import { fetchResults, fetchSummary, fetchLocationDetails, fetchSignals, mapBackendToFrontend } from '@/services/api';
+
+const FACTOR_LABELS: Record<string, string> = {
+  river_stability: 'River Stability',
+  terminal_proximity: 'Terminal Proximity',
+  logistics_access: 'Logistics Access',
+  water_quality: 'Water Quality (BOD)',
+  traffic_potential: 'Traffic Potential',
+  turbulence: 'Turbulence Index',
+  traffic_density: 'Traffic Density',
+  urban_proximity: 'Urban Proximity',
+  env_clearance_adj: 'Environmental Clearance',
+  node_proximity: 'Multi-node Proximity',
+  logistics_park: 'Logistics Park Quality',
+  terminal_density: 'Terminal Density',
+  connectivity: 'Connectivity Score',
+  market_access: 'Urban Market Access'
+};
+
+const FACTOR_COLORS: Record<string, string> = {
+  river_stability: 'var(--river-blue)',
+  terminal_proximity: 'var(--teal)',
+  logistics_access: 'var(--river-blue)',
+  water_quality: 'var(--eco-green)',
+  traffic_potential: 'var(--river-blue)',
+  turbulence: 'var(--amber)',
+  traffic_density: 'var(--river-blue)',
+  urban_proximity: 'var(--teal)',
+  env_clearance_adj: 'var(--eco-green)',
+  node_proximity: 'var(--teal)',
+  logistics_park: 'var(--river-blue)',
+  terminal_density: 'var(--teal)',
+  connectivity: 'var(--eco-green)',
+  market_access: 'var(--river-blue)'
+};
 
 interface SuitabilityLocation {
   id: string;
@@ -63,6 +97,12 @@ export default function Home() {
   const [latencyMs, setLatencyMs] = useState(6);
   const [validationBreach, setValidationBreach] = useState(false);
   const [selectedLocationId, setSelectedLocationId] = useState('varanasi');
+  const [selectedModel, setSelectedModel] = useState('inland_port');
+  const [summaryStats, setSummaryStats] = useState({
+    avg_suitability: 70.9,
+    basin_alerts: 2,
+    level_counts: { HIGH: 2, MEDIUM: 2, LOW: 1, REJECTED: 0 }
+  });
   
   // Dynamic logs
   const [replayLogs, setReplayLogs] = useState<ReplayLog[]>([
@@ -195,69 +235,122 @@ export default function Home() {
     }
   });
 
+  // 1. Fetch live signals on mount
   useEffect(() => {
-  async function loadBackendData() {
-    try {
-      const resultsData = await fetchResults('inland_port');
-
-      if (resultsData?.results) {
-        setSuitabilityLocations(prev => {
-          const updated = { ...prev };
-
-          resultsData.results.forEach((result: any) => {
-            const mapped = mapBackendToFrontend(result);
-
-            if (result.location_id.includes('varanasi')) {
-              updated.varanasi = {
-                ...updated.varanasi,
-                score: mapped.score,
-                level: mapped.level,
-                explanation: mapped.explanation,
-                confidence: mapped.confidence
-              };
-            }
-
-            if (result.location_id.includes('patna')) {
-              updated.patna = {
-                ...updated.patna,
-                score: mapped.score,
-                level: mapped.level,
-                explanation: mapped.explanation,
-                confidence: mapped.confidence
-              };
-            }
-
-            if (result.location_id.includes('kanpur')) {
-              updated.kanpur = {
-                ...updated.kanpur,
-                score: mapped.score,
-                level: mapped.level,
-                explanation: mapped.explanation,
-                confidence: mapped.confidence
-              };
-            }
-
-            if (result.location_id.includes('allahabad')) {
-              updated.prayagraj = {
-                ...updated.prayagraj,
-                score: mapped.score,
-                level: mapped.level,
-                explanation: mapped.explanation,
-                confidence: mapped.confidence
-              };
-            }
-          });
-
-          return updated;
-        });
+    async function loadSignals() {
+      try {
+        const signalsData = await fetchSignals();
+        if (signalsData?.signals && signalsData.signals.length > 0) {
+          const mappedLogs: ReplayLog[] = signalsData.signals.map((sig: any, index: number) => ({
+            timestamp: new Date(Date.now() - index * 60000).toLocaleTimeString('en-US', { hour12: false }),
+            corrId: `CORR-2026-0528-${9941 - index}X`,
+            block: 1240 - index,
+            status: sig.signal_value < 20 ? 'BREACH' : 'VERIFIED',
+            message: `${sig.description || sig.signal_type} value: ${sig.signal_value}`
+          }));
+          setReplayLogs(mappedLogs.slice(0, 15));
+        }
+      } catch (err) {
+        console.error('Failed to fetch live signals:', err);
       }
-    } catch (err) {
-      console.error('Backend connection failed:', err);
     }
-  }
-
-  loadBackendData();
+    loadSignals();
   }, []);
+
+  // 2. Load summary stats and model results when selectedModel changes
+  useEffect(() => {
+    async function loadSummaryAndData() {
+      try {
+        const [summaryData, resultsData] = await Promise.all([
+          fetchSummary(selectedModel),
+          fetchResults(selectedModel)
+        ]);
+
+        if (summaryData && summaryData.status === 'success') {
+          setSummaryStats({
+            avg_suitability: summaryData.avg_suitability,
+            basin_alerts: summaryData.basin_alerts,
+            level_counts: summaryData.level_counts || { HIGH: 2, MEDIUM: 2, LOW: 1, REJECTED: 0 }
+          });
+        }
+
+        if (resultsData?.results) {
+          setSuitabilityLocations(prev => {
+            const updated = { ...prev };
+
+            resultsData.results.forEach((result: any) => {
+              const mapped = mapBackendToFrontend(result);
+              
+              // Dynamically construct factors from backend factor_scores
+              const mappedFactors = Object.entries(result.factor_scores || {}).map(([key, val]: any) => ({
+                label: FACTOR_LABELS[key] || key.replace('_', ' '),
+                val: typeof val === 'boolean' ? (val ? 'Yes' : 'No') : `${Math.round(val)}%`,
+                fill: `${val}%`,
+                color: FACTOR_COLORS[key] || 'var(--river-blue)'
+              }));
+
+              // Dynamically construct constraints
+              const mappedConstraints = [];
+              if (result.constraints?.hard) {
+                result.constraints.hard.forEach((c: string) => {
+                  mappedConstraints.push({
+                    label: c.replace('_', ' ').toUpperCase() + ' (HARD)',
+                    val: 'TRIGGERED',
+                    fill: '100%',
+                    color: 'var(--alert-red)'
+                  });
+                });
+              }
+              if (result.constraints?.soft) {
+                result.constraints.soft.forEach((c: string) => {
+                  mappedConstraints.push({
+                    label: c.replace('_', ' ').toUpperCase() + ' (SOFT)',
+                    val: 'PENALTY',
+                    fill: '50%',
+                    color: 'var(--amber)'
+                  });
+                });
+              }
+              if (mappedConstraints.length === 0) {
+                mappedConstraints.push({
+                  label: 'No Constraints Triggered',
+                  val: 'Clear',
+                  fill: '100%',
+                  color: 'var(--eco-green)'
+                });
+              }
+
+              let key = '';
+              if (result.location_id.includes('varanasi')) key = 'varanasi';
+              else if (result.location_id.includes('patna')) key = 'patna';
+              else if (result.location_id.includes('kanpur')) key = 'kanpur';
+              else if (result.location_id.includes('allahabad') || result.location_id.includes('prayagraj')) key = 'prayagraj';
+              else if (result.location_id.includes('kolkata') || result.location_id.includes('farakka')) key = 'kolkata';
+              else if (result.location_id.includes('hajipur')) key = 'kolkata'; // Fallback to Kolkata hub layout
+
+              if (key && updated[key]) {
+                updated[key] = {
+                  ...updated[key],
+                  score: mapped.score,
+                  level: mapped.level,
+                  explanation: mapped.explanation,
+                  confidence: mapped.confidence,
+                  factors: mappedFactors,
+                  constraints: mappedConstraints
+                };
+              }
+            });
+
+            return updated;
+          });
+        }
+      } catch (err) {
+        console.error('Failed to load data for model:', selectedModel, err);
+      }
+    }
+
+    loadSummaryAndData();
+  }, [selectedModel]);
 
   // Dynamic simulation engine loops in background
   useEffect(() => {
@@ -278,16 +371,25 @@ export default function Home() {
       setSuitabilityLocations((prev) => {
         const copy = { ...prev };
         const loc = copy[selectedLocationId];
-        if (loc) {
-          // Subtle fluctuations in factors (like draft or quality) to simulate realtime stream
+        if (loc && loc.factors && loc.factors.length > 0) {
           const indexToMutate = Math.floor(Math.random() * loc.factors.length);
-          const f = { ...loc.factors[indexToMutate] };
-          if (f.label.includes('Draft')) {
+          const f = loc.factors[indexToMutate];
+          if (f && f.label && typeof f.label === 'string' && f.label.includes('Draft')) {
             const currentDraft = parseFloat(f.val.match(/[\d.]+/)?.[0] || '3.0');
             const diff = (Math.random() * 0.2 - 0.1);
             const nextDraft = Math.max(1.0, Math.min(6.0, currentDraft + diff)).toFixed(1);
-            f.val = `${nextDraft}m`;
-            loc.factors[indexToMutate] = f;
+            
+            const updatedFactors = [...loc.factors];
+            updatedFactors[indexToMutate] = {
+              ...f,
+              val: `${nextDraft}m`,
+              fill: `${Math.min(100, Math.max(0, Math.round((parseFloat(nextDraft) / 6.0) * 100)))}%`
+            };
+            
+            copy[selectedLocationId] = {
+              ...loc,
+              factors: updatedFactors
+            };
           }
         }
         return copy;
@@ -579,6 +681,7 @@ export default function Home() {
             selectedLocationId={selectedLocationId}
             activeLocation={activeLocData}
             onLocationSelect={setSelectedLocationId}
+            selectedModel={selectedModel}
           />
         );
       case 'signals':
@@ -614,6 +717,8 @@ export default function Home() {
             validationBreach={validationBreach}
             currentBlock={currentBlock}
             onLocationSelect={setSelectedLocationId}
+            levelCounts={summaryStats.level_counts}
+            suitabilityLocations={suitabilityLocations}
           />
         );
       case 'datasets':
@@ -637,7 +742,14 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-      <Topbar />
+      <Topbar 
+        liveFeed={validationBreach ? 'Anomaly Detected' : 'Active'}
+        basinAlerts={summaryStats.basin_alerts}
+        avgSuitability={summaryStats.avg_suitability}
+        selectedModel={selectedModel}
+        onModelChange={setSelectedModel}
+        onSignalMonitorClick={() => setActiveTab('signals')}
+      />
       <div className={styles.content}>
         {renderContent()}
       </div>

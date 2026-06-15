@@ -31,80 +31,94 @@ CORS(app)
 
 def load_sample_entities() -> List[Dict[str, Any]]:
     """
-    Loads sample location entities. In production, replaced by data_adapter.py output.
-    Falls back to hardcoded Ganga Basin reference locations for demo.
+    Loads location entities from the SQLite database.
     """
-    data_path = os.path.join(os.path.dirname(__file__), "..", "data_raw", "locations.json")
-    if os.path.exists(data_path):
-        with open(data_path) as f:
-            return json.load(f)
-
-    # Demo fallback — reference locations
-    return [
-        {
-            "location_id": "varanasi_terminal",
-            "properties": {
-                "river_stability_score": 78, "terminal_proximity_score": 85,
-                "logistics_access_score": 70, "water_quality_index": 60,
-                "traffic_potential_score": 75, "in_wetland": False,
-                "in_flood_zone": False, "env_clearance": True,
-                "pollution_index": 45, "depth_score": 65
+    try:
+        from db import get_db_connection
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT location_id, name, latitude, longitude, summary_metrics FROM locations")
+        rows = cursor.fetchall()
+        
+        entities = []
+        for r in rows:
+            entities.append({
+                "location_id": r["location_id"],
+                "name": r["name"],
+                "latitude": r["latitude"],
+                "longitude": r["longitude"],
+                "summary_metrics": json.loads(r["summary_metrics"])
+            })
+        conn.close()
+        return entities
+    except Exception as e:
+        print(f"[api] Error loading entities from SQLite: {e}. Falling back to mock data.")
+        # Fallback reference locations
+        return [
+            {
+                "location_id": "varanasi_terminal",
+                "properties": {
+                    "river_stability_score": 78, "terminal_proximity_score": 85,
+                    "logistics_access_score": 70, "water_quality_index": 60,
+                    "traffic_potential_score": 75, "in_wetland": False,
+                    "in_flood_zone": False, "env_clearance": True,
+                    "pollution_index": 45, "depth_score": 65
+                }
+            },
+            {
+                "location_id": "allahabad_confluence",
+                "properties": {
+                    "river_stability_score": 82, "terminal_proximity_score": 72,
+                    "logistics_access_score": 68, "water_quality_index": 52,
+                    "traffic_potential_score": 70, "in_wetland": False,
+                    "in_flood_zone": False, "env_clearance": True,
+                    "pollution_index": 50, "depth_score": 70
+                }
+            },
+            {
+                "location_id": "patna_river_port",
+                "properties": {
+                    "river_stability_score": 85, "terminal_proximity_score": 80,
+                    "logistics_access_score": 75, "water_quality_index": 55,
+                    "traffic_potential_score": 80, "in_wetland": False,
+                    "in_flood_zone": False, "env_clearance": True,
+                    "pollution_index": 40, "depth_score": 72
+                }
+            },
+            {
+                "location_id": "kanpur_industrial_zone",
+                "properties": {
+                    "river_stability_score": 60, "terminal_proximity_score": 65,
+                    "logistics_access_score": 80, "water_quality_index": 18,
+                    "traffic_potential_score": 75, "in_wetland": False,
+                    "in_flood_zone": False, "env_clearance": True,
+                    "pollution_index": 85, "depth_score": 55
+                }
+            },
+            {
+                "location_id": "farakka_wetland",
+                "properties": {
+                    "river_stability_score": 74, "terminal_proximity_score": 60,
+                    "logistics_access_score": 45, "water_quality_index": 48,
+                    "traffic_potential_score": 40, "in_wetland": True,
+                    "in_flood_zone": False, "env_clearance": False,
+                    "pollution_index": 35, "depth_score": 60
+                }
+            },
+            {
+                "location_id": "hajipur_hub",
+                "properties": {
+                    "river_stability_score": 72, "terminal_proximity_score": 68,
+                    "logistics_access_score": 62, "water_quality_index": 58,
+                    "traffic_potential_score": 65, "in_wetland": False,
+                    "in_flood_zone": False, "env_clearance": True,
+                    "pollution_index": 42, "depth_score": 62,
+                    "multi_node_proximity": 70, "logistics_park_quality": 65,
+                    "terminal_density_score": 60, "connectivity_score": 68,
+                    "urban_market_access": 72
+                }
             }
-        },
-        {
-            "location_id": "allahabad_confluence",
-            "properties": {
-                "river_stability_score": 82, "terminal_proximity_score": 72,
-                "logistics_access_score": 68, "water_quality_index": 52,
-                "traffic_potential_score": 70, "in_wetland": False,
-                "in_flood_zone": False, "env_clearance": True,
-                "pollution_index": 50, "depth_score": 70
-            }
-        },
-        {
-            "location_id": "patna_river_port",
-            "properties": {
-                "river_stability_score": 85, "terminal_proximity_score": 80,
-                "logistics_access_score": 75, "water_quality_index": 55,
-                "traffic_potential_score": 80, "in_wetland": False,
-                "in_flood_zone": False, "env_clearance": True,
-                "pollution_index": 40, "depth_score": 72
-            }
-        },
-        {
-            "location_id": "kanpur_industrial_zone",
-            "properties": {
-                "river_stability_score": 60, "terminal_proximity_score": 65,
-                "logistics_access_score": 80, "water_quality_index": 18,
-                "traffic_potential_score": 75, "in_wetland": False,
-                "in_flood_zone": False, "env_clearance": True,
-                "pollution_index": 85, "depth_score": 55
-            }
-        },
-        {
-            "location_id": "farakka_wetland",
-            "properties": {
-                "river_stability_score": 74, "terminal_proximity_score": 60,
-                "logistics_access_score": 45, "water_quality_index": 48,
-                "traffic_potential_score": 40, "in_wetland": True,
-                "in_flood_zone": False, "env_clearance": False,
-                "pollution_index": 35, "depth_score": 60
-            }
-        },
-        {
-            "location_id": "hajipur_hub",
-            "properties": {
-                "river_stability_score": 72, "terminal_proximity_score": 68,
-                "logistics_access_score": 62, "water_quality_index": 58,
-                "traffic_potential_score": 65, "in_wetland": False,
-                "in_flood_zone": False, "env_clearance": True,
-                "pollution_index": 42, "depth_score": 62,
-                "multi_node_proximity": 70, "logistics_park_quality": 65,
-                "terminal_density_score": 60, "connectivity_score": 68,
-                "urban_market_access": 72
-            }
-        }
-    ]
+        ]
 
 
 
@@ -259,8 +273,47 @@ def internal_error(e):
     return jsonify({"error": "Internal server error", "status": 500}), 500
 
 
+@app.route("/summary", methods=["GET"])
+def summary():
+    """
+    GET /summary
+    Optional query param: ?model=inland_port|seaplane|hub_spoke
+    Returns composite metrics: avg_suitability, basin_alerts, total_locations, level_counts
+    """
+    model_filter = request.args.get("model")
+    model_type = model_filter if model_filter in SCORING_MODELS else "inland_port"
+    entities = load_sample_entities()
+    
+    try:
+        scored_list = score_all(entities, model_type)
+    except Exception as e:
+        return error_response(str(e), 500)
+        
+    scores = [s["score"] for s in scored_list if s["level"] != "REJECTED"]
+    avg_score = round(sum(scores) / len(scores), 1) if scores else 0.0
+    
+    levels = [s["level"] for s in scored_list]
+    alerts_count = levels.count("REJECTED") + levels.count("LOW")
+    
+    return jsonify({
+        "status": "success",
+        "model_type": model_type,
+        "avg_suitability": avg_score,
+        "basin_alerts": alerts_count,
+        "total_locations": len(entities),
+        "level_counts": {
+            "HIGH": levels.count("HIGH"),
+            "MEDIUM": levels.count("MEDIUM"),
+            "LOW": levels.count("LOW"),
+            "REJECTED": levels.count("REJECTED")
+        }
+    })
+
+
 if __name__ == "__main__":
     print("NICAI API -- Starting on http://localhost:5000")
+    from db import init_db
+    init_db()
     from simulate_api import simulate_bp
     from marine_api import marine_bp
     app.register_blueprint(simulate_bp)

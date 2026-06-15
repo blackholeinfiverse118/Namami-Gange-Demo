@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './View.module.css';
-import IntelligenceCard from '../shared/IntelligenceCard';
+import { fetchDigitalDepthSummary } from '@/services/api';
 
 interface BasinIntelligenceProps {
   selectedLocationId?: string;
@@ -18,6 +18,47 @@ export default function BasinIntelligence({
   suitabilityLocations
 }: BasinIntelligenceProps) {
   
+  // Layer Switch States
+  const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>({
+    'River Network': true,
+    'Monitoring Stations': true,
+    'Barrages & Dams': true,
+    'IWT Terminals': true,
+    'Ports & Jetties': true,
+    'Logistics Parks': true,
+    'Environmental Zones': true,
+    'Suitability Heatmap': true,
+  });
+
+  // Live Layer Counts from /digital-depth summary
+  const [layerCounts, setLayerCounts] = useState<Record<string, number>>({
+    'River Network': 3,
+    'Environmental Zones': 3,
+    'Barrages & Dams': 2,
+    'IWT Terminals': 3,
+    'Ports & Jetties': 3
+  });
+
+  useEffect(() => {
+    async function loadDepthSummary() {
+      try {
+        const depthData = await fetchDigitalDepthSummary();
+        if (depthData?.layers) {
+          setLayerCounts({
+            'River Network': depthData.layers.physical?.feature_count || 3,
+            'Environmental Zones': depthData.layers.ecological?.feature_count || 3,
+            'Barrages & Dams': depthData.layers.policy?.feature_count || 2,
+            'IWT Terminals': depthData.layers.infrastructure?.feature_count || 3,
+            'Ports & Jetties': depthData.layers.economic?.feature_count || 3
+          });
+        }
+      } catch (err) {
+        console.error('Failed to load depth summary:', err);
+      }
+    }
+    loadDepthSummary();
+  }, []);
+
   const handleNodeClick = (id: string) => {
     if (onLocationSelect) {
       onLocationSelect(id);
@@ -25,9 +66,16 @@ export default function BasinIntelligence({
   };
 
   const getMarkerColor = (id: string) => {
-    if (id === 'kanpur') return 'var(--alert-red)';
+    const loc = suitabilityLocations?.[id];
+    if (!loc) {
+      if (id === 'kanpur') return 'var(--alert-red)';
+      if (id === selectedLocationId) return 'var(--teal)';
+      return '#FFB300';
+    }
     if (id === selectedLocationId) return 'var(--teal)';
-    return '#FFB300';
+    if (loc.level === 'HIGH') return 'var(--eco-green)';
+    if (loc.level === 'MEDIUM') return 'var(--amber)';
+    return 'var(--alert-red)';
   };
 
   return (
@@ -51,60 +99,84 @@ export default function BasinIntelligence({
                 strokeDasharray="4,4" 
               />
 
-              {/* Main Ganga with suitability coloring */}
-              <path
-                d="M 128 92 Q 155 88 185 90 Q 210 92 235 94 Q 258 96 280 100 Q 302 103 322 108 Q 340 112 358 116 Q 372 120 385 125"
-                fill="none" stroke="var(--river-blue)" strokeWidth="3.5" strokeLinecap="round" 
-              />
+              {/* Suitability Heatmap Glow */}
+              {activeLayers['Suitability Heatmap'] && (
+                <ellipse cx="280" cy="110" rx="140" ry="40" fill="rgba(20,184,166,0.04)" filter="blur(8px)" pointerEvents="none" />
+              )}
 
-              {/* Tributaries */}
-              <path d="M 195 58 Q 200 72 205 86 Q 210 96 215 106 Q 218 115 218 125 Q 216 138 212 148 Q 208 158 203 168" fill="none" stroke="#42A5F5" strokeWidth="2" opacity="0.7" />
-              <path d="M 270 58 Q 275 72 278 86 Q 280 98 278 112 Q 275 124 272 136" fill="none" stroke="#42A5F5" strokeWidth="2" opacity="0.6" />
-              <path d="M 318 140 Q 312 152 305 162 Q 298 172 290 182" fill="none" stroke="#42A5F5" strokeWidth="1.5" opacity="0.5" />
+              {/* River Network Layer */}
+              {activeLayers['River Network'] && (
+                <>
+                  {/* Main Ganga with suitability coloring */}
+                  <path
+                    d="M 128 92 Q 155 88 185 90 Q 210 92 235 94 Q 258 96 280 100 Q 302 103 322 108 Q 340 112 358 116 Q 372 120 385 125"
+                    fill="none" stroke="var(--river-blue)" strokeWidth="3.5" strokeLinecap="round" 
+                  />
+                  {/* Tributaries */}
+                  <path d="M 195 58 Q 200 72 205 86 Q 210 96 215 106 Q 218 115 218 125 Q 216 138 212 148 Q 208 158 203 168" fill="none" stroke="#42A5F5" strokeWidth="2" opacity="0.7" />
+                  <path d="M 270 58 Q 275 72 278 86 Q 280 98 278 112 Q 275 124 272 136" fill="none" stroke="#42A5F5" strokeWidth="2" opacity="0.6" />
+                  <path d="M 318 140 Q 312 152 305 162 Q 298 172 290 182" fill="none" stroke="#42A5F5" strokeWidth="1.5" opacity="0.5" />
+                </>
+              )}
 
-              {/* Monitoring stations / nodes */}
-              {/* Haridwar (Using 185, 90 for Prayagraj, Haridwar is at upper stretch) */}
-              {/* Kanpur node: 260, 97 */}
-              <g onClick={() => handleNodeClick('kanpur')} style={{ cursor: 'pointer' }}>
-                <circle cx="260" cy="97" r={selectedLocationId === 'kanpur' ? 12 : 7} fill="rgba(229,57,53,0.2)" stroke="var(--alert-red)" strokeWidth="1.5" className={selectedLocationId === 'kanpur' ? styles.mapRipple : ''} />
-                <circle cx="260" cy="97" r="4" fill="var(--alert-red)" />
-              </g>
+              {/* Monitoring Stations Layer */}
+              {activeLayers['Monitoring Stations'] && (
+                <>
+                  {/* Kanpur node */}
+                  <g onClick={() => handleNodeClick('kanpur')} style={{ cursor: 'pointer' }}>
+                    <circle cx="260" cy="97" r={selectedLocationId === 'kanpur' ? 12 : 7} fill="rgba(229,57,53,0.2)" stroke="var(--alert-red)" strokeWidth="1.5" className={selectedLocationId === 'kanpur' ? styles.mapRipple : ''} />
+                    <circle cx="260" cy="97" r="4" fill="var(--alert-red)" />
+                  </g>
 
-              {/* Prayagraj node: 185, 90 */}
-              <g onClick={() => handleNodeClick('prayagraj')} style={{ cursor: 'pointer' }}>
-                <circle cx="185" cy="90" r={selectedLocationId === 'prayagraj' ? 12 : 7} fill="rgba(255,179,0,0.2)" stroke={getMarkerColor('prayagraj')} strokeWidth="1.5" className={selectedLocationId === 'prayagraj' ? styles.mapRipple : ''} />
-                <circle cx="185" cy="90" r="3" fill={getMarkerColor('prayagraj')} />
-              </g>
+                  {/* Prayagraj node */}
+                  <g onClick={() => handleNodeClick('prayagraj')} style={{ cursor: 'pointer' }}>
+                    <circle cx="185" cy="90" r={selectedLocationId === 'prayagraj' ? 12 : 7} fill="rgba(255,179,0,0.2)" stroke={getMarkerColor('prayagraj')} strokeWidth="1.5" className={selectedLocationId === 'prayagraj' ? styles.mapRipple : ''} />
+                    <circle cx="185" cy="90" r="3" fill={getMarkerColor('prayagraj')} />
+                  </g>
 
-              {/* Varanasi node: 296, 100 */}
-              <g onClick={() => handleNodeClick('varanasi')} style={{ cursor: 'pointer' }}>
-                <circle cx="296" cy="100" r={selectedLocationId === 'varanasi' ? 12 : 7} fill="rgba(16,185,129,0.2)" stroke={getMarkerColor('varanasi')} strokeWidth="1.5" className={selectedLocationId === 'varanasi' ? styles.mapRipple : ''} />
-                <circle cx="296" cy="100" r="3" fill={getMarkerColor('varanasi')} />
-              </g>
+                  {/* Varanasi node */}
+                  <g onClick={() => handleNodeClick('varanasi')} style={{ cursor: 'pointer' }}>
+                    <circle cx="296" cy="100" r={selectedLocationId === 'varanasi' ? 12 : 7} fill="rgba(16,185,129,0.2)" stroke={getMarkerColor('varanasi')} strokeWidth="1.5" className={selectedLocationId === 'varanasi' ? styles.mapRipple : ''} />
+                    <circle cx="296" cy="100" r="3" fill={getMarkerColor('varanasi')} />
+                  </g>
 
-              {/* Patna node: 318, 120 */}
-              <g onClick={() => handleNodeClick('patna')} style={{ cursor: 'pointer' }}>
-                <circle cx="318" cy="120" r={selectedLocationId === 'patna' ? 12 : 7} fill="rgba(20,184,166,0.2)" stroke={getMarkerColor('patna')} strokeWidth="1.5" className={selectedLocationId === 'patna' ? styles.mapRipple : ''} />
-                <circle cx="318" cy="120" r="3" fill={getMarkerColor('patna')} />
-              </g>
+                  {/* Patna node */}
+                  <g onClick={() => handleNodeClick('patna')} style={{ cursor: 'pointer' }}>
+                    <circle cx="318" cy="120" r={selectedLocationId === 'patna' ? 12 : 7} fill="rgba(20,184,166,0.2)" stroke={getMarkerColor('patna')} strokeWidth="1.5" className={selectedLocationId === 'patna' ? styles.mapRipple : ''} />
+                    <circle cx="318" cy="120" r="3" fill={getMarkerColor('patna')} />
+                  </g>
 
-              {/* Kolkata node: 358, 125 */}
-              <g onClick={() => handleNodeClick('kolkata')} style={{ cursor: 'pointer' }}>
-                <circle cx="358" cy="125" r={selectedLocationId === 'kolkata' ? 12 : 7} fill="rgba(16,185,129,0.2)" stroke={getMarkerColor('kolkata')} strokeWidth="1.5" className={selectedLocationId === 'kolkata' ? styles.mapRipple : ''} />
-                <circle cx="358" cy="125" r="3" fill={getMarkerColor('kolkata')} />
-              </g>
+                  {/* Kolkata node */}
+                  <g onClick={() => handleNodeClick('kolkata')} style={{ cursor: 'pointer' }}>
+                    <circle cx="358" cy="125" r={selectedLocationId === 'kolkata' ? 12 : 7} fill="rgba(16,185,129,0.2)" stroke={getMarkerColor('kolkata')} strokeWidth="1.5" className={selectedLocationId === 'kolkata' ? styles.mapRipple : ''} />
+                    <circle cx="358" cy="125" r="3" fill={getMarkerColor('kolkata')} />
+                  </g>
+                </>
+              )}
 
-              {/* Ports & Jetties */}
-              <rect x="190" y="96" width="6" height="6" rx="1" fill="#42A5F5" opacity="0.8" transform="rotate(45,193,99)" />
-              <rect x="298" y="104" width="6" height="6" rx="1" fill="#42A5F5" opacity="0.8" transform="rotate(45,301,107)" />
+              {/* Ports & Jetties (Economic Layer) */}
+              {activeLayers['Ports & Jetties'] && (
+                <>
+                  <rect x="190" y="96" width="6" height="6" rx="1" fill="#42A5F5" opacity="0.8" transform="rotate(45,193,99)" />
+                  <rect x="298" y="104" width="6" height="6" rx="1" fill="#42A5F5" opacity="0.8" transform="rotate(45,301,107)" />
+                </>
+              )}
 
-              {/* Barrages */}
-              <rect x="168" y="88" width="8" height="4" rx="1" fill="#FFB300" opacity="0.9" />
-              <rect x="310" y="104" width="8" height="4" rx="1" fill="#FFB300" opacity="0.9" />
+              {/* Barrages & Dams (Policy Layer) */}
+              {activeLayers['Barrages & Dams'] && (
+                <>
+                  <rect x="168" y="88" width="8" height="4" rx="1" fill="#FFB300" opacity="0.9" />
+                  <rect x="310" y="104" width="8" height="4" rx="1" fill="#FFB300" opacity="0.9" />
+                </>
+              )}
 
-              {/* Eco zones */}
-              <ellipse cx="215" cy="155" rx="28" ry="20" fill="rgba(76,175,80,0.08)" stroke="rgba(76,175,80,0.4)" strokeWidth="0.8" strokeDasharray="3,3" />
-              <ellipse cx="350" cy="140" rx="22" ry="16" fill="rgba(76,175,80,0.08)" stroke="rgba(76,175,80,0.4)" strokeWidth="0.8" strokeDasharray="3,3" />
+              {/* Environmental Zones Layer */}
+              {activeLayers['Environmental Zones'] && (
+                <>
+                  <ellipse cx="215" cy="155" rx="28" ry="20" fill="rgba(76,175,80,0.08)" stroke="rgba(76,175,80,0.4)" strokeWidth="0.8" strokeDasharray="3,3" />
+                  <ellipse cx="350" cy="140" rx="22" ry="16" fill="rgba(76,175,80,0.08)" stroke="rgba(76,175,80,0.4)" strokeWidth="0.8" strokeDasharray="3,3" />
+                </>
+              )}
 
               {/* Labels */}
               <text x="170" y="82" fontSize="7" fill="#90CAF9" fontFamily="var(--font-mono)">HARIDWAR</text>
@@ -165,25 +237,48 @@ export default function BasinIntelligence({
             <div className={styles.cardTitle}>Layer Controls</div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {[
-                { label: 'River Network', icon: '〰️', active: true },
-                { label: 'Monitoring Stations', icon: '📡', active: true },
-                { label: 'Barrages & Dams', icon: '🚧', active: true },
-                { label: 'IWT Terminals', icon: '⚓', active: true },
-                { label: 'Ports & Jetties', icon: '🚢', active: true },
-                { label: 'Logistics Parks', icon: '🏭', active: true },
-                { label: 'Environmental Zones', icon: '🌿', active: true },
-                { label: 'Suitability Heatmap', icon: '🔥', active: true },
-              ].map((layer, i) => (
-                <div key={i} className={styles.layerToggle} onClick={() => alert(`Toggled layer: ${layer.label}`)} style={{ cursor: 'pointer' }}>
-                  <div className={styles.layerLabel}>
-                    <span style={{ width: '16px', textAlign: 'center' }}>{layer.icon}</span>
-                    <span>{layer.label}</span>
+                { label: 'River Network', icon: '〰️' },
+                { label: 'Monitoring Stations', icon: '📡' },
+                { label: 'Barrages & Dams', icon: '🚧' },
+                { label: 'IWT Terminals', icon: '⚓' },
+                { label: 'Ports & Jetties', icon: '🚢' },
+                { label: 'Logistics Parks', icon: '🏭' },
+                { label: 'Environmental Zones', icon: '🌿' },
+                { label: 'Suitability Heatmap', icon: '🔥' },
+              ].map((layer, i) => {
+                const isActive = activeLayers[layer.label] ?? false;
+                const count = layerCounts[layer.label];
+                const displayName = count !== undefined ? `${layer.label} (${count})` : layer.label;
+
+                return (
+                  <div 
+                    key={i} 
+                    className={styles.layerToggle} 
+                    onClick={() => setActiveLayers(prev => ({ ...prev, [layer.label]: !prev[layer.label] }))} 
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <div className={styles.layerLabel}>
+                      <span style={{ width: '16px', textAlign: 'center' }}>{layer.icon}</span>
+                      <span>{displayName}</span>
+                    </div>
+                    <div 
+                      className={styles.toggleSwitch} 
+                      style={{ 
+                        backgroundColor: isActive ? 'var(--teal)' : 'var(--surface-2)', 
+                        borderColor: isActive ? 'transparent' : 'rgba(255,255,255,0.1)' 
+                      }}
+                    >
+                      <div 
+                        className={styles.toggleKnob} 
+                        style={{ 
+                          left: isActive ? '17px' : '1px',
+                          transition: 'left 0.2s'
+                        }}
+                      ></div>
+                    </div>
                   </div>
-                  <div className={styles.toggleSwitch} style={{ backgroundColor: layer.active ? 'var(--teal)' : 'var(--surface-2)', borderColor: layer.active ? 'transparent' : 'rgba(255,255,255,0.1)' }}>
-                    <div className={styles.toggleKnob} style={{ left: layer.active ? '17px' : '1px' }}></div>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

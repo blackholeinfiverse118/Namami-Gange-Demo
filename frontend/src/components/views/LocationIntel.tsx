@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './View.module.css';
 import TelemetryCard from '../shared/TelemetryCard';
+import { fetchProposals } from '@/services/api';
 
 interface SuitabilityLocation {
   id: string;
@@ -53,6 +54,38 @@ export default function LocationIntel({ selectedLocationId = 'varanasi', activeL
   };
 
   const loc = activeLocation || defaultLocs[selectedLocationId] || defaultLocs.varanasi;
+
+  const [proposals, setProposals] = useState<any[]>([]);
+  const [loadingProposals, setLoadingProposals] = useState(false);
+
+  useEffect(() => {
+    async function loadProposals() {
+      if (!loc.id) return;
+      setLoadingProposals(true);
+      try {
+        // Resolve location_id mapping from UI key to backend standard ID
+        let queryId = loc.id;
+        if (loc.id === 'varanasi') queryId = 'varanasi_terminal';
+        else if (loc.id === 'patna') queryId = 'patna_river_port';
+        else if (loc.id === 'kanpur') queryId = 'kanpur_industrial_zone';
+        else if (loc.id === 'prayagraj') queryId = 'allahabad_confluence';
+        else if (loc.id === 'kolkata') queryId = 'farakka_wetland';
+
+        const res = await fetchProposals(queryId);
+        if (res && res.proposals) {
+          setProposals(res.proposals);
+        } else {
+          setProposals([]);
+        }
+      } catch (err) {
+        console.error('Failed to load proposals:', err);
+        setProposals([]);
+      } finally {
+        setLoadingProposals(false);
+      }
+    }
+    loadProposals();
+  }, [loc.id]);
 
   // Map markers depending on coordinates
   const mapCX = loc.id === 'kanpur' ? 100 : loc.id === 'prayagraj' ? 210 : loc.id === 'varanasi' ? 280 : loc.id === 'patna' ? 410 : 510;
@@ -134,12 +167,29 @@ export default function LocationIntel({ selectedLocationId = 'varanasi', activeL
           <div className={styles.listCard}>
             <div className={styles.cardTitle}>Infrastructure opportunities</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {loc.infrastructure.map((inf, i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                  <span style={{ color: 'var(--text-secondary)' }}>⚡ {inf}</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--eco-green)' }}>READY</span>
-                </div>
-              ))}
+              {loadingProposals ? (
+                <div style={{ fontSize: '11px', color: 'var(--text-dim)' }}>Querying proposal engine...</div>
+              ) : proposals.length === 0 ? (
+                <div style={{ fontSize: '11px', color: 'var(--text-dim)' }}>No live recommendations found.</div>
+              ) : (
+                proposals.map((prop, i) => (
+                  <div key={i} style={{ display: 'flex', flexDirection: 'column', padding: '6px 0', borderBottom: i < proposals.length - 1 ? '1px solid rgba(255,255,255,0.03)' : 'none' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontWeight: 'bold', marginBottom: '2px' }}>
+                      <span style={{ color: 'var(--river-light)' }}>⚡ {prop.proposal_type}</span>
+                      <span style={{ 
+                        fontFamily: 'var(--font-mono)', 
+                        color: prop.priority === 'HIGH' ? 'var(--alert-red)' : prop.priority === 'MEDIUM' ? 'var(--amber)' : 'var(--eco-green)',
+                        fontSize: '9px' 
+                      }}>
+                        {prop.priority}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+                      {prop.proposal_text}
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
 
@@ -176,7 +226,7 @@ export default function LocationIntel({ selectedLocationId = 'varanasi', activeL
                 <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-primary)' }}>{loc.lat} · {loc.lng}</span>
               </div>
             </div>
-            <button className={styles.primaryBtn} style={{ width: '100%' }} onClick={() => alert(`Deterministic logic explanation: ${loc.explanation}`)}>View Reasoning Chain</button>
+            <button className={styles.primaryBtn} style={{ width: '100%' }} onClick={() => alert(`Deterministic logic explanation:\n\n${loc.explanation}`)}>View Reasoning Chain</button>
           </div>
         </div>
       </div>

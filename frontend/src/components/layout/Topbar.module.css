@@ -76,3 +76,38 @@
   background: var(--river-blue);
   border-color: var(--river-blue);
 }
+
+.modelSelector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+.modelSelector:hover {
+  border-color: var(--river-blue);
+}
+
+.select {
+  background: transparent;
+  border: none;
+  color: var(--river-light);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+  padding-right: 4px;
+}
+
+.select option {
+  background: #0a1120;
+  color: var(--text-primary);
+}

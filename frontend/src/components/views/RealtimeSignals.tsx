@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './View.module.css';
 import SignalList from '../shared/SignalList';
 import ReasoningPanel from '../shared/ReasoningPanel';
@@ -29,7 +29,45 @@ export default function RealtimeSignals({
   suitabilityLocations,
   onLocationSelect
 }: RealtimeSignalsProps) {
+  const [activeFilter, setActiveFilter] = useState<'all' | 'alerts' | 'anomalies' | 'observations'>('all');
   const activeLocation = suitabilityLocations?.[selectedLocationId];
+
+  // Filter logs dynamically based on the selected tab
+  const filteredLogs = replayLogs.filter(log => {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'alerts') return log.status === 'BREACH';
+    if (activeFilter === 'anomalies') return log.status === 'BREACH' || log.status === 'REPLAYING';
+    if (activeFilter === 'observations') return log.status === 'VERIFIED' || log.status === 'COMPATIBLE';
+    return true;
+  });
+
+  // Chronological order for the timeline chart (oldest left, newest right)
+  const displayLogs = [...replayLogs].reverse();
+  const points = displayLogs.map((log, i) => {
+    const totalPoints = displayLogs.length || 1;
+    const x = i * (400 / Math.max(1, totalPoints - 1));
+    let y = 70; // Default verified low stress
+    if (log.status === 'BREACH') y = 15;
+    else if (log.status === 'REPLAYING') y = 35;
+    else if (log.status === 'COMPATIBLE') y = 55;
+    
+    // Add some deterministic deviation based on index/block to look like a smooth waveform
+    const waveOffset = Math.sin(i * 1.5) * 4;
+    y = Math.max(10, Math.min(85, y + waveOffset));
+    
+    return { x, y, status: log.status };
+  });
+
+  const chartPoints = points.length > 0 ? points : [
+    { x: 0, y: 70, status: 'VERIFIED' },
+    { x: 100, y: 40, status: 'VERIFIED' },
+    { x: 200, y: 20, status: 'VERIFIED' },
+    { x: 300, y: 50, status: 'VERIFIED' },
+    { x: 400, y: 60, status: 'VERIFIED' }
+  ];
+
+  const pathD = chartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ');
+  const fillD = `${pathD} L 400 80 L 0 80 Z`;
 
   return (
     <div className={styles.container}>
@@ -43,12 +81,68 @@ export default function RealtimeSignals({
       <div className={styles.signalsGrid}>
         <div className={styles.signalsListSide}>
           <div style={{ display: 'flex', gap: '20px', marginBottom: '16px', borderBottom: '1px solid var(--border)' }}>
-            <button style={{ background: 'none', border: 'none', borderBottom: '2px solid var(--river-blue)', color: 'var(--river-blue)', paddingBottom: '10px', fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}>All Events</button>
-            <button style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', paddingBottom: '10px', fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}>Alerts</button>
-            <button style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', paddingBottom: '10px', fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}>Anomalies</button>
-            <button style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', paddingBottom: '10px', fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}>Observations</button>
+            <button 
+              onClick={() => setActiveFilter('all')}
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                borderBottom: activeFilter === 'all' ? '2px solid var(--river-blue)' : '2px solid transparent', 
+                color: activeFilter === 'all' ? 'var(--river-blue)' : 'var(--text-secondary)', 
+                paddingBottom: '10px', 
+                fontSize: '13px', 
+                fontWeight: '600', 
+                cursor: 'pointer' 
+              }}
+            >
+              All Events
+            </button>
+            <button 
+              onClick={() => setActiveFilter('alerts')}
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                borderBottom: activeFilter === 'alerts' ? '2px solid var(--river-blue)' : '2px solid transparent', 
+                color: activeFilter === 'alerts' ? 'var(--river-blue)' : 'var(--text-secondary)', 
+                paddingBottom: '10px', 
+                fontSize: '13px', 
+                fontWeight: '600', 
+                cursor: 'pointer' 
+              }}
+            >
+              Alerts
+            </button>
+            <button 
+              onClick={() => setActiveFilter('anomalies')}
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                borderBottom: activeFilter === 'anomalies' ? '2px solid var(--river-blue)' : '2px solid transparent', 
+                color: activeFilter === 'anomalies' ? 'var(--river-blue)' : 'var(--text-secondary)', 
+                paddingBottom: '10px', 
+                fontSize: '13px', 
+                fontWeight: '600', 
+                cursor: 'pointer' 
+              }}
+            >
+              Anomalies
+            </button>
+            <button 
+              onClick={() => setActiveFilter('observations')}
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                borderBottom: activeFilter === 'observations' ? '2px solid var(--river-blue)' : '2px solid transparent', 
+                color: activeFilter === 'observations' ? 'var(--river-blue)' : 'var(--text-secondary)', 
+                paddingBottom: '10px', 
+                fontSize: '13px', 
+                fontWeight: '600', 
+                cursor: 'pointer' 
+              }}
+            >
+              Observations
+            </button>
           </div>
-          <SignalList logs={replayLogs} />
+          <SignalList logs={filteredLogs} />
         </div>
         
         <div className={styles.signalsDetailSide}>
@@ -83,18 +177,42 @@ export default function RealtimeSignals({
                 <text x="360" y="95" fill="var(--text-dim)" fontSize="9" textAnchor="middle" fontFamily="var(--font-mono)">24:00</text>
 
                 {/* Line chart */}
-                <path d="M 0 70 Q 20 60 40 40 T 80 50 T 120 20 T 160 30 T 200 10 T 240 40 T 280 20 T 320 50 T 360 40 T 400 60" fill="none" stroke={validationBreach ? 'var(--alert-red)' : 'var(--river-blue)'} strokeWidth="2.5" />
+                <path 
+                  d={pathD} 
+                  fill="none" 
+                  stroke={validationBreach ? 'var(--alert-red)' : 'var(--river-blue)'} 
+                  strokeWidth="2.5" 
+                />
                 
                 {/* Area fill */}
-                <path d="M 0 70 Q 20 60 40 40 T 80 50 T 120 20 T 160 30 T 200 10 T 240 40 T 280 20 T 320 50 T 360 40 T 400 60 L 400 80 L 0 80 Z" fill={validationBreach ? 'rgba(239, 68, 68, 0.1)' : 'rgba(30,136,229,0.1)'} />
+                <path 
+                  d={fillD} 
+                  fill={validationBreach ? 'rgba(239, 68, 68, 0.1)' : 'rgba(30,136,229,0.1)'} 
+                />
 
                 {/* Data points */}
-                <circle cx="40" cy="40" r="3.5" fill="var(--river-blue)" />
-                <circle cx="120" cy="20" r="3.5" fill="var(--river-blue)" />
-                <circle cx="200" cy="10" r="4.5" fill={validationBreach ? 'var(--alert-red)' : 'var(--teal)'} className={styles.mapRipple} />
-                <circle cx="200" cy="10" r="3.5" fill={validationBreach ? 'var(--alert-red)' : 'var(--teal)'} />
-                <circle cx="280" cy="20" r="3.5" fill="var(--amber)" />
-                <circle cx="360" cy="40" r="3.5" fill="var(--river-blue)" />
+                {chartPoints.map((p, i) => (
+                  <g key={i}>
+                    <circle 
+                      cx={p.x} 
+                      cy={p.y} 
+                      r={p.status === 'BREACH' ? 4.5 : 3.5} 
+                      fill={p.status === 'BREACH' ? 'var(--alert-red)' : p.status === 'COMPATIBLE' ? 'var(--amber)' : 'var(--river-blue)'} 
+                      className={p.status === 'BREACH' ? styles.mapRipple : undefined}
+                    />
+                    {p.status === 'BREACH' && (
+                      <circle 
+                        cx={p.x} 
+                        cy={p.y} 
+                        r={7.5} 
+                        fill="none" 
+                        stroke="var(--alert-red)" 
+                        strokeWidth="1"
+                        style={{ opacity: 0.5 }}
+                      />
+                    )}
+                  </g>
+                ))}
               </svg>
             </div>
           </div>

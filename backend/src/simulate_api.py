@@ -87,7 +87,29 @@ APPROVED_DATASETS = {
 
 
 def load_from_dataset(dataset_id: str) -> Optional[List[Dict[str, Any]]]:
-    """Loads entities from an approved dataset by ID."""
+    """Loads entities from an approved dataset by ID or from SQLite database."""
+    if dataset_id == "ganga_basin_reference":
+        try:
+            from db import get_db_connection
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT location_id, name, latitude, longitude, summary_metrics FROM locations")
+            rows = cursor.fetchall()
+            entities = []
+            for r in rows:
+                entities.append({
+                    "location_id": r["location_id"],
+                    "name": r["name"],
+                    "latitude": r["latitude"],
+                    "longitude": r["longitude"],
+                    "summary_metrics": json.loads(r["summary_metrics"])
+                })
+            conn.close()
+            return entities
+        except Exception as e:
+            print(f"[simulate_api] Error loading from SQLite: {e}")
+            # Fall through to file loader
+            
     if dataset_id not in APPROVED_DATASETS:
         return None
     path = os.path.join(os.path.dirname(__file__), "..", APPROVED_DATASETS[dataset_id])
