@@ -1,0 +1,125 @@
+{
+  "description": "Dataset lineage and evidence registry for Namami Gange Priority Locations",
+  "locations": {
+    "varanasi": {
+      "datasets": [
+        {
+          "dataset_name": "IWAI Terminal Dataset",
+          "records_used": "Ramnagar Terminal (IWAI-T-004), Samne Ghat (IWAI-G-012)",
+          "contribution_summary": "Verified presence of high-capacity multimodal cargo terminal; contributed 30 points to Infrastructure Score."
+        },
+        {
+          "dataset_name": "CPCB Water Quality Dataset",
+          "records_used": "WQ009 (Assi Ghat), WQ010 (Dashashwamedh Ghat)",
+          "contribution_summary": "Assessed BOD levels (2.1 mg/L) and DO (6.5 mg/L); verified ecological viability with a positive contribution of 25 points."
+        },
+        {
+          "dataset_name": "CWC River Stations Dataset",
+          "records_used": "CWC-R-VNS (Varanasi Gauge Station)",
+          "contribution_summary": "Confirmed stable riverbed and navigation draft (>3.2m); added 25 points to Navigation Score."
+        },
+        {
+          "dataset_name": "Logistics Parks Dataset",
+          "records_used": "L-PK-VNS-01 (Varanasi Logistics Ring)",
+          "contribution_summary": "Mapped warehouse access and road-rail proximity; added 12 points to Connectivity."
+        }
+      ]
+    },
+    "kanpur": {
+      "datasets": [
+        {
+          "dataset_name": "IWAI Terminal Dataset",
+          "records_used": "Jajmau Jetty (IWAI-G-002), Kanpur Local Ghat (IWAI-G-003)",
+          "contribution_summary": "No active multimodal terminal; local jetties only. Contributed 10 points to Infrastructure Score."
+        },
+        {
+          "dataset_name": "CPCB Water Quality Dataset",
+          "records_used": "WQ004 (Jajmau Outfall), WQ005 (Kanpur Downstream)",
+          "contribution_summary": "Flagged critical BOD levels (8.4 mg/L); triggered environmental penalty (-20 points)."
+        },
+        {
+          "dataset_name": "CWC River Stations Dataset",
+          "records_used": "CWC-R-KAN (Kanpur Upstream Gauge)",
+          "contribution_summary": "Flagged shallow lean draft (1.4m) and high siltation risk (82%); reduced Navigation Score by 15 points."
+        },
+        {
+          "dataset_name": "Urban Centers Dataset",
+          "records_used": "UC-KAN-01 (Kanpur Municipal Area)",
+          "contribution_summary": "High population and industrial demand mapped; added 18 points to Demand Score."
+        }
+      ]
+    },
+    "kolkata": {
+      "datasets": [
+        {
+          "dataset_name": "IWAI Terminal Dataset",
+          "records_used": "GR Jetty (IWAI-T-021), Haldia Complex (IWAI-T-022)",
+          "contribution_summary": "Established deep-water terminal and port infrastructure verified; contributed 30 points to Infrastructure Score."
+        },
+        {
+          "dataset_name": "CPCB Water Quality Dataset",
+          "records_used": "WQ017 (Budge Budge), WQ018 (Garden Reach)",
+          "contribution_summary": "Moderate water quality (BOD 2.5 mg/L) verified; contributed 20 points."
+        },
+        {
+          "dataset_name": "CWC River Stations Dataset",
+          "records_used": "CWC-R-KOL (Kolkata Tidal Gauge)",
+          "contribution_summary": "Tidal draft support (4.8m+) confirmed; contributed 25 points to Navigation Score."
+        },
+        {
+          "dataset_name": "Logistics Parks Dataset",
+          "records_used": "L-PK-KOL-04 (Haldia Logistics Grid)",
+          "contribution_summary": "Excellent multimodal freight corridors mapped; added 16 points to Connectivity."
+        }
+      ]
+    },
+    "patna": {
+      "datasets": [
+        {
+          "dataset_name": "IWAI Terminal Dataset",
+          "records_used": "Gaighat Terminal (IWAI-T-010), Patna Sahib (IWAI-G-008)",
+          "contribution_summary": "Active river terminal with jetty infrastructure confirmed; contributed 24 points to Infrastructure Score."
+        },
+        {
+          "dataset_name": "CPCB Water Quality Dataset",
+          "records_used": "WQ011 (Mahendru Ghat), WQ012 (Gaighat Downstream)",
+          "contribution_summary": "BOD levels adequate (2.8 mg/L) but warning issued on summer coliform; contributed 18 points."
+        },
+        {
+          "dataset_name": "CWC River Stations Dataset",
+          "records_used": "CWC-R-PAT (Patna Digha Station)",
+          "contribution_summary": "Seasonal flow variability verified with stable draft (2.6m); contributed 20 points."
+        },
+        {
+          "dataset_name": "Urban Centers Dataset",
+          "records_used": "UC-PAT-01 (Patna City Grid)",
+          "contribution_summary": "High urban demand and distribution potential; added 18 points to Demand Score."
+        }
+      ]
+    },
+    "prayagraj": {
+      "datasets": [
+        {
+          "dataset_name": "IWAI Terminal Dataset",
+          "records_used": "Prayagraj Jetty (IWAI-G-005), Sangam Ghat (IWAI-G-006)",
+          "contribution_summary": "Absence of heavy cargo terminals verified; only passenger jetties present. Contributed 8 points."
+        },
+        {
+          "dataset_name": "CPCB Water Quality Dataset",
+          "records_used": "WQ007 (Sangam Confluence), WQ008 (Naini)",
+          "contribution_summary": "Acceptable BOD (2.8 mg/L) but religious zone restrictions apply; contributed 15 points."
+        },
+        {
+          "dataset_name": "CWC River Stations Dataset",
+          "records_used": "CWC-R-PRY (Prayagraj Confluence Gauge)",
+          "contribution_summary": "High seasonal draft volatility and sandbar formation flagged; subtracted 10 points from Navigation Score."
+        },
+        {
+          "dataset_name": "Urban Centers Dataset",
+          "records_used": "UC-PRY-01 (Prayagraj Metro Area)",
+          "contribution_summary": "Moderate urban demand driven by pilgrimage traffic; contributed 12 points."
+        }
+      ]
+    }
+  }
+}

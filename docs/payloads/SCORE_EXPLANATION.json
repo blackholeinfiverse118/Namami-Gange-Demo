@@ -1,0 +1,55 @@
+{
+  "description": "Score breakdown explanations for Namami Gange Priority Locations",
+  "locations": {
+    "varanasi": {
+      "name": "Varanasi",
+      "final_score": 92,
+      "breakdown": {
+        "Infrastructure": { "score": 95, "weight": 0.3, "explanation": "Varanasi Multi-Modal Terminal is fully operational with rail links." },
+        "Connectivity": { "score": 90, "weight": 0.25, "explanation": "Direct national highway NH-2 and trunk rail line integration." },
+        "Navigation": { "score": 88, "weight": 0.25, "explanation": "Optimal NW-1 corridor depth (> 3m) maintained during lean season." },
+        "Demand": { "score": 95, "weight": 0.2, "explanation": "High trade potential serving Eastern UP and Bihar cargo catchment." }
+      }
+    },
+    "kanpur": {
+      "name": "Kanpur",
+      "final_score": 72,
+      "breakdown": {
+        "Infrastructure": { "score": 70, "weight": 0.3, "explanation": "Only local industrial jetties present; requires terminal upgrades." },
+        "Connectivity": { "score": 85, "weight": 0.25, "explanation": "Good industrial highway connection, but rail connection lacks dedicated spur." },
+        "Navigation": { "score": 55, "weight": 0.25, "explanation": "Low draft (1.4m average) due to heavy dry-season siltation." },
+        "Demand": { "score": 82, "weight": 0.2, "explanation": "High industrial output (leather/textiles) but cargo capacity limited by draft." }
+      }
+    },
+    "kolkata": {
+      "name": "Kolkata",
+      "final_score": 91,
+      "breakdown": {
+        "Infrastructure": { "score": 94, "weight": 0.3, "explanation": "Fully developed port terminals and warehouse infrastructure." },
+        "Connectivity": { "score": 95, "weight": 0.25, "explanation": "Excellent rail, road, and international sea route access." },
+        "Navigation": { "score": 88, "weight": 0.25, "explanation": "Tidal draft support (4.8m+) allows large vessel movement." },
+        "Demand": { "score": 85, "weight": 0.2, "explanation": "Vast export-import cargo demand from the entire eastern region." }
+      }
+    },
+    "patna": {
+      "name": "Patna",
+      "final_score": 80,
+      "breakdown": {
+        "Infrastructure": { "score": 78, "weight": 0.3, "explanation": "Patna Sahib ghat and active IWAI terminal presence." },
+        "Connectivity": { "score": 85, "weight": 0.25, "explanation": "Strong highway connectivity via NH-31, active rail junctions." },
+        "Navigation": { "score": 75, "weight": 0.25, "explanation": "Adequate lean draft (2.6m) but seasonal dredging is mandated." },
+        "Demand": { "score": 84, "weight": 0.2, "explanation": "Significant cargo aggregation and hub-spoke distribution potential." }
+      }
+    },
+    "prayagraj": {
+      "name": "Prayagraj",
+      "final_score": 53,
+      "breakdown": {
+        "Infrastructure": { "score": 45, "weight": 0.3, "explanation": "Basic passenger terminal; lacks cargo berths and heavy handling gear." },
+        "Connectivity": { "score": 60, "weight": 0.25, "explanation": "Moderate regional road connectivity, but cargo rail spur is absent." },
+        "Navigation": { "score": 50, "weight": 0.25, "explanation": "High flow volatility and seasonal sandbar formation at the confluence." },
+        "Demand": { "score": 62, "weight": 0.2, "explanation": "Moderate tourism demand; low industrial bulk cargo potential." }
+      }
+    }
+  }
+}

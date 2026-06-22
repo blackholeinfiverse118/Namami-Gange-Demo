@@ -1,173 +1,105 @@
-# Review Packet
-# Namami Gange Demo 
-
-Document Name: REVIEW_PACKET.md
-Version: 2.0
-Status: Final
-Prepared By: Nupur Gavane
-Project: Namami Gange Demo
-Last Updated: 11/06/2026
+# Review Packet — Marine Operations Command Center
+**Document Name:** REVIEW_PACKET.md  
+**Version:** 4.0 (Transition Phase Complete)  
+**Status:** Approved for Subsystem Integration  
+**Prepared By:** Chandragupta Maurya  
+**Project:** Namami Gange Marine Operations Command Center (MOCC)  
+**Last Updated:** 2026-06-22  
 
 ---
 
-## 1. Objective
+## 1. Executive Summary
 
-Deliver a working operational marine intelligence platform demonstrating:
-
-Real Datasets
-  to  Suitability Intelligence Engine
-  to  Assessment and Scoring
-  to  Intelligence Payloads
-  to  Dashboard Visualization
-  to  Operator Review
-
-using Namami Gange, NICAI, and SVACS systems.
+This review packet documents the architectural transition of the Namami Gange dashboard from a location suitability demo platform into a **Marine Operations Command Center (MOCC)**. The MOCC serves as the master command console for waterway operators, harbor masters, and logistics planners to supervise traffic, cargo flow, River Information Services (RIS), voyage planning, and terminal management.
 
 ---
 
-## 2. Repository Contents
+## 2. Command Center Specification Directory
 
-### Backend
+The following design specification files have been created in the workspace root:
 
-- Flask/Python Suitability Intelligence Engine
-- 20 Ganga Basin locations assessed across 3 use-case models
-- Real CSV datasets: CPCB water quality, CWC river stations, IWAI terminals, logistics parks, urban centers
-- Full test suite (13 test files)
-- API endpoints: /results, /simulate, /health, /marine
-- Execution proofs in backend/proofs/
-
-### Frontend
-
-- Next.js / TypeScript dashboard
-- Connected to live Flask backend via api.ts service layer
-- Views: Basin Intelligence, Location Intelligence, Scenario Simulation, Dataset Sources, Realtime Signals, Infrastructure Network, Governance, Collaboration
-
-### Documentation Package
-
-- LOCATION_INTELLIGENCE.json — 8 locations with full schema (coordinates, scores, confidence, opportunities, constraints, explanation)
-- DEMO_INTELLIGENCE_PAYLOAD.json — 3 demo locations in canonical dashboard-ready format
-- OPPORTUNITY_INTELLIGENCE.json — 8 locations with opportunity classification
-- CONSTRAINT_INTELLIGENCE.json — Global and per-location constraint registry
-- DATASET_INVENTORY.md — All datasets with source, coverage, quality, demo suitability
-- LOCATION_EXPLANATIONS.md — Explainability outputs for 5 representative locations
-- NICAI_SVACS_REPORT.md — Full integration report covering NICAI and SVACS systems
-- COMMODORE_QA.md — Prepared answers for live questioning
-- SHOWCASE_GAP_REPORT.md — Known gaps and mitigation
-- MASTER_REVIEW_PACKET.md — Consolidated review across all systems
+1. **[COMMAND_CENTER_INFORMATION_ARCHITECTURE.md](file:///c:/Users/PIXEL/Desktop/namaamai%20gange%203/COMMAND_CENTER_INFORMATION_ARCHITECTURE.md)**: Details the unified layout grid, the six specialized operational zones, user roles, and data flow topologies.
+2. **[VESSEL_OPERATIONS_UI_SPEC.md](file:///c:/Users/PIXEL/Desktop/namaamai%20gange%203/VESSEL_OPERATIONS_UI_SPEC.md)**: Designs the active vessel tracking list, IWAI vessel class definitions, and safety alert rules (under-keel draft warnings and speed limits).
+3. **[CARGO_OPERATIONS_UI_SPEC.md](file:///c:/Users/PIXEL/Desktop/namaamai%20gange%203/CARGO_OPERATIONS_UI_SPEC.md)**: Outlines flow density corridors, commodity type tracking (coal, fly ash, containers), and terminal capacity indices.
+4. **[RIS_COMMAND_CENTER_SPEC.md](file:///c:/Users/PIXEL/Desktop/namaamai%20gange%203/RIS_COMMAND_CENTER_SPEC.md)**: Establishes European RIS standard integration (Notice to Mariners, Electronic Ship Reporting, water level gauges, and Farakka locks control).
+5. **[VOYAGE_PLANNING_UI_SPEC.md](file:///c:/Users/PIXEL/Desktop/namaamai%20gange%203/VOYAGE_PLANNING_UI_SPEC.md)**: Defines the step-by-step route planning wizard, draft and clearance constraints mapping, and alternate route comparison tools.
+6. **[TERMINAL_OPERATIONS_UI_SPEC.md](file:///c:/Users/PIXEL/Desktop/namaamai%20gange%203/TERMINAL_OPERATIONS_UI_SPEC.md)**: Focuses on jetty berths booking Gantt charts, arrival queues, and yard utilization heatmaps.
+7. **[NATIONAL_WATERWAYS_GEOSPATIAL_SPEC.md](file:///c:/Users/PIXEL/Desktop/namaamai%20gange%203/NATIONAL_WATERWAYS_GEOSPATIAL_SPEC.md)**: Details the GIS mapping layers, GeoJSON feeds, and candidate locations for seaplane water aerodromes.
+8. **[MARINE_OPERATIONS_DESIGN_SYSTEM.md](file:///c:/Users/PIXEL/Desktop/namaamai%20gange%203/MARINE_OPERATIONS_DESIGN_SYSTEM.md)**: Defines the dark-theme styling design tokens (HSL colors, fonts) and component APIs for the 8 card primitives.
 
 ---
 
-## 3. Intelligence Flow
+## 3. Integration Stream Architecture
 
-Dataset (CPCB, CWC, IWAI, Logistics Parks, Urban Centers)
-  to  Data Adapter (data_adapter.py)
-  to  Scoring Engine (scoring_engine.py)
-  to  Constraint Engine (constraint_engine.py)
-  to  Explanation Layer (explanation_layer.py)
-  to  Output Contract (output_contract.py)
-  to  API Response (/results endpoint)
-  to  Frontend Dashboard (api.ts -> UI components)
+The updated system schema highlights how the integration team's subsystems interact with the MOCC panels:
 
----
+```mermaid
+graph TD
+    subgraph Data Sources (Nupur / Shravani)
+        AIS[AIS GPS Feeds]
+        MDB[Marine MasterDB]
+        Gauge[CWC Level Gauges]
+        CPCB[CPCB Water Sensors]
+    end
 
-## 4. Locations Covered
+    subgraph Analytical Core (Ankita / Shravani)
+        RIS_Eng[RIS Alert Processor]
+        Voy_Opt[Voyage Optimizer]
+        Term_Sch[Terminal Slot Scheduler]
+    end
 
-Priority Sites (HIGH):
-- Kolkata (LOC017) — Inland Port — Score 91
-- Haldia (LOC018) — Inland Port — Score 88
-- Bhagalpur (LOC012) — Inland Port — Score 85
-- Sahibganj (LOC014) — Inland Port — Score 84
-- Patna (LOC010) — Hub-Spoke Logistics — Score 80
-- Varanasi (LOC007) — Inland Port / Multimodal — Score 77
+    subgraph Operations Frontend (You / Soham)
+        Map[Geospatial Command Layer]
+        Vessel[Vessel Console]
+        Cargo[Cargo Console]
+        Terminal[Terminal Console]
+        RIS_Panel[RIS Dashboard]
+    end
 
-Moderate Sites:
-- Kanpur (LOC004) — Hub-Spoke — Score 64
-- Prayagraj (LOC006) — Hub-Spoke — Score 53
-
-Total locations assessed in backend: 20
-
----
-
-## 5. Dataset Sources
-
-| Dataset | Source | Coverage |
-| --- | --- | --- |
-| CPCB Water Quality | Central Pollution Control Board | Ganga Basin water quality stations |
-| CWC River Stations | Central Water Commission | River gauge stations NW1 |
-| IWAI Terminals NW1 | Inland Waterways Authority of India | NW1 terminal and ghat registry |
-| Logistics Parks Ganga Belt | Industry registry | Logistics park proximity data |
-| Urban Centers Ganga Basin | Census / planning data | Urban center coordinates and population |
-
----
-
-## 6. NICAI and SVACS Integration
-
-NICAI provides:
-- Assessment logic and confidence scoring
-- Recommendation generation
-- Intelligence traceability and explainability artifacts
-- Review packets and operational proof documentation
-
-SVACS provides:
-- Operational signal components
-- Data audit and coverage matrix artifacts
-- Reviewer intelligence reports
-
-Evidence artifacts located in:
-- docs/evidence/nicai/
-- docs/evidence/svacs/
+    AIS --> RIS_Eng
+    MDB --> Term_Sch
+    Gauge --> RIS_Eng
+    CPCB --> RIS_Eng
+    
+    RIS_Eng --> Map
+    RIS_Eng --> RIS_Panel
+    RIS_Eng --> Vessel
+    
+    Term_Sch --> Terminal
+    Term_Sch --> Cargo
+    
+    Voy_Opt --> Map
+    Voy_Opt --> Vessel
+```
 
 ---
 
-## 7. Known Limitations
+## 4. Operational Demo Flows
 
-- Some dashboard views use static demonstration content (Collaboration, Governance, Infrastructure Network, Realtime Signals)
-- TTG Simulator and Samachar ingestion integrations are not connected in this build
-- Marine MasterDB runtime activation is documented in design artifacts but not yet deployed as a live service
+### A. Real-Time Vessel Safety Flow
+1. **Under-Keel Monitoring**: Vessel telemetry reports current draft. CWC gauges report shallow water at Buxar.
+2. **Alert Triggered**: System alerts the operator of a draft safety clearance breach (`DRAFT_WARN` < 0.4m).
+3. **Dispatch Override**: Operator reviews the lock gate and dredger statuses via the RIS console, then broadcasts a slow-speed advisory.
 
-These limitations are documented in docs/reports/SHOWCASE_GAP_REPORT.md.
+### B. Cargo Congestion Rerouting Flow
+1. **Capacity Overload**: Farakka terminal yard capacity utilization exceeds 90%.
+2. **Notification**: The Cargo console highlights Farakka in red and suggests alternate berths upstream.
+3. **Reallocation**: Operator opens the cargo reallocation wizard, moves upcoming barge arrivals to Kahalgaon Jetty, and updates the schedules.
 
----
-
-## 8. Demo Readiness
-
-| Component | Status |
-| --- | --- |
-| Backend Intelligence Engine | READY |
-| Frontend Dashboard | READY |
-| Frontend-Backend Integration | READY |
-| Intelligence Payloads (JSON) | READY |
-| Location Explanations | READY |
-| Dataset Inventory | READY |
-| NICAI SVACS Report | READY |
-| Commodore QA Pack | READY |
-| Evidence Package | READY |
-| Root .gitignore | READY |
-
-Overall Status: READY FOR DEMONSTRATION
+### C. Multi-Constraint Voyage Planning Flow
+1. **Configuration**: Operator launches the Voyage Wizard, selecting Varanasi MMT to Haldia, using a Class V barge carrying 2,000 tons of fly ash.
+2. **Constraint Check**: System validates draft limits and vertical bridge clearance under bridges.
+3. **Recommendation**: Planner reviews the optimal route recommendations vs. alternate high-siltation paths.
 
 ---
 
-## 9. Proof Artifacts
+## 5. Design Tokens (Quick Reference)
 
-Located in backend/proofs/:
-- api_execution_proof.md
-- runtime_execution_proof.md
-- determinism_proof.md
-- geo_output_proof.md
-- marine_schema_proof.md
-- proposal_engine_proof.md
-- contradiction_proof.md
-- gis_layer_proof.md
-
----
-
-## 10. Submission Notes
-
-This repository satisfies the deliverables for:
-
-Task A — Real Maritime Intelligence Integration Sprint (Namami Gange — Tuesday Demo Critical Path)
-Task B — Marine Intelligence Operational Convergence and Showcase Sprint (NICAI / Namami Gange / SVACS / Marine MasterDB)
-Task D — Tuesday Showcase Convergence Sprint (Marine Intelligence Ecosystem — Demo Readiness)
-
-All three tasks are submitted under this single repository.
+| Category | Token Name | Hex/HSL Value | Use Case |
+| :--- | :--- | :--- | :--- |
+| **Theme** | `--deep-navy` | `hsl(222, 47%, 7%)` | Global background |
+| **Theme** | `--surface` | `hsl(222, 40%, 12%)` | Panel backgrounds |
+| **Status** | `--active-cyan` | `hsl(180, 100%, 45%)` | Normal active state |
+| **Status** | `--eco-green` | `hsl(145, 80%, 45%)` | Ecological compliant zones |
+| **Status** | `--warn-amber` | `hsl(38, 95%, 55%)` | Warnings (speed limit) |
+| **Status** | `--alert-red` | `hsl(355, 85%, 55%)` | Critical safety breaches |
