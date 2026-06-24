@@ -1,0 +1,34 @@
+{
+  "environmental_sources": [
+    {
+      "source": "CWC Flood Monitoring",
+      "status": "NOT_CONNECTED",
+      "category": "Flood Intelligence",
+      "future_integration": true
+    },
+    {
+      "source": "National Wetland Atlas",
+      "status": "NOT_CONNECTED",
+      "category": "Wetland Intelligence",
+      "future_integration": true
+    },
+    {
+      "source": "ISRO Flood Hazard Layers",
+      "status": "NOT_CONNECTED",
+      "category": "Flood Risk Mapping",
+      "future_integration": true
+    },
+    {
+      "source": "MoEFCC Environmental Sensitivity Zones",
+      "status": "NOT_CONNECTED",
+      "category": "Environmental Constraints",
+      "future_integration": true
+    },
+    {
+      "source": "CPCB Pollution Monitoring",
+      "status": "PARTIAL",
+      "category": "Water Quality",
+      "future_integration": true
+    }
+  ]
+}

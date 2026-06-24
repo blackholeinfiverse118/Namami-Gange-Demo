@@ -1,0 +1,49 @@
+{
+  "datasets": [
+    {
+      "dataset": "cpcb_water_quality_ganga",
+      "classification": "STATIC",
+      "version": "1.0",
+      "refresh_frequency_hours": 24,
+      "last_refresh": null,
+      "last_successful_refresh": null,
+      "status": "registered"
+    },
+    {
+      "dataset": "cwc_river_stations_ganga",
+      "classification": "STATIC",
+      "version": "1.0",
+      "refresh_frequency_hours": 24,
+      "last_refresh": null,
+      "last_successful_refresh": null,
+      "status": "registered"
+    },
+    {
+      "dataset": "iwai_terminals_nw1",
+      "classification": "STATIC",
+      "version": "1.0",
+      "refresh_frequency_hours": 168,
+      "last_refresh": null,
+      "last_successful_refresh": null,
+      "status": "registered"
+    },
+    {
+      "dataset": "logistics_parks_ganga_belt",
+      "classification": "STATIC",
+      "version": "1.0",
+      "refresh_frequency_hours": 168,
+      "last_refresh": null,
+      "last_successful_refresh": null,
+      "status": "registered"
+    },
+    {
+      "dataset": "urban_centers_ganga_basin",
+      "classification": "STATIC",
+      "version": "1.0",
+      "refresh_frequency_hours": 720,
+      "last_refresh": null,
+      "last_successful_refresh": null,
+      "status": "registered"
+    }
+  ]
+}

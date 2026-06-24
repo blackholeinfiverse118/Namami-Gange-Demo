@@ -1,0 +1,20 @@
+{
+  "runtime_status": "OPERATIONAL",
+  "observability_version": "1.0",
+  "datasets_monitored": 5,
+  "active_sources": 5,
+  "failed_sources": 0,
+  "healthy_sources": 5,
+  "last_runtime_refresh": "2026-06-23T14:27:04.558483",
+  "intelligence_health_score": 100,
+  "confidence_degradation": 0,
+  "refresh_success_rate": 100,
+  "observability_components": [
+    "Refresh Manager",
+    "Source Health Service",
+    "Dataset Health API",
+    "Dataset Freshness API",
+    "Source Status API",
+    "Intelligence Health API"
+  ]
+}

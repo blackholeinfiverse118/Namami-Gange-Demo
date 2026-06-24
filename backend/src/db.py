@@ -60,6 +60,30 @@ def init_db():
     )
     """)
 
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS dataset_refresh_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    dataset_name TEXT,
+    refresh_time TEXT,
+    refresh_status TEXT,
+    refresh_duration_ms INTEGER,
+    version TEXT,
+    notes TEXT
+    )
+    """)
+    
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS dataset_health (
+    dataset_name TEXT PRIMARY KEY,
+    last_refresh TEXT,
+    freshness_score REAL,
+    health_status TEXT,
+    confidence_impact REAL,
+    source_reachable INTEGER,
+    refresh_latency_ms INTEGER
+    )
+    """)
+
     conn.commit()
 
     # Check if we need to seed

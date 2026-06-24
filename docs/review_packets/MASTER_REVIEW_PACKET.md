@@ -342,7 +342,205 @@ The current environment supports demonstration, technical review, and operationa
 
 ---
 
-## 11. Recommendations
+## 11. Marine Intelligence Runtime Upgrade
+
+### Objective
+
+Convert the Namami Gange demonstration environment from a static intelligence presentation into a continuously observable Marine Intelligence Runtime.
+
+The focus of this implementation was intelligence freshness, source health visibility, refresh traceability, operational observability, and future environmental intelligence readiness.
+
+---
+
+### Runtime Components Added
+
+#### Refresh Manager
+
+File:
+
+`backend/src/refresh_manager.py`
+
+Capabilities:
+
+* Dataset refresh execution
+* Refresh timestamp recording
+* Refresh history generation
+* Dataset version tracking
+* Refresh audit logging
+
+---
+
+#### Source Health Service
+
+File:
+
+`backend/src/source_health_service.py`
+
+Capabilities:
+
+* Dataset health monitoring
+* Freshness tracking
+* Source reachability reporting
+* Confidence impact reporting
+* Runtime health evaluation
+
+---
+
+### Runtime Database Enhancements
+
+New Runtime Tables:
+
+* dataset_refresh_history
+* dataset_health
+
+Purpose:
+
+* Refresh traceability
+* Runtime monitoring
+* Operational visibility
+* Historical refresh auditing
+
+---
+
+### Runtime APIs Added
+
+#### GET /dataset-health
+
+Provides:
+
+* Dataset health status
+* Freshness score
+* Last refresh timestamp
+* Confidence impact
+
+---
+
+#### GET /dataset-freshness
+
+Provides:
+
+* Dataset freshness visibility
+* Refresh metadata
+* Health assessment
+
+---
+
+#### GET /source-status
+
+Provides:
+
+* Source monitoring summary
+* Healthy source count
+* Runtime source details
+
+---
+
+#### GET /intelligence-health
+
+Provides:
+
+* Runtime intelligence health score
+* Dataset monitoring summary
+* Overall operational health
+
+---
+
+### Runtime Source Audit
+
+Datasets Audited:
+
+* ISRO Bhuvan Satellite Imagery
+* CWC River Gauge Network
+* MoPSW Inland Vessels API
+* UP PCB Water Quality Sensors
+* IWAI IWT Terminals
+
+Outputs Generated:
+
+* DATA_SOURCE_STATUS_REPORT.md
+* refresh_registry.json
+* refresh_audit_log.json
+
+---
+
+### Environmental Intelligence Framework
+
+Artifacts Created:
+
+* environmental_source_registry.json
+* environmental_gap_matrix.md
+* environmental_integration_plan.md
+
+Purpose:
+
+Prepare the architecture for future integration of:
+
+* Flood Intelligence
+* Wetland Intelligence
+* Environmental Constraints
+* Environmental Monitoring Feeds
+
+No architectural redesign is required for future environmental integrations.
+
+---
+
+### Operational Observability
+
+Artifacts Created:
+
+* runtime_observability.json
+* runtime_metrics.json
+* operational_status.md
+
+Monitored Areas:
+
+* Dataset count
+* Refresh success rate
+* Refresh failures
+* Source health
+* Dataset freshness
+* Intelligence health score
+* Confidence degradation
+
+---
+
+### Runtime Validation
+
+Validation Completed:
+
+* Refresh Manager Execution
+* Source Health Service Execution
+* Dataset Health API Validation
+* Dataset Freshness API Validation
+* Source Status API Validation
+* Intelligence Health API Validation
+
+Result:
+
+All runtime monitoring components executed successfully and returned expected responses.
+
+HTTP Status:
+
+All runtime endpoints validated with HTTP 200 responses.
+
+---
+
+### Outcome
+
+The Namami Gange platform now supports:
+
+* Dataset freshness visibility
+* Refresh traceability
+* Source health monitoring
+* Runtime observability
+* Confidence degradation reporting
+* Environmental intelligence expansion readiness
+
+The platform has evolved from a static intelligence demonstration toward a continuously observable Marine Intelligence Runtime.
+
+---
+
+## 12. Recommendations
 
 ### Recommendation 1
 
@@ -362,7 +560,7 @@ Maintain separation between source repositories and the integrated demonstration
 
 ---
 
-## 12. Conclusion
+## 13. Conclusion
 
 The Namami Gange demonstration environment provides a functioning integrated platform consisting of frontend visualization, suitability intelligence services, assessment assets, and operational intelligence assets.
 

@@ -254,6 +254,91 @@ def analyze_location():
         return error_response(f"Scoring error: {str(e)}", 500)
 
 
+@app.route("/dataset-health", methods=["GET"])
+def dataset_health():
+
+    from source_health_service import SourceHealthService
+
+    service = SourceHealthService()
+
+    return jsonify({
+        "status": "success",
+        "datasets": service.get_dataset_health()
+    })
+
+
+@app.route("/dataset-freshness", methods=["GET"])
+def dataset_freshness():
+
+    from source_health_service import SourceHealthService
+
+    service = SourceHealthService()
+
+    data = service.get_dataset_health()
+
+    return jsonify({
+        "status": "success",
+        "freshness_report": data
+    })
+
+
+@app.route("/source-status", methods=["GET"])
+def source_status():
+
+    from source_health_service import SourceHealthService
+
+    service = SourceHealthService()
+
+    data = service.get_dataset_health()
+
+    healthy = len(
+        [d for d in data if d["health_status"] == "HEALTHY"]
+    )
+
+    warning = len(
+        [d for d in data if d["health_status"] == "WARNING"]
+    )
+
+    stale = len(
+        [d for d in data if d["health_status"] == "STALE"]
+    )
+
+    return jsonify({
+    "status": "success",
+    "healthy_sources": healthy,
+    "warning_sources": warning,
+    "stale_sources": stale,
+    "total_sources": len(data),
+    "sources": data
+})
+
+
+@app.route("/intelligence-health", methods=["GET"])
+def intelligence_health():
+
+    from source_health_service import SourceHealthService
+
+    service = SourceHealthService()
+
+    data = service.get_dataset_health()
+
+    healthy = len(
+        [d for d in data if d["health_status"] == "HEALTHY"]
+    )
+
+    score = round(
+        (healthy / len(data)) * 100,
+        2
+    ) if data else 0
+
+    return jsonify({
+        "status": "healthy",
+        "intelligence_health_score": score,
+        "datasets_monitored": len(data),
+        "healthy_sources": healthy
+    })
+
+
 
 # ERROR HANDLERS
 # ─────────────────────────────────────────────

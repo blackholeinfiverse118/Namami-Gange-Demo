@@ -1,0 +1,13 @@
+{
+  "metrics": {
+    "dataset_count": 5,
+    "successful_refreshes": 10,
+    "failed_refreshes": 0,
+    "source_uptime_percent": 100,
+    "average_freshness_score": 100,
+    "healthy_sources": 5,
+    "unhealthy_sources": 0,
+    "confidence_impact": 0,
+    "intelligence_health_score": 100
+  }
+}
