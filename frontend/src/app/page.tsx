@@ -8,7 +8,7 @@ import MapCard from '@/components/shared/MapCard';
 import FederationTopology from '@/components/shared/FederationTopology';
 import ReplayConsole from '@/components/shared/ReplayConsole';
 import styles from './page.module.css';
-import { fetchResults, fetchSummary, fetchLocationDetails, fetchSignals, mapBackendToFrontend, fetchDatasets } from '@/services/api';
+import { fetchResults, fetchSummary, fetchLocationDetails, fetchSignals, mapBackendToFrontend, fetchDatasets, fetchReplayStatus, postReplayTick, postReplayBreach } from '@/services/api';
 
 // Other views imports
 import BasinIntelligence from '@/components/views/BasinIntelligence';
@@ -20,182 +20,7 @@ import InfraNetwork from '@/components/views/InfraNetwork';
 import DatasetSources from '@/components/views/DatasetSources';
 import GovernanceView from '@/components/views/GovernanceView';
 
-// Fallback payloads to satisfy Phase 8 Demo Failure Resilience
-const FALLBACK_SCORE_EXPLANATION = {
-  "varanasi": {
-    "name": "Varanasi",
-    "final_score": 92,
-    "breakdown": {
-      "Infrastructure": { "score": 95, "weight": 0.3, "explanation": "Varanasi Multi-Modal Terminal is fully operational with rail links." },
-      "Connectivity": { "score": 90, "weight": 0.25, "explanation": "Direct national highway NH-2 and trunk rail line integration." },
-      "Navigation": { "score": 88, "weight": 0.25, "explanation": "Optimal NW-1 corridor depth (> 3m) maintained during lean season." },
-      "Demand": { "score": 95, "weight": 0.2, "explanation": "High trade potential serving Eastern UP and Bihar cargo catchment." }
-    }
-  },
-  "kanpur": {
-    "name": "Kanpur",
-    "final_score": 72,
-    "breakdown": {
-      "Infrastructure": { "score": 70, "weight": 0.3, "explanation": "Only local industrial jetties present; requires terminal upgrades." },
-      "Connectivity": { "score": 85, "weight": 0.25, "explanation": "Good industrial highway connection, but rail connection lacks dedicated dedicated spur." },
-      "Navigation": { "score": 55, "weight": 0.25, "explanation": "Low draft (1.4m average) due to heavy dry-season siltation." },
-      "Demand": { "score": 82, "weight": 0.2, "explanation": "High industrial output (leather/textiles) but cargo capacity limited by draft." }
-    }
-  },
-  "kolkata": {
-    "name": "Kolkata",
-    "final_score": 91,
-    "breakdown": {
-      "Infrastructure": { "score": 94, "weight": 0.3, "explanation": "Fully developed port terminals and warehouse infrastructure." },
-      "Connectivity": { "score": 95, "weight": 0.25, "explanation": "Excellent rail, road, and international sea route access." },
-      "Navigation": { "score": 88, "weight": 0.25, "explanation": "Tidal draft support (4.8m+) allows large vessel movement." },
-      "Demand": { "score": 85, "weight": 0.2, "explanation": "Vast export-import cargo demand from the entire eastern region." }
-    }
-  },
-  "patna": {
-    "name": "Patna",
-    "final_score": 80,
-    "breakdown": {
-      "Infrastructure": { "score": 78, "weight": 0.3, "explanation": "Patna Sahib ghat and active IWAI terminal presence." },
-      "Connectivity": { "score": 85, "weight": 0.25, "explanation": "Strong highway connectivity via NH-31, active rail junctions." },
-      "Navigation": { "score": 75, "weight": 0.25, "explanation": "Adequate lean draft (2.6m) but seasonal dredging is mandated." },
-      "Demand": { "score": 84, "weight": 0.2, "explanation": "Significant cargo aggregation and hub-spoke distribution potential." }
-    }
-  },
-  "prayagraj": {
-    "name": "Prayagraj",
-    "final_score": 53,
-    "breakdown": {
-      "Infrastructure": { "score": 45, "weight": 0.3, "explanation": "Basic passenger terminal; lacks cargo berths and heavy handling gear." },
-      "Connectivity": { "score": 60, "weight": 0.25, "explanation": "Moderate regional road connectivity, but cargo rail spur is absent." },
-      "Navigation": { "score": 50, "weight": 0.25, "explanation": "High flow volatility and seasonal sandbar formation at the confluence." },
-      "Demand": { "score": 62, "weight": 0.2, "explanation": "Moderate tourism demand; low industrial bulk cargo potential." }
-    }
-  }
-};
-
-const FALLBACK_DATASET_LINEAGE = {
-  "varanasi": {
-    "datasets": [
-      {
-        "dataset_name": "IWAI Terminal Dataset",
-        "records_used": "Ramnagar Terminal (IWAI-T-004), Samne Ghat (IWAI-G-012)",
-        "contribution_summary": "Verified presence of high-capacity multimodal cargo terminal; contributed 30 points to Infrastructure Score."
-      },
-      {
-        "dataset_name": "CPCB Water Quality Dataset",
-        "records_used": "WQ009 (Assi Ghat), WQ010 (Dashashwamedh Ghat)",
-        "contribution_summary": "Assessed BOD levels (2.1 mg/L) and DO (6.5 mg/L); verified ecological viability with a positive contribution of 25 points."
-      },
-      {
-        "dataset_name": "CWC River Stations Dataset",
-        "records_used": "CWC-R-VNS (Varanasi Gauge Station)",
-        "contribution_summary": "Confirmed stable riverbed and navigation draft (>3.2m); added 25 points to Navigation Score."
-      },
-      {
-        "dataset_name": "Logistics Parks Dataset",
-        "records_used": "L-PK-VNS-01 (Varanasi Logistics Ring)",
-        "contribution_summary": "Mapped warehouse access and road-rail proximity; added 12 points to Connectivity."
-      }
-    ]
-  },
-  "kanpur": {
-    "datasets": [
-      {
-        "dataset_name": "IWAI Terminal Dataset",
-        "records_used": "Jajmau Jetty (IWAI-G-002), Kanpur Local Ghat (IWAI-G-003)",
-        "contribution_summary": "No active multimodal terminal; local jetties only. Contributed 10 points to Infrastructure Score."
-      },
-      {
-        "dataset_name": "CPCB Water Quality Dataset",
-        "records_used": "WQ004 (Jajmau Outfall), WQ005 (Kanpur Downstream)",
-        "contribution_summary": "Flagged critical BOD levels (8.4 mg/L); triggered environmental penalty (-20 points)."
-      },
-      {
-        "dataset_name": "CWC River Stations Dataset",
-        "records_used": "CWC-R-KAN (Kanpur Upstream Gauge)",
-        "contribution_summary": "Flagged shallow lean draft (1.4m) and high siltation risk (82%); reduced Navigation Score by 15 points."
-      },
-      {
-        "dataset_name": "Urban Centers Dataset",
-        "records_used": "UC-KAN-01 (Kanpur Municipal Area)",
-        "contribution_summary": "High population and industrial demand mapped; added 18 points to Demand Score."
-      }
-    ]
-  },
-  "kolkata": {
-    "datasets": [
-      {
-        "dataset_name": "IWAI Terminal Dataset",
-        "records_used": "GR Jetty (IWAI-T-021), Haldia Complex (IWAI-T-022)",
-        "contribution_summary": "Established deep-water terminal and port infrastructure verified; contributed 30 points to Infrastructure Score."
-      },
-      {
-        "dataset_name": "CPCB Water Quality Dataset",
-        "records_used": "WQ017 (Budge Budge), WQ018 (Garden Reach)",
-        "contribution_summary": "Moderate water quality (BOD 2.5 mg/L) verified; contributed 20 points."
-      },
-      {
-        "dataset_name": "CWC River Stations Dataset",
-        "records_used": "CWC-R-KOL (Kolkata Tidal Gauge)",
-        "contribution_summary": "Tidal draft support (4.8m+) confirmed; contributed 25 points to Navigation Score."
-      },
-      {
-        "dataset_name": "Logistics Parks Dataset",
-        "records_used": "L-PK-KOL-04 (Haldia Logistics Grid)",
-        "contribution_summary": "Excellent multimodal freight corridors mapped; added 16 points to Connectivity."
-      }
-    ]
-  },
-  "patna": {
-    "datasets": [
-      {
-        "dataset_name": "IWAI Terminal Dataset",
-        "records_used": "Gaighat Terminal (IWAI-T-010), Patna Sahib (IWAI-G-008)",
-        "contribution_summary": "Active river terminal with jetty infrastructure confirmed; contributed 24 points to Infrastructure Score."
-      },
-      {
-        "dataset_name": "CPCB Water Quality Dataset",
-        "records_used": "WQ011 (Mahendru Ghat), WQ012 (Gaighat Downstream)",
-        "contribution_summary": "BOD levels adequate (2.8 mg/L) but warning issued on summer coliform; contributed 18 points."
-      },
-      {
-        "dataset_name": "CWC River Stations Dataset",
-        "records_used": "CWC-R-PAT (Patna Digha Station)",
-        "contribution_summary": "Seasonal flow variability verified with stable draft (2.6m); contributed 20 points."
-      },
-      {
-        "dataset_name": "Urban Centers Dataset",
-        "records_used": "UC-PAT-01 (Patna City Grid)",
-        "contribution_summary": "High urban demand and distribution potential; added 18 points to Demand Score."
-      }
-    ]
-  },
-  "prayagraj": {
-    "datasets": [
-      {
-        "dataset_name": "IWAI Terminal Dataset",
-        "records_used": "Prayagraj Jetty (IWAI-G-005), Sangam Ghat (IWAI-G-006)",
-        "contribution_summary": "Absence of heavy cargo terminals verified; only passenger jetties present. Contributed 8 points."
-      },
-      {
-        "dataset_name": "CPCB Water Quality Dataset",
-        "records_used": "WQ007 (Sangam Confluence), WQ008 (Naini)",
-        "contribution_summary": "Acceptable BOD (2.8 mg/L) but religious zone restrictions apply; contributed 15 points."
-      },
-      {
-        "dataset_name": "CWC River Stations Dataset",
-        "records_used": "CWC-R-PRY (Prayagraj Confluence Gauge)",
-        "contribution_summary": "High seasonal draft volatility and sandbar formation flagged; subtracted 10 points from Navigation Score."
-      },
-      {
-        "dataset_name": "Urban Centers Dataset",
-        "records_used": "UC-PRY-01 (Prayagraj Metro Area)",
-        "contribution_summary": "Moderate urban demand driven by pilgrimage traffic; contributed 12 points."
-      }
-    ]
-  }
-};
+// Removed fallback payloads as part of Sprint 1, 5, 10 cleanup
 
 const FACTOR_LABELS: Record<string, string> = {
   river_stability: 'River Stability',
@@ -244,6 +69,9 @@ interface SuitabilityLocation {
   confidence: number;
   lat: string;
   lng: string;
+  factor_scores?: Record<string, number>;
+  scoring_model?: any;
+  trace?: any;
 }
 
 interface ReplayLog {
@@ -283,9 +111,6 @@ export default function Home() {
     level_counts: { HIGH: 2, MEDIUM: 2, LOW: 1, REJECTED: 0 }
   });
   
-  // Loaded payloads state (Phase 8 Demo Failure Resilience: defaults from local constants)
-  const [scoreExplanations, setScoreExplanations] = useState<any>(FALLBACK_SCORE_EXPLANATION);
-  const [datasetLineage, setDatasetLineage] = useState<any>(FALLBACK_DATASET_LINEAGE);
   const [datasetsList, setDatasetsList] = useState<any[]>([]);
 
   // Dynamic logs
@@ -509,7 +334,10 @@ export default function Home() {
                   explanation: mapped.explanation,
                   confidence: mapped.confidence,
                   factors: mappedFactors,
-                  constraints: mappedConstraints
+                  constraints: mappedConstraints,
+                  factor_scores: mapped.factor_scores,
+                  scoring_model: mapped.scoring_model,
+                  trace: mapped.trace
                 };
               }
             });
@@ -525,74 +353,48 @@ export default function Home() {
     loadSummaryAndData();
   }, [selectedModel]);
 
-  // Simulation engine loop
+  // Simulation engine loop - Centralized Backend Driven
   useEffect(() => {
-    if (!isSimulating) return;
-
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % 5);
-      setLatencyMs((prev) => {
-        const offset = Math.floor(Math.random() * 5) - 2;
-        const next = prev + offset;
-        return next < 3 ? 4 : next > 18 ? 16 : next;
-      });
-
-      // Update active step action logs
-      setActiveStep((step) => {
-        if (step === 3) { // Sync block
-          setCurrentBlock((b) => {
-            const nextBlock = b + 1;
-            setCorrIdNumber((c) => {
-              const nextCorr = c + 1;
-              const nextCorrId = `CORR-2026-0528-${nextCorr}${validationBreach ? 'ERR' : 'X'}`;
-              
-              setReplayLogs((prevLogs) => {
-                const newLog: ReplayLog = validationBreach 
-                  ? {
-                      timestamp: new Date().toLocaleTimeString('en-US', { hour12: false }),
-                      corrId: nextCorrId,
-                      block: nextBlock,
-                      status: 'BREACH',
-                      message: `CRITICAL: Contract schema breach detected on ${selectedLocationId.toUpperCase()} telemetry node.`
-                    }
-                  : {
-                      timestamp: new Date().toLocaleTimeString('en-US', { hour12: false }),
-                      corrId: nextCorrId,
-                      block: nextBlock,
-                      status: 'VERIFIED',
-                      message: `Deterministic replay validated successfully for block #${nextBlock}.`
-                    };
-                return [newLog, ...prevLogs.slice(0, 14)];
-              });
-
-              if (validationBreach) {
-                setRecoveryEvents((prevEvents) => [
-                  {
-                    id: `REC-${Math.floor(Math.random()*900)+100}`,
-                    time: new Date().toLocaleTimeString('en-US', { hour12: false }),
-                    type: 'SCHEMA_FALLBACK',
-                    status: 'ACTIVE',
-                    corrId: nextCorrId,
-                    detail: `Anomalous schema structure on Block #${nextBlock}. Initiated fallback reconciliation buffer.`
-                  },
-                  ...prevEvents
-                ]);
-              }
-              return nextCorr;
-            });
-            return nextBlock;
-          });
+    let interval: NodeJS.Timeout;
+    
+    async function pollReplayStatus() {
+      if (!isSimulating) return;
+      try {
+        const status = await fetchReplayStatus();
+        if (status) {
+          setCurrentBlock(status.current_block);
+          setLatencyMs(status.last_tick_latency_ms);
+          setValidationBreach(status.validation_breach_active);
+          
+          if (status.logs) {
+            setReplayLogs(status.logs);
+          }
+          if (status.recovery_events) {
+            setRecoveryEvents(status.recovery_events);
+          }
+          setActiveStep((prev) => (prev + 1) % 5);
         }
-        return step;
-      });
+      } catch (e) {
+        console.warn('Simulation backend unavailable', e);
+      }
+    }
 
-    }, 3000);
+    if (isSimulating) {
+      interval = setInterval(() => {
+        postReplayTick().then(() => pollReplayStatus());
+      }, 3000);
+    }
 
     return () => clearInterval(interval);
-  }, [isSimulating, selectedLocationId, validationBreach]);
+  }, [isSimulating]);
 
-  const toggleBreachSimulation = () => {
-    setValidationBreach((v) => !v);
+  const toggleBreachSimulation = async () => {
+    try {
+      await postReplayBreach();
+      setValidationBreach((v) => !v);
+    } catch (e) {
+      console.error('Failed to toggle breach on backend', e);
+    }
   };
 
   const handleManualRecoveryResolve = (id: string) => {
@@ -602,8 +404,7 @@ export default function Home() {
   };
 
   const activeLocData = suitabilityLocations[selectedLocationId] || suitabilityLocations.varanasi;
-  const activeScoreData = scoreExplanations[selectedLocationId] || FALLBACK_SCORE_EXPLANATION.varanasi;
-  const activeLineageData = datasetLineage[selectedLocationId] || FALLBACK_DATASET_LINEAGE.varanasi;
+  // We use activeLocData directly now, as it is populated from the backend.
 
   // Active opportunities and constraints count for KPIs
   const activeOppsCount = activeLocData.factors.length;
@@ -795,21 +596,21 @@ export default function Home() {
                     <span style={{ color: 'var(--teal)', fontFamily: 'var(--font-mono)' }}>Weighted Composite</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {Object.entries(activeScoreData.breakdown).map(([pillar, val]: any) => {
-                      const scaleRatio = activeScoreData.final_score > 0 ? (activeLocData.score / activeScoreData.final_score) : 1;
-                      const displayScore = Math.min(100, Math.max(0, Math.round(val.score * scaleRatio)));
+                    {activeLocData.scoring_model && activeLocData.factor_scores && Object.entries(activeLocData.scoring_model.weights).map(([pillar, weight]: any) => {
+                      const fScore = activeLocData.factor_scores?.[pillar] || 0;
+                      const displayScore = Math.min(100, Math.max(0, Math.round(fScore)));
                       const isHigh = displayScore > 80;
                       const isMed = displayScore > 60;
                       return (
                         <div key={pillar} style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px' }}>
-                            <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{pillar} (Weight: {val.weight * 100}%)</span>
+                            <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{pillar} (Weight: {weight * 100}%)</span>
                             <span style={{ fontFamily: 'var(--font-mono)', color: isHigh ? 'var(--eco-green)' : isMed ? 'var(--amber)' : 'var(--alert-red)' }}>{displayScore}/100</span>
                           </div>
                           <div style={{ height: '4px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '2px', overflow: 'hidden' }}>
                             <div style={{ width: `${displayScore}%`, height: '100%', backgroundColor: isHigh ? 'var(--eco-green)' : isMed ? 'var(--amber)' : 'var(--alert-red)' }}></div>
                           </div>
-                          <span style={{ fontSize: '9.5px', color: 'var(--text-dim)', fontStyle: 'italic' }}>{val.explanation}</span>
+                          <span style={{ fontSize: '9.5px', color: 'var(--text-dim)', fontStyle: 'italic' }}>Contribution: {Math.round(fScore * weight)} points</span>
                         </div>
                       );
                     })}
@@ -856,16 +657,13 @@ export default function Home() {
                     <span style={{ color: 'var(--teal)', fontFamily: 'var(--font-mono)' }}>{activeLocData.name.split(' ')[0]}</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {activeLineageData.datasets.map((ld: any, i: number) => (
+                    {activeLocData.trace && activeLocData.trace.source_signals && Object.entries(activeLocData.trace.source_signals).map(([source, ids]: any, i: number) => (
                       <div key={i} style={{ padding: '8px', background: 'rgba(20, 184, 166, 0.02)', border: '1px solid rgba(20, 184, 166, 0.08)', borderRadius: '6px' }}>
-                        <div style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--teal)' }}>
-                          {ld.dataset_name}
+                        <div style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--teal)', textTransform: 'uppercase' }}>
+                          {source} SIGNALS
                         </div>
                         <div style={{ fontSize: '10px', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                          <strong>Records Used:</strong> <code style={{ fontFamily: 'var(--font-mono)', fontSize: '9.5px', color: 'var(--text-primary)' }}>{ld.records_used}</code>
-                        </div>
-                        <div style={{ fontSize: '10px', color: 'var(--text-dim)', marginTop: '3px', fontStyle: 'italic' }}>
-                          {ld.contribution_summary}
+                          <strong>Signals Used:</strong> <code style={{ fontFamily: 'var(--font-mono)', fontSize: '9.5px', color: 'var(--text-primary)' }}>{ids.join(', ')}</code>
                         </div>
                       </div>
                     ))}

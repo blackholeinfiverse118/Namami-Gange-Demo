@@ -84,6 +84,80 @@ def init_db():
     )
     """)
 
+    # Converged Operational Database Schema (Sprint 9)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS vessel_operations (
+        vessel_id TEXT PRIMARY KEY,
+        name TEXT,
+        type TEXT,
+        draft REAL,
+        latitude REAL,
+        longitude REAL,
+        speed REAL,
+        heading REAL,
+        status TEXT,
+        last_update TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS cargo_operations (
+        manifest_id TEXT PRIMARY KEY,
+        vessel_id TEXT,
+        commodity_type TEXT,
+        volume_tons REAL,
+        source_terminal TEXT,
+        dest_terminal TEXT,
+        status TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS voyage_plans (
+        voyage_id TEXT PRIMARY KEY,
+        vessel_id TEXT,
+        origin TEXT,
+        destination TEXT,
+        route_path TEXT,
+        current_segment TEXT,
+        status TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS ris_notices (
+        notice_id TEXT PRIMARY KEY,
+        type TEXT,
+        description TEXT,
+        severity TEXT,
+        status TEXT,
+        timestamp TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS terminal_operations (
+        jetty_id TEXT PRIMARY KEY,
+        name TEXT,
+        capacity_tons REAL,
+        current_load_tons REAL,
+        queue_length INTEGER,
+        bookings TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS event_ledger (
+        event_id TEXT PRIMARY KEY,
+        correlation_id TEXT,
+        trace_id TEXT,
+        timestamp TEXT,
+        event_type TEXT,
+        payload TEXT,
+        audit_hash TEXT
+    )
+    """)
+
     conn.commit()
 
     # Check if we need to seed
@@ -310,6 +384,70 @@ def seed_db(conn):
             loc["location_id"], loc["name"], loc["latitude"], loc["longitude"],
             "{}", json.dumps(loc["summary_metrics"])
         ))
+
+    # Seed Vessel Operations
+    vessels = [
+        ("vessel_001", "Ganga Sovereign", "Cargo Barge", 2.8, 25.3176, 82.9739, 8.2, 90.0, "TRANSIT", "10:30:00"),
+        ("vessel_002", "Bhagirathi Pioneer", "Class V Barge", 3.4, 25.6112, 85.1444, 7.5, 120.0, "LOADING", "10:31:00"),
+        ("vessel_003", "Alaknanda Explorer", "Eco Patrol", 1.2, 25.4358, 81.8463, 12.0, 45.0, "PATROL", "10:29:00"),
+        ("vessel_004", "Hooghly Carrier", "Fly-Ash Barge", 4.2, 22.5726, 88.3639, 6.8, 270.0, "TRANSIT", "10:32:00"),
+        ("vessel_005", "Dolphin Guardian", "Survey Vessel", 1.1, 24.8119, 87.9186, 9.0, 180.0, "SURVEY", "10:28:00")
+    ]
+    for v in vessels:
+        cursor.execute("""
+        INSERT OR REPLACE INTO vessel_operations (vessel_id, name, type, draft, latitude, longitude, speed, heading, status, last_update)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, v)
+
+    # Seed Cargo Operations
+    cargoes = [
+        ("mnf_101", "vessel_001", "Containers", 1500.0, "Varanasi Corridor NW-1", "Haldia-Kolkata Port Grid", "TRANSIT"),
+        ("mnf_102", "vessel_002", "Fly Ash", 2200.0, "Patna Terminal NW-1", "Haldia-Kolkata Port Grid", "LOADING"),
+        ("mnf_103", "vessel_004", "Coal", 3000.0, "Haldia-Kolkata Port Grid", "Patna Terminal NW-1", "TRANSIT")
+    ]
+    for c in cargoes:
+        cursor.execute("""
+        INSERT OR REPLACE INTO cargo_operations (manifest_id, vessel_id, commodity_type, volume_tons, source_terminal, dest_terminal, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, c)
+
+    # Seed Voyage Plans
+    voyages = [
+        ("voy_201", "vessel_001", "Varanasi Corridor NW-1", "Haldia-Kolkata Port Grid", "Varanasi-Patna-Farakka-Haldia", "Patna", "ACTIVE"),
+        ("voy_202", "vessel_002", "Patna Terminal NW-1", "Haldia-Kolkata Port Grid", "Patna-Munger-Farakka-Kolkata", "Patna", "ACTIVE")
+    ]
+    for vy in voyages:
+        cursor.execute("""
+        INSERT OR REPLACE INTO voyage_plans (voyage_id, vessel_id, origin, destination, route_path, current_segment, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, vy)
+
+    # Seed RIS Notices
+    notices = [
+        ("ntc_301", "RESTRICTION", "Navigation restriction near Jajmau (Kanpur) - High pollution alert.", "Medium", "ACTIVE", "10:00:00"),
+        ("ntc_302", "MAINTENANCE", "Farakka Barrage Lock 2 undergoing inspection; expected delay 4 hrs.", "High", "ACTIVE", "09:45:00"),
+        ("ntc_303", "SHALLOW_ALERT", "Shallow draft alert near Buxar NW-1: available draft 1.9m.", "Critical", "ACTIVE", "10:15:00")
+    ]
+    for n in notices:
+        cursor.execute("""
+        INSERT OR REPLACE INTO ris_notices (notice_id, type, description, severity, status, timestamp)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """, n)
+
+    # Seed Terminal Operations
+    terminals = [
+        ("varanasi_terminal", "Varanasi Corridor NW-1", 10000.0, 3500.0, 1, json.dumps([{"vessel_id": "vessel_001", "eta": "14:00"}])),
+        ("patna_river_port", "Patna Terminal NW-1", 8000.0, 5200.0, 2, json.dumps([{"vessel_id": "vessel_002", "eta": "16:30"}])),
+        ("allahabad_confluence", "Prayagraj Sangam Confluence", 3000.0, 450.0, 0, json.dumps([])),
+        ("kanpur_industrial_zone", "Kanpur Industrial Reach", 4000.0, 1200.0, 0, json.dumps([])),
+        ("farakka_wetland", "Farakka Ecological Reach", 5000.0, 4600.0, 4, json.dumps([])),
+        ("kolkata", "Haldia-Kolkata Port Grid", 25000.0, 18000.0, 5, json.dumps([{"vessel_id": "vessel_004", "eta": "18:00"}]))
+    ]
+    for t in terminals:
+        cursor.execute("""
+        INSERT OR REPLACE INTO terminal_operations (jetty_id, name, capacity_tons, current_load_tons, queue_length, bookings)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """, t)
 
     conn.commit()
     print("[db] Database seeding complete.")

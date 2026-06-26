@@ -51,6 +51,7 @@ export async function runSimulation(body: any) {
   });
   if (!res.ok) {
     const errorBody = await res.json().catch(() => ({}));
+
     throw new Error(errorBody.error || `Simulation request failed with status ${res.status}`);
   }
   return res.json();
@@ -74,6 +75,64 @@ export function mapBackendToFrontend(result: any) {
     score: Math.round(result.score),
     level: levelMap[result.level] ?? 'LOW',
     explanation: result.explanation ?? '',
-    confidence: 90
+    confidence: 90,
+    trace: result.trace || {},
+    constraints: result.constraints || {},
+    scoring_model: result.scoring_model || {},
+    factor_scores: result.factor_scores || {}
   };
+}
+
+export async function fetchVesselOps() {
+  const res = await fetch(`${BASE_URL}/vessel-ops`);
+  return res.json();
+}
+
+export async function fetchCargoOps() {
+  const res = await fetch(`${BASE_URL}/cargo-ops`);
+  return res.json();
+}
+
+export async function fetchVoyagePlanning(body: any = {}) {
+  const res = await fetch(`${BASE_URL}/voyage-planning`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  return res.json();
+}
+
+export async function fetchRisNotices() {
+  const res = await fetch(`${BASE_URL}/ris-notices`);
+  return res.json();
+}
+
+export async function fetchTerminalOps() {
+  const res = await fetch(`${BASE_URL}/terminal-ops`);
+  return res.json();
+}
+
+export async function fetchSystemHealth() {
+  const res = await fetch(`${BASE_URL}/system-health`);
+  return res.json();
+}
+
+export async function fetchReplayStatus() {
+  const res = await fetch(`${BASE_URL}/replay/status`);
+  return res.json();
+}
+
+export async function postReplayTick() {
+  const res = await fetch(`${BASE_URL}/replay/tick`, { method: 'POST' });
+  return res.json();
+}
+
+export async function postReplayBreach() {
+  const res = await fetch(`${BASE_URL}/replay/breach`, { method: 'POST' });
+  return res.json();
+}
+
+export async function fetchReplayHistory() {
+  const res = await fetch(`${BASE_URL}/replay/history`);
+  return res.json();
 }
