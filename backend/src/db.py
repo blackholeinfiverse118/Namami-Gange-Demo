@@ -158,6 +158,75 @@ def init_db():
     )
     """)
 
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS national_waterways (
+    waterway_id TEXT PRIMARY KEY,
+    name TEXT,
+    national_waterway TEXT,
+    river_system TEXT,
+    total_length_km REAL,
+    operational_status TEXT,
+    states_covered TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS waterway_segments (
+    segment_id TEXT PRIMARY KEY,
+    waterway_id TEXT,
+    segment_name TEXT,
+    start_location TEXT,
+    end_location TEXT,
+    navigable_depth REAL,
+    bridge_clearance REAL,
+    lock_available INTEGER,
+    operational_status TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS river_locks (
+    lock_id TEXT PRIMARY KEY,
+    name TEXT,
+    waterway_id TEXT,
+    location TEXT,
+    operational_status TEXT,
+    max_vessel_length REAL,
+    max_draft REAL
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS bridge_clearances (
+    bridge_id TEXT PRIMARY KEY,
+    bridge_name TEXT,
+    waterway_id TEXT,
+    vertical_clearance REAL,
+    horizontal_clearance REAL,
+    navigation_restriction TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS fleet_registry (
+    vessel_id TEXT PRIMARY KEY,
+    operator_name TEXT,
+    vessel_class TEXT,
+    propulsion_type TEXT,
+    registration_status TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS waterway_operators (
+    operator_id TEXT PRIMARY KEY,
+    organization_name TEXT,
+    operator_type TEXT,
+    headquarters TEXT,
+    operational_region TEXT
+    )
+    """)
+
     conn.commit()
 
     # Check if we need to seed
@@ -166,6 +235,8 @@ def init_db():
         seed_db(conn)
     else:
         print("[db] Database already seeded.")
+
+    seed_phase2_masterdb(conn)
     
     conn.close()
 
@@ -449,5 +520,718 @@ def seed_db(conn):
         VALUES (?, ?, ?, ?, ?, ?)
         """, t)
 
+    # Seed National Waterways
+
+    waterways = [
+
+        (
+            "NW1",
+            "Ganga-Bhagirathi-Hooghly",
+            "National Waterway-1",
+            "Ganga",
+            1620,
+            "Operational",
+            "Uttar Pradesh, Bihar, Jharkhand, West Bengal"
+        ),
+
+        (
+            "NW2",
+            "Brahmaputra",
+            "National Waterway-2",
+            "Brahmaputra",
+            891,
+            "Operational",
+            "Assam"
+        ),
+
+        (
+            "NW3",
+            "West Coast Canal",
+            "National Waterway-3",
+            "West Coast Canal",
+            205,
+            "Operational",
+            "Kerala"
+        ),
+
+        (
+            "NW4",
+            "Godavari-Krishna",
+            "National Waterway-4",
+            "Godavari",
+            1078,
+            "Development",
+            "Andhra Pradesh, Tamil Nadu"
+        ),
+
+        (
+            "NW5",
+            "East Coast Canal",
+            "National Waterway-5",
+            "Brahmani",
+            588,
+            "Development",
+            "Odisha, West Bengal"
+        )
+
+    ]
+
+    for w in waterways:
+
+        cursor.execute("""
+
+        INSERT OR REPLACE INTO national_waterways
+
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+
+        """, w)
+
+    # Seed Waterway Segments
+
+    segments = [
+
+        (
+            "SEG001",
+            "NW1",
+            "Varanasi-Patna",
+            "Varanasi",
+            "Patna",
+            3.0,
+            9.5,
+            0,
+            "Operational"
+        ),
+
+        (
+            "SEG002",
+            "NW1",
+            "Patna-Farakka",
+            "Patna",
+            "Farakka",
+            2.8,
+            8.8,
+            1,
+            "Operational"
+        ),
+
+        (
+            "SEG003",
+            "NW1",
+            "Farakka-Haldia",
+            "Farakka",
+            "Haldia",
+            3.2,
+            12.0,
+            1,
+            "Operational"
+        ),
+
+        (
+            "SEG004",
+            "NW2",
+            "Dhubri-Guwahati",
+            "Dhubri",
+            "Guwahati",
+            2.5,
+            10.0,
+            0,
+            "Operational"
+        ),
+
+        (
+            "SEG005",
+            "NW3",
+            "Kollam-Kochi",
+            "Kollam",
+            "Kochi",
+            2.2,
+            8.0,
+            0,
+            "Operational"
+        )
+
+    ]
+
+    for seg in segments:
+
+        cursor.execute("""
+
+        INSERT OR REPLACE INTO waterway_segments
+
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+
+        """, seg)
+
+    # Seed River Locks
+
+    locks = [
+
+        (
+            "LOCK001",
+            "Farakka Navigation Lock",
+            "NW1",
+            "Farakka",
+            "Operational",
+            230,
+            3.5
+        ),
+
+        (
+            "LOCK002",
+            "Kottapuram Lock",
+            "NW3",
+            "Kottapuram",
+            "Operational",
+            110,
+            2.5
+        ),
+
+        (
+            "LOCK003",
+            "Buckingham Canal Lock",
+            "NW4",
+            "Vijayawada",
+            "Maintenance",
+            120,
+            2.2
+        )
+
+    ]
+
+    for lock in locks:
+
+        cursor.execute("""
+
+        INSERT OR REPLACE INTO river_locks
+
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+
+        """, lock)
+
+    # Seed Bridge Clearances
+
+    bridges = [
+
+        (
+            "BR001",
+            "Rajendra Setu",
+            "NW1",
+            10.5,
+            120.0,
+            "No restriction"
+        ),
+
+        (
+            "BR002",
+            "Vivekananda Setu",
+            "NW1",
+            8.5,
+            95.0,
+            "High water level restriction during monsoon"
+        ),
+
+        (
+            "BR003",
+            "Saraighat Bridge",
+            "NW2",
+            12.0,
+            150.0,
+            "No restriction"
+        ),
+
+        (
+            "BR004",
+            "Kochi Canal Bridge",
+            "NW3",
+            6.0,
+            45.0,
+            "Small vessels only"
+        )
+
+    ]
+
+    for bridge in bridges:
+
+        cursor.execute("""
+
+        INSERT OR REPLACE INTO bridge_clearances
+
+        VALUES (?, ?, ?, ?, ?, ?)
+
+        """, bridge)
+
+    # Seed Fleet Registry
+
+    fleet = [
+
+        (
+            "vessel_001",
+            "IWAI Logistics",
+            "Cargo Barge",
+            "Diesel",
+            "Active"
+        ),
+
+        (
+            "vessel_002",
+            "National Waterways Logistics",
+            "Class V Cargo Vessel",
+            "Diesel",
+            "Active"
+        ),
+
+        (
+            "vessel_003",
+            "Inland Survey Division",
+            "Survey Vessel",
+            "Hybrid",
+            "Active"
+        ),
+
+        (
+            "vessel_004",
+            "Eastern River Transport",
+            "Bulk Cargo Vessel",
+            "Diesel",
+            "Active"
+        ),
+
+        (
+            "vessel_005",
+            "River Conservation Authority",
+            "Patrol Vessel",
+            "Electric Hybrid",
+            "Active"
+        )
+
+    ]
+
+    for vessel in fleet:
+
+        cursor.execute("""
+
+        INSERT OR REPLACE INTO fleet_registry
+
+        VALUES (?, ?, ?, ?, ?)
+
+        """, vessel)
+
+    # Seed Waterway Operators
+
+    operators = [
+
+        (
+            "OP001",
+            "Inland Waterways Authority of India",
+            "Government",
+            "Noida",
+            "National"
+        ),
+
+        (
+            "OP002",
+            "National Waterways Logistics",
+            "Private Logistics",
+            "Kolkata",
+            "Eastern India"
+        ),
+
+        (
+            "OP003",
+            "Assam River Transport Corporation",
+            "State Transport",
+            "Guwahati",
+            "North East"
+        ),
+
+        (
+            "OP004",
+            "Kerala Water Transport Department",
+            "State Government",
+            "Kochi",
+            "Kerala"
+        ),
+
+        (
+            "OP005",
+            "Eastern Inland Cargo Services",
+            "Private Operator",
+            "Patna",
+            "Ganga Basin"
+        )
+
+    ]
+
+    for operator in operators:
+
+        cursor.execute("""
+
+        INSERT OR REPLACE INTO waterway_operators
+
+        VALUES (?, ?, ?, ?, ?)
+
+        """, operator)
+
     conn.commit()
     print("[db] Database seeding complete.")
+
+
+def seed_phase2_masterdb(conn):
+
+    cursor = conn.cursor()
+
+    print("[db] Checking Phase 2 Marine MasterDB data...")
+
+    print("[db] Seeding Phase 2 National Marine MasterDB...")
+
+    # -------------------------
+    # National Waterways
+    # -------------------------
+
+    waterways = [
+
+        (
+            "NW1",
+            "Ganga–Bhagirathi–Hooghly",
+            "National Waterway-1",
+            "Ganga",
+            1620,
+            "Operational",
+            "Uttar Pradesh, Bihar, Jharkhand, West Bengal"
+        ),
+
+        (
+            "NW2",
+            "Brahmaputra",
+            "National Waterway-2",
+            "Brahmaputra",
+            891,
+            "Operational",
+            "Assam"
+        ),
+
+        (
+            "NW3",
+            "West Coast Canal",
+            "National Waterway-3",
+            "West Coast Canal",
+            205,
+            "Operational",
+            "Kerala"
+        ),
+
+        (
+            "NW4",
+            "Godavari–Krishna",
+            "National Waterway-4",
+            "Godavari",
+            1078,
+            "Development",
+            "Andhra Pradesh, Tamil Nadu"
+        ),
+
+        (
+            "NW5",
+            "East Coast Canal",
+            "National Waterway-5",
+            "Brahmani",
+            588,
+            "Development",
+            "Odisha, West Bengal"
+        )
+
+    ]
+
+    cursor.execute("SELECT COUNT(*) FROM national_waterways")
+    if cursor.fetchone()[0] == 0:
+        cursor.executemany(
+            "INSERT OR REPLACE INTO national_waterways VALUES (?,?,?,?,?,?,?)",
+            waterways
+        )
+
+
+    # -------------------------
+    # Waterway Segments
+    # -------------------------
+
+    segments = [
+
+        (
+            "SEG001",
+            "NW1",
+            "Varanasi–Patna",
+            "Varanasi",
+            "Patna",
+            3.0,
+            9.5,
+            0,
+            "Operational"
+        ),
+
+        (
+            "SEG002",
+            "NW1",
+            "Patna–Farakka",
+            "Patna",
+            "Farakka",
+            2.8,
+            8.8,
+            1,
+            "Operational"
+        ),
+
+        (
+            "SEG003",
+            "NW1",
+            "Farakka–Haldia",
+            "Farakka",
+            "Haldia",
+            3.2,
+            12.0,
+            1,
+            "Operational"
+        ),
+
+        (
+            "SEG004",
+            "NW2",
+            "Dhubri–Guwahati",
+            "Dhubri",
+            "Guwahati",
+            2.5,
+            10.0,
+            0,
+            "Operational"
+        ),
+
+        (
+            "SEG005",
+            "NW3",
+            "Kollam–Kochi",
+            "Kollam",
+            "Kochi",
+            2.2,
+            8.0,
+            0,
+            "Operational"
+        )
+
+    ]
+
+    cursor.execute("SELECT COUNT(*) FROM waterway_segments")
+    if cursor.fetchone()[0] == 0:
+        cursor.executemany(
+            "INSERT OR REPLACE INTO waterway_segments VALUES (?,?,?,?,?,?,?,?,?)",
+            segments
+        )
+
+    # -------------------------
+    # River Locks
+    # -------------------------
+
+    locks = [
+
+        (
+            "LOCK001",
+            "Farakka Navigation Lock",
+            "NW1",
+            "Farakka",
+            "Operational",
+            230,
+            3.5
+        ),
+
+        (
+            "LOCK002",
+            "Kottapuram Lock",
+            "NW3",
+            "Kottapuram",
+            "Operational",
+            110,
+            2.5
+        ),
+
+        (
+            "LOCK003",
+            "Buckingham Canal Lock",
+            "NW4",
+            "Vijayawada",
+            "Maintenance",
+            120,
+            2.2
+        )
+
+    ]
+
+    cursor.execute("SELECT COUNT(*) FROM river_locks")
+    if cursor.fetchone()[0] == 0:
+        cursor.executemany(
+            "INSERT OR REPLACE INTO river_locks VALUES (?,?,?,?,?,?,?)",
+            locks
+        )
+
+    # -------------------------
+    # Bridge Clearances
+    # -------------------------
+
+    bridges = [
+
+        (
+            "BR001",
+            "Rajendra Setu",
+            "NW1",
+            10.5,
+            120.0,
+            "No restriction"
+        ),
+
+        (
+            "BR002",
+            "Vivekananda Setu",
+            "NW1",
+            8.5,
+            95.0,
+            "High water level restriction during monsoon"
+        ),
+
+        (
+            "BR003",
+            "Saraighat Bridge",
+            "NW2",
+            12.0,
+            150.0,
+            "No restriction"
+        ),
+
+        (
+            "BR004",
+            "Kochi Canal Bridge",
+            "NW3",
+            6.0,
+            45.0,
+            "Small vessels only"
+        )
+
+    ]
+
+    cursor.execute("SELECT COUNT(*) FROM bridge_clearances")
+    if cursor.fetchone()[0] == 0:
+        cursor.executemany(
+            "INSERT OR REPLACE INTO bridge_clearances VALUES (?,?,?,?,?,?)",
+            bridges
+        )
+
+    # -------------------------
+    # Fleet Registry
+    # -------------------------
+
+    fleet = [
+
+        (
+            "vessel_001",
+            "IWAI Logistics",
+            "Cargo Barge",
+            "Diesel",
+            "Active"
+        ),
+
+        (
+            "vessel_002",
+            "National Waterways Logistics",
+            "Class V Cargo Vessel",
+            "Diesel",
+            "Active"
+        ),
+
+        (
+            "vessel_003",
+            "Inland Survey Division",
+            "Survey Vessel",
+            "Hybrid",
+            "Active"
+        ),
+
+        (
+            "vessel_004",
+            "Eastern River Transport",
+            "Bulk Cargo Vessel",
+            "Diesel",
+            "Active"
+        ),
+
+        (
+            "vessel_005",
+            "River Conservation Authority",
+            "Patrol Vessel",
+            "Electric Hybrid",
+            "Active"
+        )
+
+    ]
+
+    cursor.execute("SELECT COUNT(*) FROM fleet_registry")
+    if cursor.fetchone()[0] == 0:
+        cursor.executemany(
+            "INSERT OR REPLACE INTO fleet_registry VALUES (?,?,?,?,?)",
+            fleet
+        )
+
+    # -------------------------
+    # Waterway Operators
+    # -------------------------
+
+    operators = [
+
+        (
+            "OP001",
+            "Inland Waterways Authority of India",
+            "Government",
+            "Noida",
+            "National"
+        ),
+
+        (
+            "OP002",
+            "National Waterways Logistics",
+            "Private Logistics",
+            "Kolkata",
+            "Eastern India"
+        ),
+
+        (
+            "OP003",
+            "Assam River Transport Corporation",
+            "State Transport",
+            "Guwahati",
+            "North East"
+        ),
+
+        (
+            "OP004",
+            "Kerala Water Transport Department",
+            "State Government",
+            "Kochi",
+            "Kerala"
+        ),
+
+        (
+            "OP005",
+            "Eastern Inland Cargo Services",
+            "Private Operator",
+            "Patna",
+            "Ganga Basin"
+        )
+
+    ]
+
+    cursor.execute("SELECT COUNT(*) FROM waterway_operators")
+    if cursor.fetchone()[0] == 0:
+        cursor.executemany(
+            "INSERT OR REPLACE INTO waterway_operators VALUES (?,?,?,?,?)",
+            operators
+        )
+    
+
+    conn.commit()
+
+    print("[db] Phase 2 MasterDB seeded.")

@@ -48,6 +48,7 @@ from gis_engine import (
     build_economic_layer, build_policy_layer,
     build_infrastructure_layer
 )
+from db import get_db_connection
 
 marine_bp = Blueprint("marine", __name__)
 
@@ -690,4 +691,134 @@ def marine_health():
         ],
         "deterministic": True,
         "ml_used": False
+    })
+
+@marine_bp.route("/national-waterways", methods=["GET"])
+def get_national_waterways():
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM national_waterways
+        ORDER BY waterway_id
+    """)
+
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    return jsonify({
+        "count": len(rows),
+        "waterways": [dict(row) for row in rows]
+    })
+
+@marine_bp.route("/waterway-segments", methods=["GET"])
+def get_waterway_segments():
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM waterway_segments
+        ORDER BY segment_id
+    """)
+
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    return jsonify({
+        "count": len(rows),
+        "segments": [dict(row) for row in rows]
+    })
+
+
+@marine_bp.route("/river-locks", methods=["GET"])
+def get_river_locks():
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM river_locks
+        ORDER BY lock_id
+    """)
+
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    return jsonify({
+        "count": len(rows),
+        "locks": [dict(row) for row in rows]
+    })
+
+
+@marine_bp.route("/bridge-clearances", methods=["GET"])
+def get_bridge_clearances():
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM bridge_clearances
+        ORDER BY bridge_id
+    """)
+
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    return jsonify({
+        "count": len(rows),
+        "bridges": [dict(row) for row in rows]
+    })
+
+
+@marine_bp.route("/fleet-registry", methods=["GET"])
+def get_fleet_registry():
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM fleet_registry
+        ORDER BY vessel_id
+    """)
+
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    return jsonify({
+        "count": len(rows),
+        "fleet": [dict(row) for row in rows]
+    })
+
+
+@marine_bp.route("/waterway-operators", methods=["GET"])
+def get_waterway_operators():
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM waterway_operators
+        ORDER BY operator_id
+    """)
+
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    return jsonify({
+        "count": len(rows),
+        "operators": [dict(row) for row in rows]
     })
